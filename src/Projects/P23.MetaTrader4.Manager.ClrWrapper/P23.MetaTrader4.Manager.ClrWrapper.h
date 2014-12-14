@@ -33,10 +33,15 @@ namespace P23{
 				bool               IsValid()    { return(Manager != NULL); }				
 			};
 
-			public ref class ClrWrapper
+			public delegate void PumpingCallbackDelegate(int i);
+
+			public ref class ClrWrapper : IDisposable
 			{
 			private:
-				CManager*       _manager;
+				CManager*					_manager;
+				bool						_isDisposed;
+				GCHandle					_callBackHandler = GCHandle();
+				PumpingCallbackDelegate^	_callBackDelegate;
 				
 				//Helpers
 				static char* ConvertStringToChar(System::String^ inputString);
@@ -54,10 +59,15 @@ namespace P23{
 				ConGroup		FindGroupConfig(System::String^ groupName);
 				RateInfo*		CheckAndCreateRates(char* symbol, List<InstaForex::Metatrader::DataContracts::Chart::RateInfoManaged^>^ rates, int length);
 				static const int		DaysInWeek = 7;*/
+			
 			public:
 				//constructors
 				ClrWrapper();
 				ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters);
+
+				//Destructors, finalizers
+				~ClrWrapper();
+				!ClrWrapper();
 
 				//--- service methods				
 				System::String^ ErrorDescription(int code);
@@ -73,6 +83,8 @@ namespace P23{
 				int PasswordChange(System::String^ password, int isInvestor);
 				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
 
+				//pumping
+				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
 		}
 	}

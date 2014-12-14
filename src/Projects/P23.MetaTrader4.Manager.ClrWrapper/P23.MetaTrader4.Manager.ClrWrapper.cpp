@@ -11,11 +11,12 @@ P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper()
 	_manager = new CManager();	
 	if (_manager == NULL)
 		throw gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException("Failed to instantiate manager instance");
+	if (_manager->Manager == NULL)
+		throw gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException("Failed to instantiate manager instance");
 }
 
-P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters)
-{
-	_manager = new CManager();
+P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters) : P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper()
+{	
 	char* server = ConvertStringToChar(connectionParameters->Server);
 	char* password = ConvertStringToChar(connectionParameters->Password);
 	
@@ -23,11 +24,7 @@ P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper(P23::MetaTrader4::Manager::Con
 		throw gcnew ArgumentException("Server is required");
 	if (password == NULL)
 		throw gcnew ArgumentException("Password is required");
-	
-	if (_manager == NULL)
-		throw gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException("Failed to instantiate manager instance");
-	if (_manager->Manager == NULL)
-		throw gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException("Failed to instantiate manager instance");
+		
 	if (_manager->Manager->IsConnected() != TRUE)
 	{	
 		int connectionResult = _manager->Manager->Connect(server);
@@ -43,4 +40,24 @@ P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper(P23::MetaTrader4::Manager::Con
 System::String^ P23::MetaTrader4::Manager::ClrWrapper::ErrorDescription(int code){
 	LPCSTR description = _manager->Manager->ErrorDescription(code);
 	return gcnew System::String(description);
+}
+
+P23::MetaTrader4::Manager::ClrWrapper::~ClrWrapper()
+{
+	if (_isDisposed)
+		return;
+		
+	this->!ClrWrapper(); // call finalizer
+	_isDisposed = true;
+}
+
+P23::MetaTrader4::Manager::ClrWrapper::!ClrWrapper()
+{
+	if (_callBackHandler.IsAllocated)
+		_callBackHandler.Free();
+
+	if (_manager->Manager->IsConnected())
+		_manager->Manager->Disconnect();
+	_manager->~CManager();
+	_manager = NULL;
 }
