@@ -39,7 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="Configuration\Manager.cs" />
+    <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MetaTraderException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

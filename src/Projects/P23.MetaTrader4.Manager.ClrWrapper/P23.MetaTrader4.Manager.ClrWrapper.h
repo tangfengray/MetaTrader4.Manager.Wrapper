@@ -30,14 +30,24 @@ namespace P23{
 					Factory.WinsockCleanup();
 					Factory.~CManagerFactory();
 				}
-				bool               IsValid()    { return(Manager != NULL); }
-				//CManagerInterface* operator->() { return(m_manager);       }
+				bool               IsValid()    { return(Manager != NULL); }				
 			};
 
 			public ref class ClrWrapper
 			{
 			private:
 				CManager*       _manager;
+				
+				//Helpers
+				static char* ConvertStringToChar(System::String^ inputString);
+
+				//Helper method to convert managed objects to unmanaged un vise versa
+				static ConManager* ConvertManagerConfiguration(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
+				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ ConvertManagerConfiguration(ConManager* manager);
+				
+				static ConManagerSec* ConvertManagerSecurity(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ security);
+				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);
+				
 				/*bool			_managerConnected;
 				ConSymbol		FindSymbolConfig(char* symbol);
 				ConGroup		FindGroupConfig(char* group);
@@ -45,7 +55,23 @@ namespace P23{
 				RateInfo*		CheckAndCreateRates(char* symbol, List<InstaForex::Metatrader::DataContracts::Chart::RateInfoManaged^>^ rates, int length);
 				static const int		DaysInWeek = 7;*/
 			public:
-				ClrWrapper(P23::MetaTrader4::Manager::Contracts::ConnectionParameters^ connectionParameters);
+				//constructors
+				ClrWrapper();
+				ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters);
+
+				//--- service methods				
+				System::String^ ErrorDescription(int code);
+
+				//--- connection
+				int Connect(System::String^ server);
+				int Disconnect();
+				int IsConnected();
+				int Login(int login, System::String^ password);
+				int LoginSecured(System::String^ keyPath);
+				int KeysSend(System::String^ keyPath);
+				int Ping();
+				int PasswordChange(System::String^ password, int isInvestor);
+				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
 
 			};		
 		}
