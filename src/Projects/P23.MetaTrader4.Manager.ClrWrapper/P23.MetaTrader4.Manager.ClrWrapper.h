@@ -51,15 +51,8 @@ namespace P23{
 				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ ConvertManagerConfiguration(ConManager* manager);
 				
 				static ConManagerSec* ConvertManagerSecurity(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ security);
-				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);
-				
-				/*bool			_managerConnected;
-				ConSymbol		FindSymbolConfig(char* symbol);
-				ConGroup		FindGroupConfig(char* group);
-				ConGroup		FindGroupConfig(System::String^ groupName);
-				RateInfo*		CheckAndCreateRates(char* symbol, List<InstaForex::Metatrader::DataContracts::Chart::RateInfoManaged^>^ rates, int length);
-				static const int		DaysInWeek = 7;*/
-			
+				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);		
+		
 			public:
 				//constructors
 				ClrWrapper();
@@ -82,6 +75,29 @@ namespace P23{
 				int Ping();
 				int PasswordChange(System::String^ password, int isInvestor);
 				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
+
+				//--- server administration commands
+				int SrvRestart();
+				int SrvChartsSync();
+				int SrvLiveUpdateStart();
+				int SrvFeedsRestart();
+
+				//--- server configuration
+				//--- configuration request
+				/*int  CfgRequestCommon(ConCommon *cfg);
+				int  CfgRequestTime(ConTime *cfg);
+				int  CfgRequestBackup(ConBackup *cfg);
+				int  CfgRequestSymbolGroup(ConSymbolGroup *cfg);
+				ConAccess*      CfgRequestAccess(int *total);
+				ConDataServer*  CfgRequestDataServer(int *total);
+				ConHoliday*     CfgRequestHoliday(int *total);
+				ConSymbol*      CfgRequestSymbol(int *total);
+				ConGroup*       CfgRequestGroup(int *total);
+				ConManager*     CfgRequestManager(int *total);
+				ConFeeder*      CfgRequestFeeder(int *total);
+				ConLiveUpdate*  CfgRequestLiveUpdate(int *total);
+				ConSync*        CfgRequestSync(int *total);
+				ConPluginParam* CfgRequestPlugin(int *total);*/
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);

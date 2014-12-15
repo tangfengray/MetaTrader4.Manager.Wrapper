@@ -39,7 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Access.cs" />
+    <Compile Include="Configuration\Backup.cs" />
+    <Compile Include="Configuration\Common.cs" />
+    <Compile Include="Configuration\DataServer.cs" />
+    <Compile Include="Configuration\Holiday.cs" />
     <Compile Include="Configuration\Manager.cs" />
+    <Compile Include="Configuration\SymbolGroup.cs" />
+    <Compile Include="Configuration\Time.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MetaTraderException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
