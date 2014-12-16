@@ -43,9 +43,17 @@
     <Compile Include="Configuration\Backup.cs" />
     <Compile Include="Configuration\Common.cs" />
     <Compile Include="Configuration\DataServer.cs" />
+    <Compile Include="Configuration\Feeder.cs" />
+    <Compile Include="Configuration\Group.cs" />
+    <Compile Include="Configuration\GroupSecurity.cs" />
     <Compile Include="Configuration\Holiday.cs" />
+    <Compile Include="Configuration\LiveUpdate.cs" />
     <Compile Include="Configuration\Manager.cs" />
+    <Compile Include="Configuration\PluginParameters.cs" />
+    <Compile Include="Configuration\Sessions.cs" />
+    <Compile Include="Configuration\Symbol.cs" />
     <Compile Include="Configuration\SymbolGroup.cs" />
+    <Compile Include="Configuration\Synchronization.cs" />
     <Compile Include="Configuration\Time.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MetaTraderException.cs" />
