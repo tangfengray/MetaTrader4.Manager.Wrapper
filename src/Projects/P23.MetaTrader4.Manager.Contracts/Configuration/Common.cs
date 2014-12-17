@@ -18,7 +18,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public string TimeSync { get; set; }           // time synchronization server address
         //---
         public int MinClient { get; set; }             // minimal authorized client version
-        public int MinSpi { get; set; }                // minimal authorized client version
+        public int MinApi { get; set; }                // minimal authorized client version
         public UInt32 FeederTimeout { get; set; }      // data feed switch timeout
         public int KeepEmails { get; set; }            // internal mail keep period
         public int EndHour { get; set; }               // end of day time-hour

@@ -7,6 +7,7 @@
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
+using namespace P23::MetaTrader4::Manager::Contracts::Configuration;
 
 namespace P23{
 	namespace MetaTrader4{
@@ -47,11 +48,14 @@ namespace P23{
 				static char* ConvertStringToChar(System::String^ inputString);
 
 				//Helper method to convert managed objects to unmanaged un vise versa
-				static ConManager* ConvertManagerConfiguration(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
-				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ ConvertManagerConfiguration(ConManager* manager);
+				static ConManager* ConvertManagerConfiguration(ManagerConfiguration^ manager);
+				static ManagerConfiguration^ ConvertManagerConfiguration(ConManager* manager);
+		
+				static ConManagerSec* ConvertManagerSecurity(ManagerSecurity^ security);
+				static ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);		
 				
-				static ConManagerSec* ConvertManagerSecurity(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ security);
-				static P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);		
+				static ConCommon* ConvertCommonConfiguration(Common^ configuration);
+				static Common^ ConvertCommonConfiguration(ConCommon* configuration);
 		
 			public:
 				//constructors
