@@ -246,3 +246,34 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Com
 	
 	return newConfiguration;
 }
+
+Time^ P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(ConTime* configuration)
+{
+	Time^ newConfiguration = gcnew Time();
+	newConfiguration->Days = gcnew System::Collections::Generic::List<System::Collections::Generic::IList<int>^>();
+	for (int day = 0; day < 7; day++){
+		System::Collections::Generic::IList<int>^ dayValues = gcnew System::Collections::Generic::List<int>();
+		for (int hour = 0; hour < 24; hour++)
+			dayValues->Add(configuration->days[day][hour]);
+		newConfiguration->Days->Add(dayValues);
+	}
+	
+	return newConfiguration;
+}
+
+ConTime* P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(Time^ configuration)
+{
+	ConTime* newConfiguration = new ConTime();
+	if (configuration->Days->Count != 7)
+		throw gcnew ArgumentException("Invalid number of days");
+	for (int day = 0; day < 7; day++){
+		if (configuration->Days[day]->Count != 24)
+			throw gcnew ArgumentException("Invalid number of hours");
+		for (int hour = 0; hour < 24; hour++)
+		{
+			System::Collections::Generic::IList<int>^ intraDayValues = configuration->Days[day];
+			newConfiguration->days[day][hour] = intraDayValues[hour];
+		}		
+	}
+	return newConfiguration;
+}

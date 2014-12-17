@@ -56,6 +56,9 @@ namespace P23{
 				
 				static ConCommon* ConvertCommonConfiguration(Common^ configuration);
 				static Common^ ConvertCommonConfiguration(ConCommon* configuration);
+
+				static ConTime* ConvertTimeConfiguration(Time^ configuration);
+				static Time^ ConvertTimeConfiguration(ConTime* configuration);
 		
 			public:
 				//constructors
