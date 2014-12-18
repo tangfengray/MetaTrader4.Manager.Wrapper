@@ -17,8 +17,8 @@ P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper()
 
 P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters) : P23::MetaTrader4::Manager::ClrWrapper::ClrWrapper()
 {	
-	char* server = ConvertStringToChar(connectionParameters->Server);
-	char* password = ConvertStringToChar(connectionParameters->Password);
+	char* server = Convert(connectionParameters->Server);
+	char* password = Convert(connectionParameters->Password);
 	
 	if (server == NULL)
 		throw gcnew ArgumentException("Server is required");

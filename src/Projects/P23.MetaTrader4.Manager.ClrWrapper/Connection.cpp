@@ -4,7 +4,7 @@
 
 int P23::MetaTrader4::Manager::ClrWrapper::Connect(System::String^ server)
 {
-	char* cServer = ConvertStringToChar(server);
+	char* cServer = Convert(server);
 	if (cServer == NULL)
 		throw gcnew ArgumentException("Server missing", "server");
 	return _manager->Manager->Connect(cServer);
@@ -22,7 +22,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::IsConnected()
 
 int P23::MetaTrader4::Manager::ClrWrapper::Login(int login, System::String^ password)
 {	
-	char* cPassword = ConvertStringToChar(password);
+	char* cPassword = Convert(password);
 	if (cPassword == NULL)
 		throw gcnew ArgumentException("Password is required");
 	return _manager->Manager->Login(login, cPassword);		
@@ -30,7 +30,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::Login(int login, System::String^ pass
 
 int P23::MetaTrader4::Manager::ClrWrapper::LoginSecured(System::String^ keyPath)
 {
-	char* cKeyPath = ConvertStringToChar(keyPath);
+	char* cKeyPath = Convert(keyPath);
 	if (cKeyPath == NULL)
 		throw gcnew ArgumentException("keyPath is required");
 	return _manager->Manager->LoginSecured(cKeyPath);
@@ -38,7 +38,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::LoginSecured(System::String^ keyPath)
 
 int P23::MetaTrader4::Manager::ClrWrapper::KeysSend(System::String^ keyPath)
 {
-	char* cKeyPath = ConvertStringToChar(keyPath);
+	char* cKeyPath = Convert(keyPath);
 	if (cKeyPath == NULL)
 		throw gcnew ArgumentException("keyPath is required");
 	return _manager->Manager->KeysSend(cKeyPath);
@@ -51,7 +51,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::Ping()
 
 int P23::MetaTrader4::Manager::ClrWrapper::PasswordChange(System::String^ password, int isInvestor)
 {
-	char* cPassword = ConvertStringToChar(password);
+	char* cPassword = Convert(password);
 	if (cPassword == NULL)
 		throw gcnew ArgumentException("password is required");
 	return _manager->Manager->PasswordChange(cPassword, isInvestor);
@@ -59,5 +59,5 @@ int P23::MetaTrader4::Manager::ClrWrapper::PasswordChange(System::String^ passwo
 
 int P23::MetaTrader4::Manager::ClrWrapper::ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager)
 {
-	return _manager->Manager->ManagerRights(ConvertManagerConfiguration(manager));	
+	return _manager->Manager->ManagerRights(Convert(manager));
 }

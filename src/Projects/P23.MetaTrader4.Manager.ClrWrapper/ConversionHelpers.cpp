@@ -4,113 +4,111 @@
 
 #define COPY_STR(dst,src)  { strncpy_s(dst,src,sizeof(dst)-1); dst[sizeof(dst)-1]=0; }
 
-ManagerConfiguration^ P23::MetaTrader4::Manager::ClrWrapper::ConvertManagerConfiguration(ConManager* manager)
+ManagerConfiguration^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManager* configuration)
 {
 	P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ tManager = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration();
-	tManager->Admin = manager->admin;
-	tManager->Broker = manager->broker;
-	tManager->Email = manager->email;
-	tManager->Groups = gcnew System::String(manager->groups);
-	tManager->InfoDepth = manager->info_depth;
-	tManager->IpFilter = manager->ipfilter;
-	tManager->IpFrom = manager->ip_from;
-	tManager->IpTo = manager->ip_to;
-	tManager->Login = manager->login;
-	tManager->Logs = manager->logs;
-	tManager->Mailbox = gcnew System::String(manager->mailbox);
-	tManager->Manager = manager->manager;
-	tManager->MarketWatch = manager->market_watch;
-	tManager->Money = manager->money;
-	tManager->Name = gcnew System::String(manager->name);
-	tManager->News = manager->news;
-	tManager->Online = manager->online;
-	tManager->Plugins = manager->plugins;
-	tManager->Reports = manager->reports;
-	tManager->Riskman = manager->riskman;
+	tManager->Admin = configuration->admin;
+	tManager->Broker = configuration->broker;
+	tManager->Email = configuration->email;
+	tManager->Groups = gcnew System::String(configuration->groups);
+	tManager->InfoDepth = configuration->info_depth;
+	tManager->IpFilter = configuration->ipfilter;
+	tManager->IpFrom = configuration->ip_from;
+	tManager->IpTo = configuration->ip_to;
+	tManager->Login = configuration->login;
+	tManager->Logs = configuration->logs;
+	tManager->Mailbox = gcnew System::String(configuration->mailbox);
+	tManager->Manager = configuration->manager;
+	tManager->MarketWatch = configuration->market_watch;
+	tManager->Money = configuration->money;
+	tManager->Name = gcnew System::String(configuration->name);
+	tManager->News = configuration->news;
+	tManager->Online = configuration->online;
+	tManager->Plugins = configuration->plugins;
+	tManager->Reports = configuration->reports;
+	tManager->Riskman = configuration->riskman;
 
 	tManager->SecGroups = gcnew System::Collections::Generic::List<P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^>();
 	for (int i = 0; i < MAX_SEC_GROUPS; i++){
-		tManager->SecGroups->Add(ConvertManagerSecurity(&manager->secgroups[i]));
+		tManager->SecGroups->Add(Convert(&configuration->secgroups[i]));
 	}
 	
-	tManager->SeeTrades = manager->see_trades;
-	tManager->ServerReports = manager->server_reports;
-	tManager->Trades = manager->trades;
-	tManager->UserDetails = manager->user_details;
+	tManager->SeeTrades = configuration->see_trades;
+	tManager->ServerReports = configuration->server_reports;
+	tManager->Trades = configuration->trades;
+	tManager->UserDetails = configuration->user_details;
 	return tManager;
 }
 
-ConManager* P23::MetaTrader4::Manager::ClrWrapper::ConvertManagerConfiguration(ManagerConfiguration^ manager)
+ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(ManagerConfiguration^ configuration)
 {
 	ConManager* tManager = new ConManager();
 
-	tManager->admin = manager->Admin;
-	tManager->broker = manager->Broker;
-	tManager->email = manager->Email;
+	tManager->admin = configuration->Admin;
+	tManager->broker = configuration->Broker;
+	tManager->email = configuration->Email;
 
-	char* groups = ConvertStringToChar(manager->Groups);
+	char* groups = Convert(configuration->Groups);
 	if (groups != NULL)
 		COPY_STR(tManager->groups, groups);
 	
-	tManager->info_depth = manager->InfoDepth;
-	tManager->ipfilter = manager->IpFilter;
-	tManager->ip_from = (unsigned long)manager->IpFrom;
-	tManager->ip_to = (unsigned long)manager->IpTo;
-	tManager->login = manager->Login;
-	tManager->logs = manager->Logs;
+	tManager->info_depth = configuration->InfoDepth;
+	tManager->ipfilter = configuration->IpFilter;
+	tManager->ip_from = (unsigned long)configuration->IpFrom;
+	tManager->ip_to = (unsigned long)configuration->IpTo;
+	tManager->login = configuration->Login;
+	tManager->logs = configuration->Logs;
 
-	char* mailbox = ConvertStringToChar(manager->Mailbox);
+	char* mailbox = Convert(configuration->Mailbox);
 	if (mailbox != NULL)
 		COPY_STR(tManager->mailbox, mailbox);
 	
-	tManager->manager = manager->Manager;
-	tManager->market_watch = manager->MarketWatch;
-	tManager->money = manager->Money;
+	tManager->manager = configuration->Manager;
+	tManager->market_watch = configuration->MarketWatch;
+	tManager->money = configuration->Money;
 
-	char* name = ConvertStringToChar(manager->Name);
+	char* name = Convert(configuration->Name);
 	if (name != NULL)
 		COPY_STR(tManager->name, name);
 	
-	tManager->news = manager->News;
-	tManager->online = manager->Online;
-	tManager->plugins = manager->Plugins;
-	tManager->reports = manager->Reports;
-	tManager->riskman = manager->Riskman;
-	if (manager->SecGroups->Count != MAX_SEC_GROUPS)
+	tManager->news = configuration->News;
+	tManager->online = configuration->Online;
+	tManager->plugins = configuration->Plugins;
+	tManager->reports = configuration->Reports;
+	tManager->riskman = configuration->Riskman;
+	if (configuration->SecGroups->Count != MAX_SEC_GROUPS)
 		throw gcnew ArgumentException("Invalid number of securities");
 		
 	for (int i = 0; i < MAX_SEC_GROUPS; i++){
-		tManager->secgroups[i] = *ConvertManagerSecurity(manager->SecGroups[i]);
+		tManager->secgroups[i] = *Convert(configuration->SecGroups[i]);
 	}
 
-	tManager->see_trades = manager->SeeTrades;
-	tManager->server_reports = manager->ServerReports;
-	tManager->trades = manager->Trades;
-	tManager->user_details = manager->UserDetails;
+	tManager->see_trades = configuration->SeeTrades;
+	tManager->server_reports = configuration->ServerReports;
+	tManager->trades = configuration->Trades;
+	tManager->user_details = configuration->UserDetails;
 	return tManager;
-
-	throw gcnew NotImplementedException();
 }
 
-ManagerSecurity^ P23::MetaTrader4::Manager::ClrWrapper::ConvertManagerSecurity(ConManagerSec* security)
+ManagerSecurity^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManagerSec* configuration)
 {
 	P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity^ sec = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::ManagerSecurity();
-	sec->Enable = security->enable;
-	sec->MaximumLots = security->maximum_lots;
-	sec->MinimumLots = security->minimum_lots;
+	sec->Enable = configuration->enable;
+	sec->MaximumLots = configuration->maximum_lots;
+	sec->MinimumLots = configuration->minimum_lots;
 	return sec;
 }
 
-ConManagerSec* P23::MetaTrader4::Manager::ClrWrapper::ConvertManagerSecurity(ManagerSecurity^ security)
+ConManagerSec* P23::MetaTrader4::Manager::ClrWrapper::Convert(ManagerSecurity^ configuration)
 {
 	ConManagerSec* sec = new ConManagerSec();
-	sec->enable = security->Enable;
-	sec->maximum_lots = security->MaximumLots;
-	sec->minimum_lots = security->MinimumLots;
+	sec->enable = configuration->Enable;
+	sec->maximum_lots = configuration->MaximumLots;
+	sec->minimum_lots = configuration->MinimumLots;
 	return sec;
 }
 
-Common^ P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(ConCommon* configuration)
+Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 {
 	Common^ newConfiguration = gcnew Common();
 
@@ -164,11 +162,11 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(ConCom
 	return newConfiguration;
 }
 
-ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Common^ configuration)
+ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 {
 	ConCommon* newConfiguration = new ConCommon();
 	
-	char* adapters = ConvertStringToChar(configuration->Adapters);
+	char* adapters = Convert(configuration->Adapters);
 	if (adapters != NULL)
 		COPY_STR(newConfiguration->adapters, adapters);
 
@@ -195,7 +193,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Com
 	newConfiguration->minapi = configuration->MinApi;
 	newConfiguration->monthly_state_mode = configuration->MonthlyStateMode;
 
-	char* name = ConvertStringToChar(configuration->Name);
+	char* name = Convert(configuration->Name);
 	if (name != NULL)
 		COPY_STR(newConfiguration->name, name);
 	
@@ -207,19 +205,19 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Com
 	newConfiguration->overnight_last_time = configuration->OverNightLastTime;
 	newConfiguration->overnight_prev_time = configuration->OverNightPrevTime;
 
-	char* owner = ConvertStringToChar(configuration->Owner);
+	char* owner = Convert(configuration->Owner);
 	if (owner != NULL)
 		COPY_STR(newConfiguration->owner, owner);
 	
-	char* path_database = ConvertStringToChar(configuration->PathDatabase);
+	char* path_database = Convert(configuration->PathDatabase);
 	if (path_database != NULL)
 		COPY_STR(newConfiguration->path_database, path_database);
 	
-	char* path_history = ConvertStringToChar(configuration->PathHistory);
+	char* path_history = Convert(configuration->PathHistory);
 	if (path_history != NULL)
 		COPY_STR(newConfiguration->path_history, path_history);
 	
-	char* path_log = ConvertStringToChar(configuration->PathLog);
+	char* path_log = Convert(configuration->PathLog);
 	if (path_log != NULL)
 		COPY_STR(newConfiguration->path_log, path_log);
 	
@@ -232,7 +230,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Com
 	newConfiguration->timeofdemo = configuration->TimeOfDemo;
 	newConfiguration->timeout = configuration->Timeout;
 
-	char* timesync = ConvertStringToChar(configuration->TimeSync);
+	char* timesync = Convert(configuration->TimeSync);
 	if (timesync != NULL)
 		COPY_STR(newConfiguration->timesync, timesync);
 	
@@ -247,7 +245,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::ConvertCommonConfiguration(Com
 	return newConfiguration;
 }
 
-Time^ P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(ConTime* configuration)
+Time^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConTime* configuration)
 {
 	Time^ newConfiguration = gcnew Time();
 	newConfiguration->Days = gcnew System::Collections::Generic::List<System::Collections::Generic::IList<int>^>();
@@ -261,7 +259,7 @@ Time^ P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(ConTime* c
 	return newConfiguration;
 }
 
-ConTime* P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(Time^ configuration)
+ConTime* P23::MetaTrader4::Manager::ClrWrapper::Convert(Time^ configuration)
 {
 	ConTime* newConfiguration = new ConTime();
 	if (configuration->Days->Count != 7)
@@ -278,7 +276,7 @@ ConTime* P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(Time^ c
 	return newConfiguration;
 }
 
-Backup^ P23::MetaTrader4::Manager::ClrWrapper::ConvertBackupConfiguration(ConBackup* configuration)
+Backup^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConBackup* configuration)
 {
 	Backup^ newConfiguration = gcnew Backup();
 	
@@ -309,55 +307,181 @@ Backup^ P23::MetaTrader4::Manager::ClrWrapper::ConvertBackupConfiguration(ConBac
 	return newConfiguration;
 }
 
-ConBackup* P23::MetaTrader4::Manager::ClrWrapper::ConvertBackupConfiguration(Backup^ configuration)
+ConBackup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Backup^ configuration)
 {
 	ConBackup* newConfiguration = new ConBackup();
 
 	newConfiguration->archive_lasttime = configuration->ArchiveLastTime;
 	newConfiguration->archive_period = configuration->ArchivePeriod;
-	newConfiguration->archive_shift = configuration->ArchiveShift;
+	newConfiguration->archive_shift = (char)configuration->ArchiveShift;
 	newConfiguration->archive_store = configuration->ArchiveStore;
 	newConfiguration->export_lasttime = configuration->ExportLastTime;
 
-	char* export_path = ConvertStringToChar(configuration->ExportPath);
+	char* export_path = Convert(configuration->ExportPath);
 	if (export_path != NULL)
 		COPY_STR(newConfiguration->export_path, export_path);
 	
 	newConfiguration->export_period = configuration->ExportPeriod;
 
-	char* export_securities = ConvertStringToChar(configuration->ExportSecurities);
+	char* export_securities = Convert(configuration->ExportSecurities);
 	if (export_securities != NULL)
 		COPY_STR(newConfiguration->export_securities, export_securities);
 
-	char* external_path = ConvertStringToChar(configuration->ExternalPath);
+	char* external_path = Convert(configuration->ExternalPath);
 	if (external_path != NULL)
 		COPY_STR(newConfiguration->external_path, external_path);
 				
 	newConfiguration->fullbackup_lasttime = configuration->FullBackupLastTime;
 
-	char* fullbackup_path = ConvertStringToChar(configuration->FullBackupPath);
+	char* fullbackup_path = Convert(configuration->FullBackupPath);
 	if (fullbackup_path != NULL)
 		COPY_STR(newConfiguration->fullbackup_path, fullbackup_path);
 	
 	newConfiguration->fullbackup_period = configuration->FullBackupPeriod;
 	newConfiguration->fullbackup_shift = configuration->FullBackupShift;
 	newConfiguration->fullbackup_store = configuration->FullBackupStore;
-	newConfiguration->watch_failover = configuration->WatchFailover;
+	newConfiguration->watch_failover = (char)configuration->WatchFailover;
 	newConfiguration->watch_ip = configuration->WatchIp;
 	newConfiguration->watch_login = configuration->WatchLogin;
 
-	char* watch_opposite = ConvertStringToChar(configuration->WatchOpposite);
+	char* watch_opposite = Convert(configuration->WatchOpposite);
 	if (watch_opposite != NULL)
 		COPY_STR(newConfiguration->watch_opposite, watch_opposite);
 	
-	char* watch_password = ConvertStringToChar(configuration->WatchPassword);
+	char* watch_password = Convert(configuration->WatchPassword);
 	if (watch_password != NULL)
 		COPY_STR(newConfiguration->watch_password, watch_password);
 	
 	newConfiguration->watch_role = configuration->WatchRole;
-	newConfiguration->watch_state = configuration->WatchState;
+	newConfiguration->watch_state = (char)configuration->WatchState;
 	newConfiguration->watch_timeout = configuration->WatchTimeout;
 	newConfiguration->watch_timestamp = configuration->WatchTimestamp;
+
+	return newConfiguration;
+}
+
+SymbolGroup^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbolGroup* configuration)
+{
+	SymbolGroup^ newConfiguration = gcnew SymbolGroup();
+
+	newConfiguration->Description = gcnew String(configuration->description);
+	newConfiguration->Name = gcnew String(configuration->name);
+
+	return newConfiguration;
+}
+
+ConSymbolGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(SymbolGroup^ configuration)
+{
+	ConSymbolGroup* newConfiguration = new ConSymbolGroup();
+	
+	char* description = Convert(configuration->Description);
+	if (description != NULL)
+		COPY_STR(newConfiguration->description, description);
+
+	char* name = Convert(configuration->Name);
+	if (name != NULL)
+		COPY_STR(newConfiguration->name, name);
+	
+	return newConfiguration;
+}
+
+Access^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConAccess* configuration)
+{
+	Access^ newConfiguration = gcnew Access();
+
+	newConfiguration->Action = configuration->action;
+	newConfiguration->Comment = gcnew String(configuration->comment);
+	newConfiguration->From = configuration->from;
+	newConfiguration->To = configuration->to;
+	
+	return newConfiguration;
+}
+
+ConAccess* P23::MetaTrader4::Manager::ClrWrapper::Convert(Access^ configuration)
+{
+	ConAccess* newConfiguration = new ConAccess();
+
+	char* comment = Convert(configuration->Comment);
+	if (comment != NULL)
+		COPY_STR(newConfiguration->comment, comment);
+
+	newConfiguration->action = configuration->Action;
+	newConfiguration->from = configuration->From;
+	newConfiguration->to = configuration->To;
+
+	return newConfiguration;
+}
+
+DataServer^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConDataServer* configuration)
+{
+	DataServer^ newConfiguration = gcnew DataServer();
+
+	newConfiguration->Description = gcnew String(configuration->description);
+	newConfiguration->Ip = configuration->ip;
+	newConfiguration->IpInternal = configuration->ip_internal;
+	newConfiguration->IsProxy = configuration->isproxy;
+	newConfiguration->Loading = configuration->loading;
+	newConfiguration->Priority = configuration->priority;
+	newConfiguration->Server = gcnew String(configuration->server);
+
+	return newConfiguration;
+}
+
+ConDataServer* P23::MetaTrader4::Manager::ClrWrapper::Convert(DataServer^ configuration)
+{
+	ConDataServer* newConfiguration = new ConDataServer();
+
+	char* description = Convert(configuration->Description);
+	if (description != NULL)
+		COPY_STR(newConfiguration->description, description);
+
+	char* server = Convert(configuration->Server);
+	if (server != NULL)
+		COPY_STR(newConfiguration->server, server);
+
+	newConfiguration->ip = configuration->Ip;
+	newConfiguration->ip_internal = configuration->IpInternal;
+	newConfiguration->isproxy = configuration->IsProxy;
+	newConfiguration->loading = configuration->Loading;
+	newConfiguration->priority = configuration->Priority;
+
+	return newConfiguration;
+}
+
+Holiday^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConHoliday* configuration)
+{
+	Holiday^ newConfiguration = gcnew Holiday();
+
+	newConfiguration->Day = configuration->day;
+	newConfiguration->Description = gcnew String(configuration->description);
+	newConfiguration->Enable = configuration->enable;
+	newConfiguration->From = configuration->from;
+	newConfiguration->Month = configuration->month;
+	newConfiguration->Symbol = gcnew String(configuration->symbol);
+	newConfiguration->To = configuration->to;
+	newConfiguration->Year = configuration->year;
+
+	return newConfiguration;
+}
+
+ConHoliday* P23::MetaTrader4::Manager::ClrWrapper::Convert(Holiday^ configuration)
+{
+	ConHoliday* newConfiguration = new ConHoliday();
+
+	char* description = Convert(configuration->Description);
+	if (description != NULL)
+		COPY_STR(newConfiguration->description, description);
+
+	char* symbol = Convert(configuration->Symbol);
+	if (symbol != NULL)
+		COPY_STR(newConfiguration->symbol, symbol);
+
+	newConfiguration->day = configuration->Day;
+	newConfiguration->enable = configuration->Enable;
+	newConfiguration->from = configuration->From;
+	newConfiguration->month = configuration->Month;
+	newConfiguration->to = configuration->To;
+	newConfiguration->year = configuration->Year;
 
 	return newConfiguration;
 }

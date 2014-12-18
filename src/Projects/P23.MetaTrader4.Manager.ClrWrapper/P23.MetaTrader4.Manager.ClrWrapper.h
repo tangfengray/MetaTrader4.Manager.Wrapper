@@ -45,24 +45,35 @@ namespace P23{
 				PumpingCallbackDelegate^	_callBackDelegate;
 				
 				//Helpers
-				static char* ConvertStringToChar(System::String^ inputString);
+				static char* Convert(System::String^ inputString);
 
 				//Helper method to convert managed objects to unmanaged un vise versa
-				static ConManager* ConvertManagerConfiguration(ManagerConfiguration^ manager);
-				static ManagerConfiguration^ ConvertManagerConfiguration(ConManager* manager);
+				static ConManager* Convert(ManagerConfiguration^ manager);
+				static ManagerConfiguration^ Convert(ConManager* manager);
 		
-				static ConManagerSec* ConvertManagerSecurity(ManagerSecurity^ security);
-				static ManagerSecurity^ ConvertManagerSecurity(ConManagerSec* security);		
+				static ConManagerSec* Convert(ManagerSecurity^ security);
+				static ManagerSecurity^ Convert(ConManagerSec* security);
 				
-				static ConCommon* ConvertCommonConfiguration(Common^ configuration);
-				static Common^ ConvertCommonConfiguration(ConCommon* configuration);
+				static ConCommon* Convert(Common^ configuration);
+				static Common^ Convert(ConCommon* configuration);
 
-				static ConTime* ConvertTimeConfiguration(Time^ configuration);
-				static Time^ ConvertTimeConfiguration(ConTime* configuration);
+				static ConTime* Convert(Time^ configuration);
+				static Time^ Convert(ConTime* configuration);
+				
+				static ConBackup* Convert(Backup^ configuration);
+				static Backup^ Convert(ConBackup* configuration);
 
+				static ConSymbolGroup* Convert(SymbolGroup^ configuration);
+				static SymbolGroup^ Convert(ConSymbolGroup* configuration);
 
-				static ConBackup* ConvertBackupConfiguration(Backup^ configuration);
-				static Backup^ ConvertBackupConfiguration(ConBackup* configuration);
+				static ConAccess* Convert(Access^ configuration);
+				static Access^ Convert(ConAccess* configuration);
+
+				static ConDataServer* Convert(DataServer^ configuration);
+				static DataServer^ Convert(ConDataServer* configuration);
+
+				static ConHoliday* Convert(Holiday^ configuration);
+				static Holiday^ Convert(ConHoliday* configuration);
 		
 			public:
 				//constructors
