@@ -59,6 +59,10 @@ namespace P23{
 
 				static ConTime* ConvertTimeConfiguration(Time^ configuration);
 				static Time^ ConvertTimeConfiguration(ConTime* configuration);
+
+
+				static ConBackup* ConvertBackupConfiguration(Backup^ configuration);
+				static Backup^ ConvertBackupConfiguration(ConBackup* configuration);
 		
 			public:
 				//constructors

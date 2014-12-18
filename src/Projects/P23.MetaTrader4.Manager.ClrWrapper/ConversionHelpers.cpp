@@ -277,3 +277,87 @@ ConTime* P23::MetaTrader4::Manager::ClrWrapper::ConvertTimeConfiguration(Time^ c
 	}
 	return newConfiguration;
 }
+
+Backup^ P23::MetaTrader4::Manager::ClrWrapper::ConvertBackupConfiguration(ConBackup* configuration)
+{
+	Backup^ newConfiguration = gcnew Backup();
+	
+	newConfiguration->ArchiveLastTime = configuration->archive_lasttime;
+	newConfiguration->ArchivePeriod = configuration->archive_period;
+	newConfiguration->ArchiveShift = configuration->archive_shift;
+	newConfiguration->ArchiveStore = configuration->archive_store;
+	newConfiguration->ExportLastTime = configuration->export_lasttime;
+	newConfiguration->ExportPath = gcnew String( configuration->export_path);
+	newConfiguration->ExportPeriod = configuration->export_period;
+	newConfiguration->ExportSecurities = gcnew String(configuration->export_securities);
+	newConfiguration->ExternalPath = gcnew String(configuration->external_path);
+	newConfiguration->FullBackupLastTime = configuration->fullbackup_lasttime;
+	newConfiguration->FullBackupPath = gcnew String(configuration->fullbackup_path);
+	newConfiguration->FullBackupPeriod = configuration->fullbackup_period;
+	newConfiguration->FullBackupShift = configuration->fullbackup_shift;
+	newConfiguration->FullBackupStore = configuration->fullbackup_store;
+	newConfiguration->WatchFailover = configuration->watch_failover;
+	newConfiguration->WatchIp = configuration->watch_ip;
+	newConfiguration->WatchLogin = configuration->watch_login;
+	newConfiguration->WatchOpposite = gcnew String(configuration->watch_opposite);
+	newConfiguration->WatchPassword = gcnew String(configuration->watch_password);
+	newConfiguration->WatchRole = configuration->watch_role;
+	newConfiguration->WatchState = configuration->watch_state;
+	newConfiguration->WatchTimeout = configuration->watch_timeout;
+	newConfiguration->WatchTimestamp = configuration->watch_timestamp;
+	
+	return newConfiguration;
+}
+
+ConBackup* P23::MetaTrader4::Manager::ClrWrapper::ConvertBackupConfiguration(Backup^ configuration)
+{
+	ConBackup* newConfiguration = new ConBackup();
+
+	newConfiguration->archive_lasttime = configuration->ArchiveLastTime;
+	newConfiguration->archive_period = configuration->ArchivePeriod;
+	newConfiguration->archive_shift = configuration->ArchiveShift;
+	newConfiguration->archive_store = configuration->ArchiveStore;
+	newConfiguration->export_lasttime = configuration->ExportLastTime;
+
+	char* export_path = ConvertStringToChar(configuration->ExportPath);
+	if (export_path != NULL)
+		COPY_STR(newConfiguration->export_path, export_path);
+	
+	newConfiguration->export_period = configuration->ExportPeriod;
+
+	char* export_securities = ConvertStringToChar(configuration->ExportSecurities);
+	if (export_securities != NULL)
+		COPY_STR(newConfiguration->export_securities, export_securities);
+
+	char* external_path = ConvertStringToChar(configuration->ExternalPath);
+	if (external_path != NULL)
+		COPY_STR(newConfiguration->external_path, external_path);
+				
+	newConfiguration->fullbackup_lasttime = configuration->FullBackupLastTime;
+
+	char* fullbackup_path = ConvertStringToChar(configuration->FullBackupPath);
+	if (fullbackup_path != NULL)
+		COPY_STR(newConfiguration->fullbackup_path, fullbackup_path);
+	
+	newConfiguration->fullbackup_period = configuration->FullBackupPeriod;
+	newConfiguration->fullbackup_shift = configuration->FullBackupShift;
+	newConfiguration->fullbackup_store = configuration->FullBackupStore;
+	newConfiguration->watch_failover = configuration->WatchFailover;
+	newConfiguration->watch_ip = configuration->WatchIp;
+	newConfiguration->watch_login = configuration->WatchLogin;
+
+	char* watch_opposite = ConvertStringToChar(configuration->WatchOpposite);
+	if (watch_opposite != NULL)
+		COPY_STR(newConfiguration->watch_opposite, watch_opposite);
+	
+	char* watch_password = ConvertStringToChar(configuration->WatchPassword);
+	if (watch_password != NULL)
+		COPY_STR(newConfiguration->watch_password, watch_password);
+	
+	newConfiguration->watch_role = configuration->WatchRole;
+	newConfiguration->watch_state = configuration->WatchState;
+	newConfiguration->watch_timeout = configuration->WatchTimeout;
+	newConfiguration->watch_timestamp = configuration->WatchTimestamp;
+
+	return newConfiguration;
+}
