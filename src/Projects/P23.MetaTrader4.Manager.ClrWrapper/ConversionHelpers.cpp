@@ -685,3 +685,247 @@ ConSession* P23::MetaTrader4::Manager::ClrWrapper::Convert(Session^ configuratio
 
 	return newConfiguration;
 }
+
+Group^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroup* configuration)
+{
+	Group^ newConfiguration = gcnew Group();
+
+	newConfiguration->AdvSecurity = configuration->adv_security;
+	newConfiguration->ArchiveMaxBalance = configuration->archive_max_balance;
+	newConfiguration->ArchivePendingPeriod = configuration->archive_pending_period;
+	newConfiguration->ArchivePeriod = configuration->archive_period;
+	newConfiguration->CheckIePrices = configuration->check_ie_prices;
+	newConfiguration->CloseFifo = configuration->close_fifo;
+	newConfiguration->CloseReopen = configuration->close_reopen;
+	newConfiguration->Company = gcnew String( configuration->company);
+	newConfiguration->Copies = configuration->copies;
+	newConfiguration->Credit = configuration->credit;
+	newConfiguration->Currency = gcnew String(configuration->currency);
+	newConfiguration->DefaultDeposit = configuration->default_deposit;
+	newConfiguration->DefaultLeverage = configuration->default_leverage;
+	newConfiguration->Enable = configuration->enable;
+	newConfiguration->HedgeLargeLeg = configuration->hedge_largeleg;
+	newConfiguration->HedgeProhibited = configuration->hedge_prohibited;
+	newConfiguration->InterestRate = configuration->interestrate;
+	newConfiguration->MarginCall = configuration->margin_call;
+	newConfiguration->MarginMode = configuration->margin_mode;
+	newConfiguration->MarginStopout = configuration->margin_stopout;
+	newConfiguration->MarginType = configuration->margin_type;
+	newConfiguration->MaxPositions = configuration->maxpositions;
+	newConfiguration->MaxSecurities = configuration->maxsecurities;
+	newConfiguration->Name = gcnew String(configuration->group);
+	newConfiguration->News = configuration->news;
+
+	newConfiguration->NewsLanguages = gcnew System::Collections::Generic::List<unsigned int>();
+	for (int i = 0; i < 8; i++)
+		newConfiguration->NewsLanguages->Add(configuration->news_languages[i]);
+
+	newConfiguration->NewsLanguagesTotal = configuration->news_languages_total;
+	newConfiguration->Reports = configuration->reports;
+	newConfiguration->Rights = configuration->rights;
+
+	newConfiguration->SecGroups = gcnew System::Collections::Generic::List<GroupSecurity^>();
+	for (int i = 0; i < MAX_SEC_GROUPS; i++)
+		newConfiguration->SecGroups->Add(Convert(&configuration->secgroups[i]));
+
+	newConfiguration->SecMargins = gcnew System::Collections::Generic::List<GroupMargin^>();
+	for (int i = 0; i < MAX_SEC_GROPS_MARGIN; i++)
+		newConfiguration->SecMargins->Add(Convert(&configuration->secmargins[i]));
+	
+	newConfiguration->SecMarginsTotal = configuration->secmargins_total;
+	newConfiguration->Signature = gcnew String(configuration->signature);
+	newConfiguration->SmtpLogin = gcnew String(configuration->smtp_login);
+	newConfiguration->SmtpPassword = gcnew String(configuration->smtp_password);
+	newConfiguration->SmtpServer = gcnew String(configuration->smtp_server);
+	newConfiguration->StopOutSkipHedged = configuration->stopout_skip_hedged;
+	newConfiguration->SupportEmail = gcnew String(configuration->support_email);
+	newConfiguration->SupportPage = gcnew String(configuration->support_page);
+	newConfiguration->Templates = gcnew String(configuration->templates);
+	newConfiguration->Timeout = configuration->timeout;
+	newConfiguration->UseSwap = configuration->use_swap;
+
+	return newConfiguration;
+}
+
+ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
+{
+	if (configuration->NewsLanguages->Count > 8)
+		throw gcnew ArgumentException("Maximum allowed count of news languages: 8");
+	if (configuration->SecGroups->Count > MAX_SEC_GROUPS)
+		throw gcnew ArgumentException("Exceeded maximum number of allowed security groups");
+	if (configuration->SecMargins->Count > MAX_SEC_GROPS_MARGIN)
+		throw gcnew ArgumentException("Exceeded maximum number of allowed security group margins");
+
+	ConGroup* newConfiguration = new ConGroup();
+
+	newConfiguration->adv_security = configuration->AdvSecurity;
+	newConfiguration->archive_max_balance = configuration->ArchiveMaxBalance;
+	newConfiguration->archive_pending_period = configuration->ArchivePendingPeriod;
+	newConfiguration->archive_period = configuration->ArchivePeriod;
+	newConfiguration->check_ie_prices = configuration->CheckIePrices;
+	newConfiguration->close_fifo = configuration->CloseFifo;
+	newConfiguration->close_reopen = configuration->CloseReopen;
+
+	char* company = Convert(configuration->Company);
+	if (company != NULL)
+		COPY_STR(newConfiguration->company, company);
+
+	newConfiguration->copies = configuration->Copies;
+	newConfiguration->credit = configuration->Credit;
+
+	char* currency = Convert(configuration->Currency);
+	if (currency != NULL)
+		COPY_STR(newConfiguration->currency, currency);
+
+	newConfiguration->default_deposit = configuration->DefaultDeposit;
+	newConfiguration->default_leverage = configuration->DefaultLeverage;
+	newConfiguration->enable = configuration->Enable;
+	newConfiguration->hedge_largeleg = configuration->HedgeLargeLeg;
+	newConfiguration->hedge_prohibited = configuration->HedgeProhibited;
+	newConfiguration->interestrate = configuration->InterestRate;
+	newConfiguration->margin_call = configuration->MarginCall;
+	newConfiguration->margin_mode = configuration->MarginMode;
+	newConfiguration->margin_stopout = configuration->MarginStopout;
+	newConfiguration->margin_type = configuration->MarginType;
+	newConfiguration->maxpositions = configuration->MaxPositions;
+	newConfiguration->maxsecurities = configuration->MaxSecurities;
+
+	char* group = Convert(configuration->Name);
+	if (group != NULL)
+		COPY_STR(newConfiguration->group, group);
+
+	newConfiguration->news = configuration->News;
+		
+	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
+		newConfiguration->news_languages[i] = configuration->NewsLanguages[i];
+
+	newConfiguration->news_languages_total = configuration->NewsLanguagesTotal;
+	newConfiguration->reports = configuration->Reports;
+	newConfiguration->rights = configuration->Rights;
+		
+	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
+		newConfiguration->secgroups[i] = *Convert(configuration->SecGroups[i]);
+		
+	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
+		newConfiguration->secmargins[i] = *Convert(configuration->SecMargins[i]);
+
+	newConfiguration->secmargins_total = configuration->SecMarginsTotal;
+
+	char* signature = Convert(configuration->Signature);
+	if (signature != NULL)
+		COPY_STR(newConfiguration->signature, signature);
+
+	char* smtp_login = Convert(configuration->SmtpLogin);
+	if (smtp_login != NULL)
+		COPY_STR(newConfiguration->smtp_login, smtp_login);
+
+	char* smtp_password = Convert(configuration->SmtpPassword);
+	if (smtp_password != NULL)
+		COPY_STR(newConfiguration->smtp_password, smtp_password);
+
+	char* smtp_server = Convert(configuration->SmtpServer);
+	if (smtp_server != NULL)
+		COPY_STR(newConfiguration->smtp_server, smtp_server);
+	
+	newConfiguration->stopout_skip_hedged = configuration->StopOutSkipHedged;
+
+	char* support_email = Convert(configuration->SupportEmail);
+	if (support_email != NULL)
+		COPY_STR(newConfiguration->support_email, support_email);
+
+	char* support_page = Convert(configuration->SupportPage);
+	if (support_page != NULL)
+		COPY_STR(newConfiguration->support_page, support_page);
+
+	char* templates = Convert(configuration->Templates);
+	if (templates != NULL)
+		COPY_STR(newConfiguration->templates, templates);
+	
+	newConfiguration->timeout = configuration->Timeout;
+	newConfiguration->use_swap = configuration->UseSwap;
+
+	return newConfiguration;
+}
+
+GroupSecurity^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroupSec* configuration)
+{
+	GroupSecurity^ newConfiguration = gcnew GroupSecurity();
+
+	newConfiguration->AutoCloseOutMode = configuration->autocloseout_mode;
+	newConfiguration->CommAgent = configuration->comm_agent;
+	newConfiguration->CommAgentLots = configuration->comm_agent_lots;
+	newConfiguration->CommAgentType = configuration->comm_agent_type;
+	newConfiguration->CommBase = configuration->comm_base;
+	newConfiguration->CommLots = configuration->comm_lots;
+	newConfiguration->CommTax = configuration->comm_tax;
+	newConfiguration->CommType = configuration->comm_type;
+	newConfiguration->Confirmation = configuration->confirmation;
+	newConfiguration->Execution = configuration->execution;
+	newConfiguration->FreeMarginMode = configuration->freemargin_mode;
+	newConfiguration->IeDeviation = configuration->ie_deviation;
+	newConfiguration->IeQuickMode = configuration->ie_quick_mode;
+	newConfiguration->LotMax = configuration->lot_max;
+	newConfiguration->LotMin = configuration->lot_min;
+	newConfiguration->LotStep = configuration->lot_step;
+	newConfiguration->Show = configuration->show;
+	newConfiguration->SpreadDiff = configuration->spread_diff;
+	newConfiguration->Trade = configuration->trade;
+	newConfiguration->TradeRights = configuration->trade_rights;
+
+	return newConfiguration;
+} 
+
+ConGroupSec* P23::MetaTrader4::Manager::ClrWrapper::Convert(GroupSecurity^ configuration)
+{
+	ConGroupSec* newConfiguration = new ConGroupSec();
+
+	newConfiguration->autocloseout_mode = configuration->AutoCloseOutMode;
+	newConfiguration->comm_agent = configuration->CommAgent;
+	newConfiguration->comm_agent_lots = configuration->CommAgentLots;
+	newConfiguration->comm_agent_type = configuration->CommAgentType;
+	newConfiguration->comm_base = configuration->CommBase;
+	newConfiguration->comm_lots = configuration->CommLots;
+	newConfiguration->comm_tax = configuration->CommTax;
+	newConfiguration->comm_type = configuration->CommType;
+	newConfiguration->confirmation = configuration->Confirmation;
+	newConfiguration->execution = configuration->Execution;
+	newConfiguration->freemargin_mode = configuration->FreeMarginMode;
+	newConfiguration->ie_deviation = configuration->IeDeviation;
+	newConfiguration->ie_quick_mode = configuration->IeQuickMode;
+	newConfiguration->lot_max = configuration->LotMax;
+	newConfiguration->lot_min = configuration->LotMin;
+	newConfiguration->lot_step = configuration->LotStep;
+	newConfiguration->show = configuration->Show;
+	newConfiguration->spread_diff = configuration->SpreadDiff;
+	newConfiguration->trade = configuration->Trade;
+	newConfiguration->trade_rights = configuration->TradeRights;
+	
+	return newConfiguration;
+}
+
+GroupMargin^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroupMargin* configuration)
+{
+	GroupMargin^ newConfiguration = gcnew GroupMargin();
+
+	newConfiguration->MarginDivider = configuration->margin_divider;
+	newConfiguration->SwapLong = configuration->swap_long;
+	newConfiguration->SwapShort = configuration->swap_short;
+	newConfiguration->Symbol = gcnew String(configuration->symbol);
+
+	return newConfiguration;
+}
+
+ConGroupMargin* P23::MetaTrader4::Manager::ClrWrapper::Convert(GroupMargin^ configuration)
+{
+	ConGroupMargin* newConfiguration = new ConGroupMargin();
+
+	newConfiguration->margin_divider = configuration->MarginDivider;
+	newConfiguration->swap_long = configuration->SwapLong;
+	newConfiguration->swap_short = configuration->SwapShort;
+
+	char* symbol = Convert(configuration->Symbol);
+	if (symbol != NULL)
+		COPY_STR(newConfiguration->symbol, symbol);
+
+	return newConfiguration;
+}

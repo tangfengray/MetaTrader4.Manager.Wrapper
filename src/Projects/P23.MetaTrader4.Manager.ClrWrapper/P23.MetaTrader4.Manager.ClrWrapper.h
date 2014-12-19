@@ -83,6 +83,15 @@ namespace P23{
 
 				static ConSession* Convert(Session^ configuration);
 				static Session^ Convert(ConSession* configuration);
+
+				static ConGroup* Convert(Group^ configuration);
+				static Group^ Convert(ConGroup* configuration);
+
+				static ConGroupSec* Convert(GroupSecurity^ configuration);
+				static GroupSecurity^ Convert(ConGroupSec* configuration);
+
+				static ConGroupMargin* Convert(GroupMargin^ configuration);
+				static GroupMargin^ Convert(ConGroupMargin* configuration);
 				
 			public:
 				//constructors
