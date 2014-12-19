@@ -74,7 +74,16 @@ namespace P23{
 
 				static ConHoliday* Convert(Holiday^ configuration);
 				static Holiday^ Convert(ConHoliday* configuration);
-		
+
+				static ConSymbol* Convert(Symbol^ configuration);
+				static Symbol^ Convert(ConSymbol* configuration);
+
+				static ConSessions* Convert(Sessions^ configuration);
+				static Sessions^ Convert(ConSessions* configuration);
+
+				static ConSession* Convert(Session^ configuration);
+				static Session^ Convert(ConSession* configuration);
+				
 			public:
 				//constructors
 				ClrWrapper();

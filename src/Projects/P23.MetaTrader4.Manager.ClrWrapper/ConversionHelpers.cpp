@@ -485,3 +485,203 @@ ConHoliday* P23::MetaTrader4::Manager::ClrWrapper::Convert(Holiday^ configuratio
 
 	return newConfiguration;
 }
+
+Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
+{
+	Symbol^ newConfiguration = gcnew Symbol();
+
+	newConfiguration->AskTickValue = configuration->ask_tickvalue;
+	newConfiguration->BackgroundColor = configuration->background_color;
+	newConfiguration->BidTickValue = configuration->bid_tickvalue;
+	newConfiguration->ContractSize = configuration->contract_size;
+	newConfiguration->Count = configuration->count;
+	newConfiguration->CountOriginal = configuration->count_original;
+	newConfiguration->Currency = gcnew String(configuration->currency);
+	newConfiguration->Description = gcnew String(configuration->description);
+	newConfiguration->Digits = configuration->digits;
+	newConfiguration->Exemode = configuration->exemode;
+	newConfiguration->Expiration = configuration->expiration;
+	newConfiguration->Filter = configuration->filter;
+	newConfiguration->FilterCounter = configuration->filter_counter;
+	newConfiguration->FilterLimit = configuration->filter_limit;
+	newConfiguration->FilterSmoothing = configuration->filter_smoothing;
+	newConfiguration->FreezeLevel = configuration->freeze_level;
+	newConfiguration->GtcPendings = configuration->gtc_pendings;
+	newConfiguration->InstantMaxVolume = configuration->instant_max_volume;
+	newConfiguration->Logging = configuration->logging;
+	newConfiguration->LongOnly = configuration->long_only;
+	newConfiguration->MarginCurrency = gcnew String(configuration->margin_currency);
+	newConfiguration->MarginDivider = configuration->margin_divider;
+	newConfiguration->MarginHedged = configuration->margin_hedged;
+	newConfiguration->MarginHedgedStrong = configuration->margin_hedged_strong;
+	newConfiguration->MarginInitial = configuration->margin_initial;
+	newConfiguration->MarginMaintenance = configuration->margin_maintenance;
+	newConfiguration->MarginMode = configuration->margin_mode;
+	newConfiguration->Multiply = configuration->multiply;
+	newConfiguration->Name = gcnew String(configuration->symbol);
+	newConfiguration->Point = configuration->point;
+	newConfiguration->ProfitMode = configuration->profit_mode;
+	newConfiguration->QuotesDelay = configuration->quotes_delay;
+	newConfiguration->RealTime = configuration->realtime;
+
+	for (int i = 0; i < 7; i++)
+		newConfiguration->Sessions[i] = Convert(&configuration->sessions[i]);
+
+	newConfiguration->Source = gcnew String(configuration->source);
+	newConfiguration->Spread = configuration->spread;
+	newConfiguration->SpreadBalance = configuration->spread_balance;
+	newConfiguration->Starting = configuration->starting;
+	newConfiguration->StopsLevel = configuration->stops_level;
+	newConfiguration->SwapEnable = configuration->swap_enable;
+	newConfiguration->SwapLong = configuration->swap_long;
+	newConfiguration->SwapOpenPrice = configuration->swap_openprice;
+	newConfiguration->SwapRollover3Days = configuration->swap_rollover3days;
+	newConfiguration->SwapShort = configuration->swap_short;
+	newConfiguration->SwapType = configuration->swap_type;
+	newConfiguration->SwapVariationMargin = configuration->swap_variation_margin;
+	newConfiguration->TickSize = configuration->tick_size;
+	newConfiguration->TickValue = configuration->tick_value;
+	newConfiguration->Trade = configuration->trade;
+	newConfiguration->Type = configuration->type;
+	newConfiguration->ValueDate = configuration->value_date;
+
+	return newConfiguration;
+}
+
+ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
+{
+	if (configuration->Sessions->Count != 7)
+		throw gcnew ArgumentException("Number sessions must be equal 7");
+
+	ConSymbol* newConfiguration = new ConSymbol();
+
+	newConfiguration->ask_tickvalue = configuration->AskTickValue;
+	newConfiguration->background_color = configuration->BackgroundColor;
+	newConfiguration->bid_tickvalue = configuration->BidTickValue;
+	newConfiguration->contract_size = configuration->ContractSize;
+	newConfiguration->count = configuration->Count;
+	newConfiguration->count_original = configuration->CountOriginal;
+
+	char* currency = Convert(configuration->Currency);
+	if (currency != NULL)
+		COPY_STR(newConfiguration->currency, currency);
+	
+	char* description = Convert(configuration->Description);
+	if (description != NULL)
+		COPY_STR(newConfiguration->description, description);
+
+	newConfiguration->digits = configuration->Digits;
+	newConfiguration->exemode = configuration->Exemode;
+	newConfiguration->expiration = configuration->Expiration;
+	newConfiguration->filter = configuration->Filter;
+	newConfiguration->filter_counter = configuration->FilterCounter;
+	newConfiguration->filter_limit = configuration->FilterLimit;
+	newConfiguration->filter_smoothing = configuration->FilterSmoothing;
+	newConfiguration->freeze_level = configuration->FreezeLevel;
+	newConfiguration->gtc_pendings = configuration->GtcPendings;
+	newConfiguration->instant_max_volume = configuration->InstantMaxVolume;
+	newConfiguration->logging = configuration->Logging;
+	newConfiguration->long_only = configuration->LongOnly;
+
+	char* margin_currency = Convert(configuration->MarginCurrency);
+	if (margin_currency != NULL)
+		COPY_STR(newConfiguration->margin_currency, margin_currency);
+
+	newConfiguration->margin_divider = configuration->MarginDivider;
+	newConfiguration->margin_hedged = configuration->MarginHedged;
+	newConfiguration->margin_hedged_strong = configuration->MarginHedgedStrong;
+	newConfiguration->margin_initial = configuration->MarginInitial;
+	newConfiguration->margin_maintenance = configuration->MarginMaintenance;
+	newConfiguration->margin_mode = configuration->MarginMode;
+	newConfiguration->multiply = configuration->Multiply;
+
+	char* symbol = Convert(configuration->Name);
+	if (symbol != NULL)
+		COPY_STR(newConfiguration->symbol, symbol);
+
+	newConfiguration->point = configuration->Point;
+	newConfiguration->profit_mode = configuration->ProfitMode;
+	newConfiguration->quotes_delay = configuration->QuotesDelay;
+	newConfiguration->realtime = configuration->RealTime;
+
+	for (int i = 0; i < 7; i++)
+		newConfiguration->sessions[i] = *Convert(configuration->Sessions[i]);
+		
+	char* source = Convert(configuration->Source);
+	if (source != NULL)
+		COPY_STR(newConfiguration->source, source);
+
+	newConfiguration->spread = configuration->Spread;
+	newConfiguration->spread_balance = configuration->SpreadBalance;
+	newConfiguration->starting = configuration->Starting;
+	newConfiguration->stops_level = configuration->StopsLevel;
+	newConfiguration->swap_enable = configuration->SwapEnable;
+	newConfiguration->swap_long = configuration->SwapLong;
+	newConfiguration->swap_openprice = configuration->SwapOpenPrice;
+	newConfiguration->swap_rollover3days = configuration->SwapRollover3Days;
+	newConfiguration->swap_short = configuration->SwapShort;
+	newConfiguration->swap_type = configuration->SwapType;
+	newConfiguration->swap_variation_margin = configuration->SwapVariationMargin;
+	newConfiguration->tick_size = configuration->TickSize;
+	newConfiguration->tick_value = configuration->TickValue;
+	newConfiguration->trade = configuration->Trade;
+	newConfiguration->type = configuration->Type;
+	newConfiguration->value_date = configuration->ValueDate;
+
+	return newConfiguration;
+}
+
+Sessions^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSessions* configuration)
+{
+	Sessions^ newConfiguration = gcnew Sessions();
+		
+	for (int i = 0; i < 3; i++)
+		newConfiguration->Quote[i] = Convert(&configuration->quote[i]);
+
+	for (int i = 0; i < 3; i++)
+		newConfiguration->Trade[i] = Convert(&configuration->trade[i]);
+
+	return newConfiguration;
+}
+
+ConSessions* P23::MetaTrader4::Manager::ClrWrapper::Convert(Sessions^ configuration)
+{
+	ConSessions* newConfiguration = new ConSessions();
+
+	if (configuration->Quote->Count > 3)
+		throw gcnew ArgumentException("Number quote sessions exceeded 3");
+	if (configuration->Trade->Count > 3)
+		throw gcnew ArgumentException("Number trade sessions exceeded 3");
+
+	for (int i = 0; i < configuration->Quote->Count; i++)
+		newConfiguration->quote[i] = *Convert(configuration->Quote[i]);
+
+	for (int i = 0; i < configuration->Trade->Count; i++)
+		newConfiguration->trade[i] = *Convert(configuration->Trade[i]);
+
+	return newConfiguration;
+}
+
+Session^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSession* configuration)
+{
+	Session^ newConfiguration = gcnew Session();
+
+	newConfiguration->CloseHour = configuration->close_hour;
+	newConfiguration->CloseMin = configuration->close_min;
+	newConfiguration->OpenHour = configuration->open_hour;
+	newConfiguration->OpenMin = configuration->open_min;
+
+	return newConfiguration;
+}
+
+ConSession* P23::MetaTrader4::Manager::ClrWrapper::Convert(Session^ configuration)
+{
+	ConSession* newConfiguration = new ConSession();
+
+	newConfiguration->close_hour = configuration->CloseMin;
+	newConfiguration->close_min = configuration->CloseMin;
+	newConfiguration->open_hour = configuration->OpenHour;
+	newConfiguration->open_min = configuration->OpenMin;
+
+	return newConfiguration;
+}
