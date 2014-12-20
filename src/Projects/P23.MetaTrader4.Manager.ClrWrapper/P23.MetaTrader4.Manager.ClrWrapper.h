@@ -168,6 +168,22 @@ namespace P23{
 				IList<Synchronization^>^        CfgRequestSync();
 				IList<PluginWithParameters^>^ CfgRequestPlugin();
 
+				//--- configuration update
+				int CfgUpdateCommon(Common^ configuration);
+				int CfgUpdateAccess(Access^ configuration, int position);
+				int CfgUpdateDataServer(DataServer^ configuration, int position);
+				int CfgUpdateTime(Time^ configuration);
+				int CfgUpdateHoliday(Holiday^ configuration, int position);
+				int CfgUpdateSymbol(Symbol^ configuration);
+				int CfgUpdateSymbolGroup(SymbolGroup^ configuration, int position);
+				int CfgUpdateGroup(Group^ configuration);
+				int CfgUpdateManager(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ configuration);
+				int CfgUpdateFeeder(Feeder^ configuration);
+				int CfgUpdateBackup(Backup^ configuration);
+				int CfgUpdateLiveUpdate(LiveUpdate^ configuration);
+				int CfgUpdateSync(Synchronization^ configuration);
+				int CfgUpdatePlugin(Plugin^ configuration, IList<PluginConfigurationParameter^>^ parameters);
+
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
