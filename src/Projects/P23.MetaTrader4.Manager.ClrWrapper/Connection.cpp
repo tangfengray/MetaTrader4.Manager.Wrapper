@@ -57,7 +57,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::PasswordChange(System::String^ passwo
 	return _manager->Manager->PasswordChange(cPassword, isInvestor);
 }
 
-int P23::MetaTrader4::Manager::ClrWrapper::ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager)
+int P23::MetaTrader4::Manager::ClrWrapper::ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager)
 {
 	return _manager->Manager->ManagerRights(Convert(manager));
 }

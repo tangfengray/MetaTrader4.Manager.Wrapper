@@ -4,9 +4,9 @@
 
 #define COPY_STR(dst,src)  { strncpy_s(dst,src,sizeof(dst)-1); dst[sizeof(dst)-1]=0; }
 
-ManagerConfiguration^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManager* configuration)
+P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManager* configuration)
 {
-	P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ tManager = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration();
+	P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ tManager = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::Manager();
 	tManager->Admin = configuration->admin;
 	tManager->Broker = configuration->broker;
 	tManager->Email = configuration->email;
@@ -18,7 +18,7 @@ ManagerConfiguration^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManager*
 	tManager->Login = configuration->login;
 	tManager->Logs = configuration->logs;
 	tManager->Mailbox = gcnew System::String(configuration->mailbox);
-	tManager->Manager = configuration->manager;
+	tManager->ManagerRights = configuration->manager;
 	tManager->MarketWatch = configuration->market_watch;
 	tManager->Money = configuration->money;
 	tManager->Name = gcnew System::String(configuration->name);
@@ -40,7 +40,7 @@ ManagerConfiguration^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConManager*
 	return tManager;
 }
 
-ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(ManagerConfiguration^ configuration)
+ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ configuration)
 {
 	ConManager* tManager = new ConManager();
 
@@ -63,7 +63,7 @@ ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(ManagerConfiguration^
 	if (mailbox != NULL)
 		COPY_STR(tManager->mailbox, mailbox);
 	
-	tManager->manager = configuration->Manager;
+	tManager->manager = configuration->ManagerRights;
 	tManager->market_watch = configuration->MarketWatch;
 	tManager->money = configuration->Money;
 

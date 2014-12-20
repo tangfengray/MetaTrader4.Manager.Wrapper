@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
-    public class ManagerConfiguration
+    public class Manager
     {
         public int Login { get; set; }                       // login
         //--- rights
-        public int Manager { get; set; }                     // right to add & change client records
+        public int ManagerRights { get; set; }               // right to add & change client records
         public int Money { get; set; }                       // right to balance & credit management
         public int Online { get; set; }                      // right to see online users
         public int Riskman { get; set; }                     // right to use analyzer

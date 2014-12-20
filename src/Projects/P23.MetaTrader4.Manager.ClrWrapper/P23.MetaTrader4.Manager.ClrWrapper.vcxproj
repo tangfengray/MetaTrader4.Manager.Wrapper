@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ConfigurationRequests.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ConversionHelpers.cpp" />
     <ClCompile Include="Helpers.cpp" />

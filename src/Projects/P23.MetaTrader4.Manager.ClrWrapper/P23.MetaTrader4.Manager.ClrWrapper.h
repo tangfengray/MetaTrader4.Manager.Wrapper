@@ -12,6 +12,7 @@
 using namespace System;
 using namespace System::Runtime::InteropServices;
 using namespace P23::MetaTrader4::Manager::Contracts::Configuration;
+using namespace System::Collections::Generic;
 
 namespace P23{
 	namespace MetaTrader4{
@@ -52,8 +53,8 @@ namespace P23{
 				static char* Convert(System::String^ inputString);
 
 				//Helper method to convert managed objects to unmanaged un vise versa
-				static ConManager* Convert(ManagerConfiguration^ manager);
-				static ManagerConfiguration^ Convert(ConManager* manager);
+				static ConManager* Convert(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager);
+				static P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ Convert(ConManager* manager);
 		
 				static ConManagerSec* Convert(ManagerSecurity^ security);
 				static ManagerSecurity^ Convert(ConManagerSec* security);
@@ -142,7 +143,7 @@ namespace P23{
 				int KeysSend(System::String^ keyPath);
 				int Ping();
 				int PasswordChange(System::String^ password, int isInvestor);
-				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::ManagerConfiguration^ manager);
+				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager);
 
 				//--- server administration commands
 				int SrvRestart();
@@ -152,20 +153,20 @@ namespace P23{
 
 				//--- server configuration
 				//--- configuration request
-				/*int  CfgRequestCommon(ConCommon *cfg);
-				int  CfgRequestTime(ConTime *cfg);
-				int  CfgRequestBackup(ConBackup *cfg);
-				int  CfgRequestSymbolGroup(ConSymbolGroup *cfg);
-				ConAccess*      CfgRequestAccess(int *total);
-				ConDataServer*  CfgRequestDataServer(int *total);
-				ConHoliday*     CfgRequestHoliday(int *total);
-				ConSymbol*      CfgRequestSymbol(int *total);
-				ConGroup*       CfgRequestGroup(int *total);
-				ConManager*     CfgRequestManager(int *total);
-				ConFeeder*      CfgRequestFeeder(int *total);
-				ConLiveUpdate*  CfgRequestLiveUpdate(int *total);
-				ConSync*        CfgRequestSync(int *total);
-				ConPluginParam* CfgRequestPlugin(int *total);*/
+				Common^  CfgRequestCommon();
+				Time^  CfgRequestTime();
+				Backup^  CfgRequestBackup();
+				SymbolGroup^  CfgRequestSymbolGroup();
+				IList<Access^>^      CfgRequestAccess();
+				IList<DataServer^>^  CfgRequestDataServer();
+				IList<Holiday^>^     CfgRequestHoliday();
+				IList<Symbol^>^      CfgRequestSymbol();
+				IList<Group^>^       CfgRequestGroup();
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Manager^>^     CfgRequestManager();
+				IList<Feeder^>^      CfgRequestFeeder();
+				IList<LiveUpdate^>^  CfgRequestLiveUpdate();
+				IList<Synchronization^>^        CfgRequestSync();
+				IList<PluginWithParameters^>^ CfgRequestPlugin();
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
