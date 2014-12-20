@@ -196,7 +196,7 @@ namespace P23{
 				int CfgDeleteSync(int position);
 
 				//--- configuration shift
-				/*int CfgShiftAccess(int position, int shift);
+				int CfgShiftAccess(int position, int shift);
 				int CfgShiftDataServer(int position, int shift);
 				int CfgShiftHoliday(int position, int shift);
 				int CfgShiftSymbol(int position, int shift);
@@ -205,7 +205,7 @@ namespace P23{
 				int CfgShiftFeeder(int position, int shift);
 				int CfgShiftLiveUpdate(int position, int shift);
 				int CfgShiftSync(int position, int shift);
-				int CfgShiftPlugin(int position, int shift);*/
+				int CfgShiftPlugin(int position, int shift);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);

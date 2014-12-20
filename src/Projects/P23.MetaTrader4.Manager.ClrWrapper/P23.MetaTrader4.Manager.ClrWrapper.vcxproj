@@ -86,6 +86,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ConfigurationDeletes.cpp" />
     <ClCompile Include="ConfigurationRequests.cpp" />
+    <ClCompile Include="ConfigurationShifts.cpp" />
     <ClCompile Include="ConfigurationUpdates.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ConversionHelpers.cpp" />
