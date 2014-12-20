@@ -717,7 +717,7 @@ Group^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroup* configuration)
 	newConfiguration->News = configuration->news;
 
 	newConfiguration->NewsLanguages = gcnew System::Collections::Generic::List<unsigned int>();
-	for (int i = 0; i < configuration->news_languages_total; i++)
+	for (int i = 0; i < (int)configuration->news_languages_total; i++)
 		newConfiguration->NewsLanguages->Add(configuration->news_languages[i]);
 
 	newConfiguration->Reports = configuration->reports;
@@ -1123,12 +1123,10 @@ LiveInfoFile* P23::MetaTrader4::Manager::ClrWrapper::Convert(FilesConfigurations
 PluginWithParameters^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConPluginParam* configuration)
 {
 	PluginWithParameters^ newConfiguration = gcnew PluginWithParameters();
-
-	throw gcnew NotImplementedException();
-	//Next code generates compile time error, need to fund work around
-	/*newConfiguration->Parameters = gcnew System::Collections::Generic::List<PluginConfigurationParameter^>();
+		
+	newConfiguration->Parameters = gcnew System::Collections::Generic::List<PluginConfigurationParameter^>();
 	for (int i = 0; i < configuration->total; i++)
-		newConfiguration->Parameters->Add(Convert(&configuration->params[i]));*/
+		newConfiguration->Parameters->Add(Convert(&UnmanagedHelpers::GetPluginParameters(configuration, i)));
 	
 	newConfiguration->Plugin = Convert(&configuration->plugin);
 
@@ -1144,10 +1142,7 @@ ConPluginParam* P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginWithParamet
 
 	for (int i = 0; i < configuration->Parameters->Count; i++)
 	{
-		throw gcnew NotImplementedException();
-		//Next code generates compile time error, need to fund work around
-		//newConfiguration->params[i] = *Convert(configuration->Parameters[i]);
-
+		UnmanagedHelpers::AssignPluginParameters(newConfiguration, *Convert(configuration->Parameters[i]), i);		
 	}
 
 	return newConfiguration;

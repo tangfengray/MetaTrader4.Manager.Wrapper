@@ -5,6 +5,10 @@
 
 #include "MT4ManagerAPI.h"
 
+#pragma unmanaged
+#include "UnmanagedHelpers.h"
+#pragma managed
+
 using namespace System;
 using namespace System::Runtime::InteropServices;
 using namespace P23::MetaTrader4::Manager::Contracts::Configuration;
