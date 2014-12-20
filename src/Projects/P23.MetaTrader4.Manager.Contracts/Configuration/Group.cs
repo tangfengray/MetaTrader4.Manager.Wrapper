@@ -59,6 +59,6 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int ArchivePendingPeriod{get;set;}       // pendings clean period
         //--- allowed news languages
         public IList<UInt32> NewsLanguages{get;set;}    // LANGID array
-        public UInt32 NewsLanguagesTotal{get;set;}      // news languages total
+       // public UInt32 NewsLanguagesTotal{get;set;}      // news languages total
     }
 }

@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
-    public class PluginInfo
+    public class PluginInformation
     {
-        string Name { get; set; }                    // plugin name
-        UInt32 Version { get; set; }                 // plugin version
-        string Copyright { get; set; }               // plugin copyright
+        public string Name { get; set; }                    // plugin name
+        public UInt32 Version { get; set; }                 // plugin version
+        public string Copyright { get; set; }               // plugin copyright
 
     }
 
     public class PluginConfigurationParameter
     {
-        string Name { get; set; }                     // parameter name
-        string Value { get; set; }                    // parameter value
+        public string Name { get; set; }                     // parameter name
+        public string Value { get; set; }                    // parameter value
 
     }
 
     public class Plugin
     {
-        string File { get; set; }                     // plugin file name
-        PluginInfo Info { get; set; }                 // plugin description
-        int Enabled { get; set; }                     // plugin enabled/disabled
-        int Configurable { get; set; }                // is plugin configurable
-        int ManagerAccess { get; set; }               // plugin can be accessed from manager terminal
+        public string File { get; set; }                     // plugin file name
+        public PluginInformation Info { get; set; }          // plugin description
+        public int Enabled { get; set; }                     // plugin enabled/disabled
+        public int Configurable { get; set; }                // is plugin configurable
+        public int ManagerAccess { get; set; }               // plugin can be accessed from manager terminal
     }
 
     public class PluginWithParameters
     {
-        Plugin Plugin { get; set; }                    // plugin configuration
-        IList<PluginConfigurationParameter> Parameters { get; set; } // plugin parameters
-        int Total { get; set; }                        // total plugin parameters
+        public Plugin Plugin { get; set; }                    // plugin configuration
+        public IList<PluginConfigurationParameter> Parameters { get; set; } // plugin parameters
+        //public int Total { get; set; }                        // total plugin parameters
     };
 }

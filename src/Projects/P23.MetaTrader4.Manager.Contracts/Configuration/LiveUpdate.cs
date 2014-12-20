@@ -16,11 +16,11 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int Connections { get; set; }                 // current connections (read only)
         public int Type { get; set; }                        // type LIVE_UPDATE_*
         public int Enable { get; set; }                      // enable
-        public int TotalFiles { get; set; }                  // total files count
-        public IList<LiveInfoFile> Files { get; set; }       // files' configurations
+        //public int TotalFiles { get; set; }                  // total files count
+        public IList<FilesConfigurations> Files { get; set; }       // files' configurations
     }
 
-    public class LiveInfoFile
+    public class FilesConfigurations
     {
         public string File { get; set; }                     // file name
         public int Size { get; set; }                        // file size

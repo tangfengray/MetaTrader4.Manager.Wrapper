@@ -717,10 +717,9 @@ Group^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroup* configuration)
 	newConfiguration->News = configuration->news;
 
 	newConfiguration->NewsLanguages = gcnew System::Collections::Generic::List<unsigned int>();
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < configuration->news_languages_total; i++)
 		newConfiguration->NewsLanguages->Add(configuration->news_languages[i]);
 
-	newConfiguration->NewsLanguagesTotal = configuration->news_languages_total;
 	newConfiguration->Reports = configuration->reports;
 	newConfiguration->Rights = configuration->rights;
 
@@ -799,7 +798,7 @@ ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
 	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
 		newConfiguration->news_languages[i] = configuration->NewsLanguages[i];
 
-	newConfiguration->news_languages_total = configuration->NewsLanguagesTotal;
+	newConfiguration->news_languages_total = configuration->NewsLanguages->Count;
 	newConfiguration->reports = configuration->Reports;
 	newConfiguration->rights = configuration->Rights;
 		
@@ -929,3 +928,312 @@ ConGroupMargin* P23::MetaTrader4::Manager::ClrWrapper::Convert(GroupMargin^ conf
 
 	return newConfiguration;
 }
+
+Feeder^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConFeeder* configuration)
+{
+	Feeder^ newConfiguration = gcnew Feeder();
+
+	newConfiguration->AttempsSleep = configuration->attemps_sleep;
+	newConfiguration->Enable = configuration->enable;
+	newConfiguration->File = gcnew String(configuration->file);
+	newConfiguration->Keywords = gcnew String(configuration->keywords);
+	newConfiguration->Login = gcnew String(configuration->login);
+	newConfiguration->Mode = configuration->mode;
+	newConfiguration->Name = gcnew String(configuration->name);
+	newConfiguration->NewsLangId = configuration->news_langid;
+	newConfiguration->Pass = gcnew String(configuration->pass);
+	newConfiguration->Server = gcnew String(configuration->server);
+	newConfiguration->TimeoutReconnect = configuration->timeout_reconnect;
+	newConfiguration->Timeout = configuration->timeout;
+	newConfiguration->TimeoutSleep = configuration->timeout_sleep;	
+
+	return newConfiguration;
+}
+
+ConFeeder* P23::MetaTrader4::Manager::ClrWrapper::Convert(Feeder^ configuration)
+{
+	ConFeeder* newConfiguration = new ConFeeder();
+
+	newConfiguration->attemps_sleep = configuration->AttempsSleep;
+	newConfiguration->enable = configuration->Enable;
+
+	char* file = Convert(configuration->File);
+	if (file != NULL)
+		COPY_STR(newConfiguration->file, file);
+
+	char* keywords = Convert(configuration->Keywords);
+	if (keywords != NULL)
+		COPY_STR(newConfiguration->keywords, keywords);
+
+	char* login = Convert(configuration->Login);
+	if (login != NULL)
+		COPY_STR(newConfiguration->login, login);
+
+	newConfiguration->mode = configuration->Mode;
+
+	char* name = Convert(configuration->Name);
+	if (name != NULL)
+		COPY_STR(newConfiguration->name, name);
+
+	newConfiguration->news_langid = configuration->NewsLangId;
+
+	char* pass = Convert(configuration->Pass);
+	if (pass != NULL)
+		COPY_STR(newConfiguration->pass, pass);
+
+	char* server = Convert(configuration->Server);
+	if (server != NULL)
+		COPY_STR(newConfiguration->server, server);
+
+	newConfiguration->timeout_reconnect = configuration->TimeoutReconnect;
+	newConfiguration->timeout = configuration->Timeout;
+	newConfiguration->timeout_sleep = configuration->TimeoutSleep;
+	
+	return newConfiguration;
+}
+
+LiveUpdate^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConLiveUpdate* configuration)
+{
+	LiveUpdate^ newConfiguration = gcnew LiveUpdate();
+
+	newConfiguration->Build = configuration->build;
+	newConfiguration->Company = gcnew String(configuration->company);
+	newConfiguration->Connections = configuration->connections;
+	newConfiguration->Enable = configuration->enable;
+
+	newConfiguration->Files = gcnew System::Collections::Generic::List<FilesConfigurations^>();
+	for (int i = 0; i < configuration->totalfiles; i++)
+		newConfiguration->Files->Add(Convert(&configuration->files[i]));
+
+	newConfiguration->MaxConnect = configuration->maxconnect;
+	newConfiguration->Path = gcnew String(configuration->path);
+	newConfiguration->Type = configuration->type;
+	newConfiguration->Version = configuration->version;
+
+	return newConfiguration;
+}
+
+ConLiveUpdate* P23::MetaTrader4::Manager::ClrWrapper::Convert(LiveUpdate^ configuration)
+{
+	ConLiveUpdate* newConfiguration = new ConLiveUpdate();
+
+	newConfiguration->build = configuration->Build;
+
+	char* company = Convert(configuration->Company);
+	if (company != NULL)
+		COPY_STR(newConfiguration->company, company);
+
+	newConfiguration->connections = configuration->Connections;
+	newConfiguration->enable = configuration->Enable;
+		
+	for (int i = 0; i < configuration->Files->Count; i++)
+		newConfiguration->files[i] = *Convert(configuration->Files[i]);
+
+	newConfiguration->maxconnect = configuration->MaxConnect;
+
+	char* path = Convert(configuration->Path);
+	if (path != NULL)
+		COPY_STR(newConfiguration->path, path);
+
+	newConfiguration->totalfiles = configuration->Files->Count;
+	newConfiguration->type = configuration->Type;
+	newConfiguration->version = configuration->Version;
+
+	
+
+	return newConfiguration;
+}
+
+Synchronization^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSync* configuration)
+{
+	Synchronization^ newConfiguration = gcnew Synchronization();
+
+	newConfiguration->Enable = configuration->enable;
+	newConfiguration->From = configuration->from;
+	newConfiguration->Login = gcnew String(configuration->login);
+	newConfiguration->Mode = configuration->mode;
+	newConfiguration->Password = gcnew String(configuration->password);
+	newConfiguration->Securities = gcnew String(configuration->securities);
+	newConfiguration->Server = gcnew String(configuration->server);
+	newConfiguration->To = configuration->to;
+	newConfiguration->UnusedPort = configuration->unusedport;
+
+	return newConfiguration;
+}
+
+ConSync* P23::MetaTrader4::Manager::ClrWrapper::Convert(Synchronization^ configuration)
+{
+	ConSync* newConfiguration = new ConSync();
+
+	newConfiguration->enable = configuration->Enable;
+	newConfiguration->from = configuration->From;
+
+	char* login = Convert(configuration->Login);
+	if (login != NULL)
+		COPY_STR(newConfiguration->login, login);
+
+	newConfiguration->mode = configuration->Mode;
+
+	char* password = Convert(configuration->Password);
+	if (password != NULL)
+		COPY_STR(newConfiguration->password, password);
+
+	char* securities = Convert(configuration->Securities);
+	if (securities != NULL)
+		COPY_STR(newConfiguration->securities, securities);
+
+	char* server = Convert(configuration->Server);
+	if (server != NULL)
+		COPY_STR(newConfiguration->server, server);
+
+	newConfiguration->to = configuration->To;
+	newConfiguration->unusedport = configuration->UnusedPort;	
+
+	return newConfiguration;
+}
+
+FilesConfigurations^ P23::MetaTrader4::Manager::ClrWrapper::Convert(LiveInfoFile* configuration)
+{
+	FilesConfigurations^ newConfiguration = gcnew FilesConfigurations();
+
+	newConfiguration->File = gcnew String(configuration->file);
+	newConfiguration->Hash = gcnew String(configuration->hash);
+	newConfiguration->Size = configuration->size;
+
+	return newConfiguration;
+}
+
+LiveInfoFile* P23::MetaTrader4::Manager::ClrWrapper::Convert(FilesConfigurations^ configuration)
+{
+	LiveInfoFile* newConfiguration = new LiveInfoFile();
+
+	char* file = Convert(configuration->File);
+	if (file != NULL)
+		COPY_STR(newConfiguration->file, file);
+
+	char* hash = Convert(configuration->Hash);
+	if (hash != NULL)
+		COPY_STR(newConfiguration->hash, hash);
+
+	newConfiguration->size = configuration->Size;
+	
+	return newConfiguration;
+}
+
+PluginWithParameters^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConPluginParam* configuration)
+{
+	PluginWithParameters^ newConfiguration = gcnew PluginWithParameters();
+
+	throw gcnew NotImplementedException();
+	//Next code generates compile time error, need to fund work around
+	/*newConfiguration->Parameters = gcnew System::Collections::Generic::List<PluginConfigurationParameter^>();
+	for (int i = 0; i < configuration->total; i++)
+		newConfiguration->Parameters->Add(Convert(&configuration->params[i]));*/
+	
+	newConfiguration->Plugin = Convert(&configuration->plugin);
+
+	return newConfiguration;
+}
+
+ConPluginParam* P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginWithParameters^ configuration)
+{
+	ConPluginParam* newConfiguration = new ConPluginParam();
+		
+	newConfiguration->plugin = *Convert(configuration->Plugin);
+	newConfiguration->total = configuration->Parameters->Count;
+
+	for (int i = 0; i < configuration->Parameters->Count; i++)
+	{
+		throw gcnew NotImplementedException();
+		//Next code generates compile time error, need to fund work around
+		//newConfiguration->params[i] = *Convert(configuration->Parameters[i]);
+
+	}
+
+	return newConfiguration;
+}
+
+Plugin^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConPlugin* configuration)
+{
+	Plugin^ newConfiguration = gcnew Plugin();
+
+	newConfiguration->Configurable = configuration->configurable;
+	newConfiguration->Enabled = configuration->enabled;
+	newConfiguration->File = gcnew String(configuration->file);
+	newConfiguration->ManagerAccess = configuration->manager_access;
+	newConfiguration->Info = Convert(&configuration->info);
+
+	return newConfiguration;
+}
+
+ConPlugin* P23::MetaTrader4::Manager::ClrWrapper::Convert(Plugin^ configuration)
+{
+	ConPlugin* newConfiguration = new ConPlugin();
+
+	
+	newConfiguration->configurable = configuration->Configurable;
+	newConfiguration->enabled = configuration->Enabled;
+
+	char* file = Convert(configuration->File);
+	if (file != NULL)
+		COPY_STR(newConfiguration->file, file);
+
+	newConfiguration->manager_access = configuration->ManagerAccess;
+	newConfiguration->info = *Convert(configuration->Info);
+
+	return newConfiguration;
+}
+
+PluginInformation^ P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginInfo* configuration)
+{
+	PluginInformation^ newConfiguration = gcnew PluginInformation();
+
+	newConfiguration->Copyright = gcnew String(configuration->copyright);
+	newConfiguration->Name = gcnew String(configuration->name);
+	newConfiguration->Version = configuration->version;
+
+	return newConfiguration;
+}
+
+PluginInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginInformation^ configuration)
+{
+	PluginInfo* newConfiguration = new PluginInfo();
+	
+	char* copyright = Convert(configuration->Copyright);
+	if (copyright != NULL)
+		COPY_STR(newConfiguration->copyright, copyright);
+
+	char* name = Convert(configuration->Name);
+	if (name != NULL)
+		COPY_STR(newConfiguration->name, name);
+
+	newConfiguration->version = configuration->Version;
+
+	return newConfiguration;
+}
+
+PluginConfigurationParameter^ P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginCfg* configuration)
+{
+	PluginConfigurationParameter^ newConfiguration = gcnew PluginConfigurationParameter();
+
+	newConfiguration->Name = gcnew String(configuration->name);
+	newConfiguration->Value = gcnew String(configuration->value);
+
+	return newConfiguration;
+}
+
+PluginCfg* P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginConfigurationParameter^ configuration)
+{
+	PluginCfg* newConfiguration = new PluginCfg();
+		
+	char* name = Convert(configuration->Name);
+	if (name != NULL)
+		COPY_STR(newConfiguration->name, name);
+
+	char* value = Convert(configuration->Value);
+	if (value != NULL)
+		COPY_STR(newConfiguration->value, value);
+
+	return newConfiguration;
+}
+

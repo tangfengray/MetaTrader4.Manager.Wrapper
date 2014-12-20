@@ -92,6 +92,30 @@ namespace P23{
 
 				static ConGroupMargin* Convert(GroupMargin^ configuration);
 				static GroupMargin^ Convert(ConGroupMargin* configuration);
+
+				static ConFeeder* Convert(Feeder^ configuration);
+				static Feeder^ Convert(ConFeeder* configuration);
+
+				static ConLiveUpdate* Convert(LiveUpdate^ configuration);
+				static LiveUpdate^ Convert(ConLiveUpdate* configuration);
+
+				static ConSync* Convert(Synchronization^ configuration);
+				static Synchronization^ Convert(ConSync* configuration);
+
+				static LiveInfoFile* Convert(FilesConfigurations^ configuration);
+				static FilesConfigurations^ Convert(LiveInfoFile* configuration);
+				
+				static ConPluginParam* Convert(PluginWithParameters^ configuration);
+				static PluginWithParameters^ Convert(ConPluginParam* configuration);
+				
+				static ConPlugin* Convert(Plugin^ configuration);
+				static Plugin^ Convert(ConPlugin* configuration);
+				
+				static PluginInfo* Convert(PluginInformation^ configuration);
+				static PluginInformation^ Convert(PluginInfo* configuration);
+				
+				static PluginCfg* Convert(PluginConfigurationParameter^ configuration);
+				static PluginConfigurationParameter^ Convert(PluginCfg* configuration);
 				
 			public:
 				//constructors
