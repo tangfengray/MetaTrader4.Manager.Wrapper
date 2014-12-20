@@ -1,6 +1,4 @@
-
 #include "stdafx.h"
-
 #include "P23.MetaTrader4.Manager.ClrWrapper.h"
 
 int P23::MetaTrader4::Manager::ClrWrapper::CfgUpdateCommon(Common^ configuration)

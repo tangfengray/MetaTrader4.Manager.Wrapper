@@ -184,6 +184,29 @@ namespace P23{
 				int CfgUpdateSync(Synchronization^ configuration);
 				int CfgUpdatePlugin(Plugin^ configuration, IList<PluginConfigurationParameter^>^ parameters);
 
+				//--- configuration delete
+				int CfgDeleteAccess(int position);
+				int CfgDeleteDataServer(int position);
+				int CfgDeleteHoliday(int position);
+				int CfgDeleteSymbol(int position);
+				int CfgDeleteGroup(int position);
+				int CfgDeleteManager(int position);
+				int CfgDeleteFeeder(int position);
+				int CfgDeleteLiveUpdate(int position);
+				int CfgDeleteSync(int position);
+
+				//--- configuration shift
+				/*int CfgShiftAccess(int position, int shift);
+				int CfgShiftDataServer(int position, int shift);
+				int CfgShiftHoliday(int position, int shift);
+				int CfgShiftSymbol(int position, int shift);
+				int CfgShiftGroup(int position, int shift);
+				int CfgShiftManager(int position, int shift);
+				int CfgShiftFeeder(int position, int shift);
+				int CfgShiftLiveUpdate(int position, int shift);
+				int CfgShiftSync(int position, int shift);
+				int CfgShiftPlugin(int position, int shift);*/
+
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
