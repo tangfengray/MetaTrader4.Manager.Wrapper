@@ -57,6 +57,7 @@
     <Compile Include="Configuration\Time.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MetaTraderException.cs" />
+    <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerFeed.cs" />
   </ItemGroup>

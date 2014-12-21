@@ -1261,3 +1261,17 @@ P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manage
 	return newConfiguration;
 }
 
+P23::MetaTrader4::Manager::Contracts::PerformanceInfo^  P23::MetaTrader4::Manager::ClrWrapper::Convert(PerformanceInfo* configuration)
+{
+	P23::MetaTrader4::Manager::Contracts::PerformanceInfo^ newConfiguration = gcnew P23::MetaTrader4::Manager::Contracts::PerformanceInfo();
+
+	newConfiguration->Cpu = configuration->cpu;
+	newConfiguration->Ctm = configuration->ctm;
+	newConfiguration->FreeMem = configuration->freemem;
+	newConfiguration->Network = configuration->network;
+	newConfiguration->Sockets = configuration->sockets;
+	newConfiguration->Users = configuration->users;
+
+	return newConfiguration;
+}
+

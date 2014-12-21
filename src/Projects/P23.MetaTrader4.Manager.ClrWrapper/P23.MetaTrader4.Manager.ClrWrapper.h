@@ -123,9 +123,10 @@ namespace P23{
 				static PluginConfigurationParameter^ Convert(PluginCfg* configuration);
 
 				P23::MetaTrader4::Manager::Contracts::ServerFeed^  P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerFeed* configuration);
-				P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manager::ClrWrapper::Convert(FeedDescription* configuration);
+				P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manager::ClrWrapper::Convert(FeedDescription* input);
 
-				
+				P23::MetaTrader4::Manager::Contracts::PerformanceInfo^  P23::MetaTrader4::Manager::ClrWrapper::Convert(PerformanceInfo* input);
+								
 			public:
 				//constructors
 				ClrWrapper();
@@ -214,6 +215,9 @@ namespace P23{
 				//--- server feeders
 				IList<P23::MetaTrader4::Manager::Contracts::ServerFeed^>^ SrvFeeders();
 				String^ SrvFeederLog(String^ name);
+
+				//--- performance info
+				IList<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>^ PerformaneRequest(UInt32 from);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
