@@ -1232,3 +1232,32 @@ PluginCfg* P23::MetaTrader4::Manager::ClrWrapper::Convert(PluginConfigurationPar
 	return newConfiguration;
 }
 
+P23::MetaTrader4::Manager::Contracts::ServerFeed^  P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerFeed* configuration)
+{
+	P23::MetaTrader4::Manager::Contracts::ServerFeed^ newConfiguration = gcnew P23::MetaTrader4::Manager::Contracts::ServerFeed();
+
+	newConfiguration->File = gcnew String(configuration->file);
+	newConfiguration->Feed = Convert(&configuration->feed);
+
+	return newConfiguration;
+}
+
+P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manager::ClrWrapper::Convert(FeedDescription* configuration)
+{
+	P23::MetaTrader4::Manager::Contracts::FeedDescription^ newConfiguration = gcnew P23::MetaTrader4::Manager::Contracts::FeedDescription();
+
+	newConfiguration->Copyright = gcnew String(configuration->copyright);
+	newConfiguration->Description = gcnew String(configuration->description);
+	newConfiguration->Email = gcnew String(configuration->email);
+	newConfiguration->Modes = configuration->modes;
+	newConfiguration->Module = gcnew String(configuration->module);
+	newConfiguration->Name = gcnew String(configuration->name);
+	newConfiguration->Server = gcnew String(configuration->server);
+	newConfiguration->UserName = gcnew String(configuration->username);
+	newConfiguration->UserPass = gcnew String(configuration->userpass);
+	newConfiguration->Version = configuration->version;
+	newConfiguration->Web = gcnew String(configuration->web);
+
+	return newConfiguration;
+}
+

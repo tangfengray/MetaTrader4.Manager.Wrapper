@@ -2,6 +2,8 @@
 
 #include "UnmanagedHelpers.h"
 
+#pragma warning( push )
+#pragma warning( disable : 4793 )
 void P23::MetaTrader4::Manager::UnmanagedHelpers::SetMailBody(MailBox* mailBox, char* body)
 {
 	mailBox->body = body;
@@ -16,3 +18,4 @@ void P23::MetaTrader4::Manager::UnmanagedHelpers::AssignPluginParameters(ConPlug
 {
 	configuration->params[index] = parameter;
 }
+#pragma warning( pop ) 

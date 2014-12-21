@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 
 #include "P23.MetaTrader4.Manager.ClrWrapper.h"
@@ -41,6 +40,7 @@ Backup^  P23::MetaTrader4::Manager::ClrWrapper::CfgRequestBackup()
 	}
 	return Convert(&configuration);
 }
+
 SymbolGroup^  P23::MetaTrader4::Manager::ClrWrapper::CfgRequestSymbolGroup()
 {
 	ConSymbolGroup configuration;

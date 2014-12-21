@@ -121,6 +121,10 @@ namespace P23{
 				
 				static PluginCfg* Convert(PluginConfigurationParameter^ configuration);
 				static PluginConfigurationParameter^ Convert(PluginCfg* configuration);
+
+				P23::MetaTrader4::Manager::Contracts::ServerFeed^  P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerFeed* configuration);
+				P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manager::ClrWrapper::Convert(FeedDescription* configuration);
+
 				
 			public:
 				//constructors
@@ -206,6 +210,10 @@ namespace P23{
 				int CfgShiftLiveUpdate(int position, int shift);
 				int CfgShiftSync(int position, int shift);
 				int CfgShiftPlugin(int position, int shift);
+
+				//--- server feeders
+				IList<P23::MetaTrader4::Manager::Contracts::ServerFeed^>^ SrvFeeders();
+				String^ SrvFeederLog(String^ name);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);

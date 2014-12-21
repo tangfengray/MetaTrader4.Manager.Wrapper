@@ -94,6 +94,7 @@
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
     <ClCompile Include="Pumping.cpp" />
     <ClCompile Include="ServerAdministration.cpp" />
+    <ClCompile Include="ServerFeeders.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
