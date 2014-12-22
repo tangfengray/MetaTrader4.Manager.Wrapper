@@ -219,6 +219,14 @@ namespace P23{
 				//--- performance info
 				IList<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>^ PerformaneRequest(UInt32 from);
 
+				//--- users/trades backups
+				/*IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  BackupInfoUsers(int mode);
+				IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  BackupInfoOrders(int mode);
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  BackupRequestUsers(String^ file, String^ request);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ BackupRequestOrders(String^ file, String^ request);
+				int BackupRestoreUsers(P23::MetaTrader4::Manager::Contracts::UserRecord^ users);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trades);*/
+
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
