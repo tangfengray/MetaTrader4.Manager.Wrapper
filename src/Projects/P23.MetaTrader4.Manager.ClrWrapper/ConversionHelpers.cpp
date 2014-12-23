@@ -1295,3 +1295,147 @@ P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^  P23::MetaTrader4::Man
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::UserRecord^  P23::MetaTrader4::Manager::ClrWrapper::Convert(UserRecord* input)
+{
+	P23::MetaTrader4::Manager::Contracts::UserRecord^ output = gcnew P23::MetaTrader4::Manager::Contracts::UserRecord();
+
+	output->Address = gcnew String(input->address);
+	output->AgentAccount = input->agent_account;
+	output->Balance = input->balance;
+	output->City = gcnew String(input->city);
+	output->Comment = gcnew String(input->comment);
+	output->Country = gcnew String(input->country);
+	output->Credit = input->credit;
+	output->Email = gcnew String(input->email);
+	output->Enable = input->enable;
+	output->EnableChangePassword = input->enable_change_password;
+	output->EnableReadOnly = input->enable_read_only;
+	output->Group = gcnew String(input->group);
+	output->Id = gcnew String(input->id);
+	output->InterestRate = input->interestrate;
+	output->LastDate = input->lastdate;
+	output->LastIp = input->last_ip;
+	output->Leverage = input->leverage;
+	output->Login = input->login;
+	output->Mqid = input->mqid;
+	output->Name = gcnew String(input->name);
+	output->Password = gcnew String(input->password);
+	output->PasswordInvestor = gcnew String(input->password_investor);
+	output->PasswordPhone = gcnew String(input->password_phone);
+	output->Phone = gcnew String(input->phone);
+	output->PrevBalance = input->prevbalance;
+	output->PrevEquity = input->prevequity;
+	output->PrevMonthBalance = input->prevmonthbalance;
+	output->PrevMonthEquity = input->prevmonthequity;
+	output->PublicKey = gcnew String(input->publickey);
+	output->Regdate = input->regdate;
+	output->SendReports = input->send_reports;
+	output->State = gcnew String(input->state);
+	output->Status = gcnew String(input->status);
+	output->Timestamp = input->timestamp;
+	output->Taxes = input->taxes;
+	output->UserColor = input->user_color;
+	output->ZipCode = gcnew String(input->zipcode);
+
+	return output;
+}
+
+UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::UserRecord^ input)
+{
+	UserRecord* output = new UserRecord();
+
+	char* address = Convert(input->Address);
+	if (address != NULL)
+		COPY_STR(output->address, address);
+
+	output->agent_account = input->AgentAccount;
+	output->balance = input->Balance;
+
+	char* city = Convert(input->City);
+	if (city != NULL)
+		COPY_STR(output->city, city);
+
+	char* comment = Convert(input->Comment);
+	if (comment != NULL)
+		COPY_STR(output->comment, comment);
+
+	char* country = Convert(input->Country);
+	if (country != NULL)
+		COPY_STR(output->country, country);
+
+	output->credit = input->Credit;
+
+	char* email = Convert(input->Email);
+	if (email != NULL)
+		COPY_STR(output->email, email);
+
+	output->enable = input->Enable;
+	output->enable_change_password = input->EnableChangePassword;
+	output->enable_read_only = input->EnableReadOnly;
+
+	char* group = Convert(input->Group);
+	if (group != NULL)
+		COPY_STR(output->group, group);
+
+	char* id = Convert(input->Id);
+	if (id != NULL)
+		COPY_STR(output->id, id);
+
+	output->interestrate = input->InterestRate;
+	output->lastdate = input->LastDate;
+	output->last_ip = input->LastIp;
+	output->leverage = input->Leverage;
+	output->login = input->Login;
+	output->mqid = input->Mqid;
+
+	char* name = Convert(input->Name);
+	if (name != NULL)
+		COPY_STR(output->name, name);
+
+	char* password = Convert(input->Password);
+	if (password != NULL)
+		COPY_STR(output->password, password);
+
+	char* password_investor = Convert(input->PasswordInvestor);
+	if (password_investor != NULL)
+		COPY_STR(output->password_investor, password_investor);
+
+	char* password_phone = Convert(input->PasswordPhone);
+	if (password_phone != NULL)
+		COPY_STR(output->password_phone, password_phone);
+
+	char* phone = Convert(input->Phone);
+	if (phone != NULL)
+		COPY_STR(output->phone, phone);
+
+	output->prevbalance = input->PrevBalance;
+	output->prevequity = input->PrevEquity;
+	output->prevmonthbalance = input->PrevMonthBalance;
+	output->prevmonthequity = input->PrevMonthEquity;
+
+	char* publickey = Convert(input->PublicKey);
+	if (publickey != NULL)
+		COPY_STR(output->publickey, publickey);
+
+	output->regdate = input->Regdate;
+	output->send_reports = input->SendReports;
+
+	char* state = Convert(input->State);
+	if (state != NULL)
+		COPY_STR(output->state, state);
+
+	char* status = Convert(input->Status);
+	if (status != NULL)
+		COPY_STR(output->status, status);
+
+	output->timestamp = input->Timestamp;
+	output->taxes = input->Taxes;
+	output->user_color = input->UserColor;
+
+	char* zipcode = Convert(input->ZipCode);
+	if (zipcode != NULL)
+		COPY_STR(output->zipcode, zipcode);
+
+	return output;
+}
