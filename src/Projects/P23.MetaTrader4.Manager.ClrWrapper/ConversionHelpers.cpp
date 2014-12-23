@@ -1275,3 +1275,23 @@ P23::MetaTrader4::Manager::Contracts::PerformanceInfo^  P23::MetaTrader4::Manage
 	return newConfiguration;
 }
 
+P23::MetaTrader4::Manager::Contracts::BackupInfo^  P23::MetaTrader4::Manager::ClrWrapper::Convert(BackupInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::BackupInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::BackupInfo();
+
+	output->File = gcnew String(input->file);
+	output->Size = input->size;
+	output->Time = input->time;
+	
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^  P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeRestoreResult* input)
+{
+	P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^ output = gcnew P23::MetaTrader4::Manager::Contracts::TradeRestoreResult();
+
+	output->Order = input->order;
+	output->Res = input->res;
+
+	return output;
+}

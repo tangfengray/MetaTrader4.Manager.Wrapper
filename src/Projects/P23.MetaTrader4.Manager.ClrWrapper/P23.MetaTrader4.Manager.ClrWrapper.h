@@ -127,6 +127,16 @@ namespace P23{
 
 				P23::MetaTrader4::Manager::Contracts::PerformanceInfo^  P23::MetaTrader4::Manager::ClrWrapper::Convert(PerformanceInfo* input);
 								
+				P23::MetaTrader4::Manager::Contracts::BackupInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(BackupInfo* input);
+
+				P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeRestoreResult* input);
+
+				/*P23::MetaTrader4::Manager::Contracts::UserRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(UserRecord* input);
+				UserRecord* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::UserRecord^ input);
+
+				P23::MetaTrader4::Manager::Contracts::TradeRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeRecord* input);
+				TradeRecord* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeRecord^ input);
+*/
 			public:
 				//constructors
 				ClrWrapper();
@@ -224,8 +234,8 @@ namespace P23{
 				IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  BackupInfoOrders(int mode);
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  BackupRequestUsers(String^ file, String^ request);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ BackupRequestOrders(String^ file, String^ request);
-				int BackupRestoreUsers(P23::MetaTrader4::Manager::Contracts::UserRecord^ users);
-				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trades);*/
+				int BackupRestoreUsers(IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ users);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ trades);*/
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
