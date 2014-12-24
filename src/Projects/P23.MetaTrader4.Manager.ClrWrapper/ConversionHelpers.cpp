@@ -1512,7 +1512,7 @@ TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::M
 	output->open_time = input->OpenTime;
 	output->order = input->Order;
 	output->profit = input->Profit;
-	output->reason = input->Reason;
+	output->reason = (char)input->Reason;
 	output->sl = input->Sl;
 	output->state = input->State;
 	output->storage = input->Storage;

@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Backups.cpp" />
     <ClCompile Include="ConfigurationDeletes.cpp" />
     <ClCompile Include="ConfigurationRequests.cpp" />
     <ClCompile Include="ConfigurationShifts.cpp" />
