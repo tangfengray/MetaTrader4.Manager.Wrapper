@@ -83,6 +83,7 @@
     <ClInclude Include="UnmanagedHelpers.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdministratorDatabaseCommands.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Backups.cpp" />
     <ClCompile Include="ConfigurationDeletes.cpp" />

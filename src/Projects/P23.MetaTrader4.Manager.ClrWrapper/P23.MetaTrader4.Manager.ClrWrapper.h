@@ -237,6 +237,14 @@ namespace P23{
 				int BackupRestoreUsers(IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ users);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ trades);
 
+				//--- administrator databases commands
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  AdmUsersRequest(String^ group);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ AdmTradesRequest(String^ group, int openOnly);
+				int AdmBalanceCheck(IList<int>^ logins);
+				int AdmBalanceFix(IList<int>^ logins);
+				int AdmTradesDelete(IList<int>^ orders);
+				int AdmTradeRecordModify(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
+
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
