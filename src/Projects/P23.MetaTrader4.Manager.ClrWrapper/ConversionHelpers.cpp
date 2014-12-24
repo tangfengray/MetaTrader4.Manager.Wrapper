@@ -1439,3 +1439,92 @@ UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::TradeRecord^  P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeRecord* input)
+{
+	P23::MetaTrader4::Manager::Contracts::TradeRecord^ output = gcnew P23::MetaTrader4::Manager::Contracts::TradeRecord();
+
+	output->Activation = input->activation;
+	output->ClosePrice = input->close_price;
+	output->CloseTime = input->close_time;
+	output->Cmd = input->cmd;
+	output->Comment = gcnew String( input->comment);
+	output->Commission = input->commission;
+	output->CommissionAgent = input->commission_agent;
+	
+	output->ConvRates = gcnew List<double>();
+	output->ConvRates->Add(input->conv_rates[0]);
+	output->ConvRates->Add(input->conv_rates[1]);
+
+	output->Digits = input->digits;
+	output->Expiration = input->expiration;
+	output->GwClosePrice = input->gw_close_price;
+	output->GwOpenPrice = input->gw_open_price;
+	output->GwOrder = input->gw_order;
+	output->GwVolume = input->gw_volume;
+	output->Login = input->login;
+	output->Magic = input->magic;
+	output->OpenPrice = input->open_price;
+	output->OpenTime = input->open_time;
+	output->Order = input->order;
+	output->Profit = input->profit;
+	output->Reason = input->reason;
+	output->Sl = input->sl;
+	output->State = input->state;
+	output->Storage = input->storage;
+	output->Symbol = gcnew String(input->symbol);
+	output->Taxes = input->taxes;
+	output->Timestamp = input->timestamp;
+	output->Tp = input->tp;
+	output->Volume = input->volume;
+
+	return output;
+}
+
+TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeRecord^ input)
+{
+	TradeRecord* output = new TradeRecord();
+	
+	output->activation = input->Activation;
+	output->close_price = input->ClosePrice;
+	output->close_time = input->CloseTime;
+	output->cmd = input->Cmd;
+
+	char* comment = Convert(input->Comment);
+	if (comment != NULL)
+		COPY_STR(output->comment, comment);
+	
+	output->commission = input->Commission;
+	output->commission_agent = input->CommissionAgent;
+
+	output->conv_rates[0] = input->CommissionAgent;
+	output->conv_rates[1] = input->CommissionAgent;
+
+	output->digits = input->Digits;
+	output->expiration = input->Expiration;
+	output->gw_close_price = input->GwClosePrice;
+	output->gw_open_price = input->GwOpenPrice;
+	output->gw_order = input->GwOrder;
+	output->gw_volume = input->GwVolume;
+	output->login = input->Login;
+	output->magic = input->Magic;
+	output->open_price = input->OpenPrice;
+	output->open_time = input->OpenTime;
+	output->order = input->Order;
+	output->profit = input->Profit;
+	output->reason = input->Reason;
+	output->sl = input->Sl;
+	output->state = input->State;
+	output->storage = input->Storage;
+
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	output->taxes = input->Taxes;
+	output->timestamp = input->Timestamp;
+	output->tp = input->Tp;
+	output->volume = input->Volume;
+
+	return output;
+}
