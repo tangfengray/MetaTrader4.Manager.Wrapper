@@ -1528,3 +1528,28 @@ TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::M
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::SymbolInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(SymbolInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::SymbolInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::SymbolInfo();
+	
+	output->Ask = input->ask;
+	output->Bid = input->bid;
+	output->Commission = input->commission;
+	output->CommType = input->comm_type;
+	output->Count = input->count;
+	output->Digits = input->digits;
+	output->Direction = input->direction;
+	output->High = input->high;
+	output->LastTime = input->lasttime;
+	output->Low = input->low;
+	output->Point = input->point;
+	output->Spread = input->spread;
+	output->SpreadBalance = input->spread_balance;
+	output->Symbol = gcnew String(input->symbol);
+	output->Type = input->type;
+	output->UpdateFlag = input->updateflag;
+	output->Visible = input->visible;
+
+	return output;
+}
