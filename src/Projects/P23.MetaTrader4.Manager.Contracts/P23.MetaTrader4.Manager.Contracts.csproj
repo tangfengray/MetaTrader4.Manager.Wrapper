@@ -57,7 +57,9 @@
     <Compile Include="Configuration\Synchronization.cs" />
     <Compile Include="Configuration\Time.cs" />
     <Compile Include="IConnectionParameters.cs" />
+    <Compile Include="MailBox.cs" />
     <Compile Include="MetaTraderException.cs" />
+    <Compile Include="NewsTopic.cs" />
     <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerFeed.cs" />
