@@ -248,14 +248,14 @@ namespace P23{
 				int AdmTradeRecordModify(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
 
 				//--- symbols
-				//int SymbolsRefresh();
-				//IList<P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^>^ SymbolsGetAll();
-				//P23::MetaTrader4::Manager::Contracts::Configuration::Symbol SymbolGet(String^ symbol);
-				//int SymbolInfoGet(String^ symbol, SymbolInfo *si);
-				//int SymbolAdd(String^ symbol);
-				//int SymbolHide(String^ symbol);
-				////--- symbol commands
-				//int SymbolSendTick(String^ symbol, double bid, double ask);
+				int SymbolsRefresh();
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^>^ SymbolsGetAll();
+				P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^ SymbolGet(String^ symbol);
+				P23::MetaTrader4::Manager::Contracts::SymbolInfo^ SymbolInfoGet(String^ symbol);
+				int SymbolAdd(String^ symbol);
+				int SymbolHide(String^ symbol);
+				//--- symbol commands
+				int SymbolSendTick(String^ symbol, double bid, double ask);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
