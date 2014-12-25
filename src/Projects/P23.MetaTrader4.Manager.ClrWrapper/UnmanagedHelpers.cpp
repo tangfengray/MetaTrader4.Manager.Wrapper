@@ -18,4 +18,20 @@ void P23::MetaTrader4::Manager::UnmanagedHelpers::AssignPluginParameters(ConPlug
 {
 	configuration->params[index] = parameter;
 }
+
+void P23::MetaTrader4::Manager::UnmanagedHelpers::SetNewsBody(NewsTopic* configuration, char* body)
+{
+	configuration->body = body;
+}
+
+char* P23::MetaTrader4::Manager::UnmanagedHelpers::GetNewsBody(NewsTopic* news)
+{
+	return news->body;
+}
+
+char* P23::MetaTrader4::Manager::UnmanagedHelpers::GetMailBody(MailBox* mailBox)
+{
+	return mailBox->body;
+}
+
 #pragma warning( pop ) 

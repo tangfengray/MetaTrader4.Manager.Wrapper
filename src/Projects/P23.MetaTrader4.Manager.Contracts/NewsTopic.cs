@@ -18,6 +18,6 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int BodyLen { get; set; }              // body length
         public int Readed { get; set; }               // readed flag
         public int Priority { get; set; }             // news priority: 0-general, 1-high
-        public int Langid { get; set; }               // news LANGID
+        public int LangId { get; set; }               // news LANGID
     }
 }

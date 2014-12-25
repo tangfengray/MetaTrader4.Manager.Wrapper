@@ -1553,3 +1553,101 @@ P23::MetaTrader4::Manager::Contracts::SymbolInfo^ P23::MetaTrader4::Manager::Clr
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::MailBox^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MailBox* input)
+{
+	P23::MetaTrader4::Manager::Contracts::MailBox^ output = gcnew P23::MetaTrader4::Manager::Contracts::MailBox();
+
+	output->Body = gcnew String(UnmanagedHelpers::GetMailBody(input));
+	output->BodyLen = input->bodylen;
+	output->BuildMax = input->build_max;
+	output->BuildMin = input->build_min;
+	output->From = gcnew String(input->from);
+	output->Readed = input->readed;
+	output->Sender = input->sender;
+	output->Subject = gcnew String(input->subject);
+	output->Time = input->time;
+	output->To = input->to;
+	
+	return output;
+}
+
+MailBox* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::MailBox^ input)
+{
+	MailBox* output = new MailBox();
+	
+	UnmanagedHelpers::SetMailBody(output, Convert(input->Body));
+	
+	output->bodylen = input->BodyLen;
+	output->build_max = input->BuildMax;
+	output->build_min = input->BuildMin;
+
+	char* from = Convert(input->From);
+	if (from != NULL)
+		COPY_STR(output->from, from);
+
+	output->readed = input->Readed;
+	output->sender = input->Sender;
+
+	char* subject = Convert(input->Subject);
+	if (subject != NULL)
+		COPY_STR(output->subject, subject);
+
+	output->time = input->Time;
+	output->to = input->To;
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::NewsTopic^ P23::MetaTrader4::Manager::ClrWrapper::Convert(NewsTopic* input)
+{
+	P23::MetaTrader4::Manager::Contracts::NewsTopic^ output = gcnew P23::MetaTrader4::Manager::Contracts::NewsTopic();
+
+	output->Body = gcnew String(UnmanagedHelpers::GetNewsBody(input));
+	output->BodyLen = input->bodylen;
+	output->Category = gcnew String(input->category);
+	output->Ctm = gcnew String(input->ctm);
+	output->Key = input->key;
+	output->Keywords = gcnew String(input->keywords);
+	output->LangId = input->langid;
+	output->Priority = input->priority;
+	output->Readed = input->readed;
+	output->Time = input->time;
+	output->Topic = gcnew String(input->topic);
+
+	return output;
+}
+
+NewsTopic* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::NewsTopic^ input)
+{
+	NewsTopic* output = new NewsTopic();
+	
+	UnmanagedHelpers::SetNewsBody(output, Convert(input->Body));
+	
+	output->bodylen = input->BodyLen;
+
+	char* category = Convert(input->Category);
+	if (category != NULL)
+		COPY_STR(output->category, category);
+
+	char* ctm = Convert(input->Ctm);
+	if (ctm != NULL)
+		COPY_STR(output->ctm, ctm);
+
+	output->key = input->Key;
+
+	char* keywords = Convert(input->Keywords);
+	if (keywords != NULL)
+		COPY_STR(output->keywords, keywords);
+
+	output->langid = input->LangId;
+	output->priority = input->Priority;
+	output->readed = input->Readed;
+	output->time = input->Time;
+
+	char* topic = Convert(input->Topic);
+	if (topic != NULL)
+		COPY_STR(output->topic, topic);
+
+	return output;
+}
