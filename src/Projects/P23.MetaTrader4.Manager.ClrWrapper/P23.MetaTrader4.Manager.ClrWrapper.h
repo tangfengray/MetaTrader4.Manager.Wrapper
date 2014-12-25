@@ -264,9 +264,9 @@ namespace P23{
 				int SymbolSendTick(String^ symbol, double bid, double ask);
 
 				//--- manager commands
-				/*IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^    GroupsRequest();
-				int           MailSend(P23::MetaTrader4::Manager::Contracts::MailBox^ mail, IList<int>^ logins);
-				int          NewsSend(P23::MetaTrader4::Manager::Contracts::NewsTopic^ news);*/
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ GroupsRequest();
+				int MailSend(P23::MetaTrader4::Manager::Contracts::MailBox^ mail, IList<int>^ logins);
+				int NewsSend(P23::MetaTrader4::Manager::Contracts::NewsTopic^ news);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);

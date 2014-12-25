@@ -93,6 +93,7 @@
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ConversionHelpers.cpp" />
     <ClCompile Include="Helpers.cpp" />
+    <ClCompile Include="ManagerCommands.cpp" />
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="Pumping.cpp" />
