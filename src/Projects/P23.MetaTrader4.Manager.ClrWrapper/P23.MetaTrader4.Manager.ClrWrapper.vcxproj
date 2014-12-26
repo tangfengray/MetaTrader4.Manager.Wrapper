@@ -95,6 +95,7 @@
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Journal.cpp" />
     <ClCompile Include="ManagerCommands.cpp" />
+    <ClCompile Include="Orders.cpp" />
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="Pumping.cpp" />
@@ -106,6 +107,7 @@
     </ClCompile>
     <ClCompile Include="SymbolCommands.cpp" />
     <ClCompile Include="UnmanagedHelpers.cpp" />
+    <ClCompile Include="Users.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
-    public class TradeTransactionInfo
+    public class TradeTransInfo
     {
         public byte Type { get; set; }          // trade transaction type
         public short Cmd { get; set; }          // trade command

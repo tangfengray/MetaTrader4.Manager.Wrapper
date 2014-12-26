@@ -1663,3 +1663,46 @@ P23::MetaTrader4::Manager::Contracts::ServerLog^ P23::MetaTrader4::Manager::ClrW
 
 	return output;
 }
+
+TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ input)
+{
+	TradeTransInfo* output = new TradeTransInfo();
+		
+	output->cmd = input->Cmd;
+
+	char* comment = Convert(input->Comment);
+	if (comment != NULL)
+		COPY_STR(output->comment, comment);
+
+	output->crc = input->Crc;
+	output->expiration = input->Expiration;
+	output->ie_deviation = input->IeDeviation;
+	output->order = input->Order;
+	output->orderby = input->OrderBy;
+	output->price = input->Price;
+	output->sl = input->Sl;
+
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	output->tp = input->Tp;
+	output->volume = input->Volume;
+
+	return output;
+}
+
+GroupCommandInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ input)
+{
+	GroupCommandInfo* output = new GroupCommandInfo();	
+
+	output->command = (char)input->Command;
+	output->len = input->Len;
+	output->leverage = input->Leverage;
+
+	char* newgroup = Convert(input->NewGroup);
+	if (newgroup != NULL)
+		COPY_STR(output->newgroup, newgroup);
+
+	return output;
+}

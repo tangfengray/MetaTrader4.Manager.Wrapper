@@ -56,10 +56,12 @@
     <Compile Include="Configuration\SymbolGroup.cs" />
     <Compile Include="Configuration\Synchronization.cs" />
     <Compile Include="Configuration\Time.cs" />
+    <Compile Include="GroupCommandInfo.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MailBox.cs" />
     <Compile Include="MetaTraderException.cs" />
     <Compile Include="NewsTopic.cs" />
+    <Compile Include="OnlineRecord.cs" />
     <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerFeed.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="SymbolInfo.cs" />
     <Compile Include="TradeRecord.cs" />
     <Compile Include="TradeRestoreResult.cs" />
+    <Compile Include="TradeTransInfo.cs" />
     <Compile Include="UserRecord.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
