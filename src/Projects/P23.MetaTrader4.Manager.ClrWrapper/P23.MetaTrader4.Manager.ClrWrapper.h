@@ -150,6 +150,8 @@ namespace P23{
 				static TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ input);
 
 				static GroupCommandInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ input);
+
+				static P23::MetaTrader4::Manager::Contracts::OnlineRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(OnlineRecord* input);
 				
 				
 			public:
@@ -278,23 +280,23 @@ namespace P23{
 				//--- journal
 				IList<P23::MetaTrader4::Manager::Contracts::ServerLog^>^ JournalRequest(int mode, UInt32 from, UInt32 to, String^ filter);
 
-				////--- databases: direct request to the server
-				////--- users
-				//IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersRequest();
-				//IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UserRecordsRequest(IList<int>^ logins);
-				//int UserRecordNew(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
-				//int UserRecordUpdate(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
-				//int UsersGroupOp(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ info, IList<int>^ logins);
-				//int UserPasswordCheck(int login, String^ password);
-				//int UserPasswordSet(int login, String^ password, int changeInvestor, int cleanPubKey);
-				//IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineRequest();
-				////--- orders
-				//int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
-				//IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesRequest();
-				//IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradeRecordsRequest(IList<int>^ orders);
-				//IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesUserHistory(int login, UInt32 from, UInt32 to);
-				//int TradeCheckStops(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ trade, double price);
-
+				//--- databases: direct request to the server
+				//--- users
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersRequest();
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UserRecordsRequest(IList<int>^ logins);
+				int UserRecordNew(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
+				int UserRecordUpdate(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
+				int UsersGroupOp(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ info, IList<int>^ logins);
+				int UserPasswordCheck(int login, String^ password);
+				int UserPasswordSet(int login, String^ password, int changeInvestor, int cleanPubKey);
+				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineRequest();
+				//--- orders
+				/*int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesRequest();
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradeRecordsRequest(IList<int>^ orders);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesUserHistory(int login, UInt32 from, UInt32 to);
+				int TradeCheckStops(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ trade, double price);
+*/
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		

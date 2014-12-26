@@ -1706,3 +1706,15 @@ GroupCommandInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::OnlineRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(OnlineRecord* input)
+{
+	P23::MetaTrader4::Manager::Contracts::OnlineRecord^ output = gcnew P23::MetaTrader4::Manager::Contracts::OnlineRecord();
+	
+	output->Counter = input->counter;
+	output->Group = gcnew String(input->group);
+	output->Ip = input->ip;
+	output->Login = input->login;
+	
+	return output;
+}
