@@ -291,12 +291,12 @@ namespace P23{
 				int UserPasswordSet(int login, String^ password, int changeInvestor, int cleanPubKey);
 				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineRequest();
 				//--- orders
-				/*int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
+				int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesRequest();
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradeRecordsRequest(IList<int>^ orders);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesUserHistory(int login, UInt32 from, UInt32 to);
 				int TradeCheckStops(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ trade, double price);
-*/
+
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
 			};		
