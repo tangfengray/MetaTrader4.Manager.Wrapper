@@ -1651,3 +1651,15 @@ NewsTopic* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Mana
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::ServerLog^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerLog* input)
+{
+	P23::MetaTrader4::Manager::Contracts::ServerLog^ output = gcnew P23::MetaTrader4::Manager::Contracts::ServerLog();
+
+	output->Code = input->code;
+	output->Ip = gcnew String(input->ip);
+	output->Message = gcnew String(input->message);
+	output->Time = gcnew String(input->time);
+
+	return output;
+}
