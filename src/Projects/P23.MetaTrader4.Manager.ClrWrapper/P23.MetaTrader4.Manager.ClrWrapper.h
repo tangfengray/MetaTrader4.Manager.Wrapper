@@ -51,6 +51,7 @@ namespace P23{
 				
 				//Helpers
 				static char* Convert(System::String^ inputString);
+				static int* Convert(IList<int>^ input);
 
 				//Helper method to convert managed objects to unmanaged un vise versa
 				static ConManager* Convert(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager);
@@ -152,8 +153,13 @@ namespace P23{
 				static GroupCommandInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::OnlineRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(OnlineRecord* input);
+
+				static P23::MetaTrader4::Manager::Contracts::DailyReport^ P23::MetaTrader4::Manager::ClrWrapper::Convert(DailyReport* input);
 				
-				
+				static ReportGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ input);
+
+				static DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ input);
+								
 			public:
 				//constructors
 				ClrWrapper();
@@ -290,12 +296,21 @@ namespace P23{
 				int UserPasswordCheck(int login, String^ password);
 				int UserPasswordSet(int login, String^ password, int changeInvestor, int cleanPubKey);
 				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineRequest();
+
 				//--- orders
 				int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesRequest();
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradeRecordsRequest(IList<int>^ orders);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesUserHistory(int login, UInt32 from, UInt32 to);
 				int TradeCheckStops(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ trade, double price);
+
+				//--- reports
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ ReportsRequest(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ request, IList<int>^ logins);
+				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailyReportsRequest(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ request, IList<int>^ logins);
+				//--- external command
+				int ExternalCommand(String^ dataIn, int sizeIn, String^ dataOut, int sizeOut);
+				//--- plugins
+				int PluginUpdate(PluginWithParameters^ plugin);
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);

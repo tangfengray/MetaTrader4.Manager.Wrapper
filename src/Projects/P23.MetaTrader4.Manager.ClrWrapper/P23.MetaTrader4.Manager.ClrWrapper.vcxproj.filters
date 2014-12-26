@@ -98,6 +98,9 @@
     <ClCompile Include="Orders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Reports.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -1718,3 +1718,56 @@ P23::MetaTrader4::Manager::Contracts::OnlineRecord^ P23::MetaTrader4::Manager::C
 	
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::DailyReport^ P23::MetaTrader4::Manager::ClrWrapper::Convert(DailyReport* input)
+{
+	P23::MetaTrader4::Manager::Contracts::DailyReport^ output = gcnew P23::MetaTrader4::Manager::Contracts::DailyReport();
+
+	output->Balance = input->balance;
+	output->BalancePrev = input->balance_prev;
+	output->Bank = gcnew String(input->bank);
+	output->Credit = input->credit;
+	output->Ctm = input->ctm;
+	output->Deposit = input->deposit;
+	output->Equity = input->equity;
+	output->Group = gcnew String(input->group);
+	output->Login = input->login;
+	output->Margin = input->margin;
+	output->MarginFree = input->margin_free;
+	output->Profit = input->profit;
+	output->ProfitClosed = input->profit_closed;
+
+	return output;
+}
+
+ReportGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ input)
+{
+	ReportGroupRequest* output = new ReportGroupRequest();
+
+	output->from = input->From;
+
+	char* name = Convert(input->Name);
+	if (name != NULL)
+		COPY_STR(output->name, name);
+	
+	output->to = input->To;
+	output->total = input->Total;
+
+	return output;
+}
+
+DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ input)
+{
+	DailyGroupRequest* output = new DailyGroupRequest();
+
+	output->from = input->From;
+
+	char* name = Convert(input->Name);
+	if (name != NULL)
+		COPY_STR(output->name, name);
+
+	output->to = input->To;
+	output->total = input->Total;
+	
+	return output;
+}
