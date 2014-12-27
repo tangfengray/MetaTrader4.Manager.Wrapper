@@ -61,12 +61,14 @@
     <Compile Include="GroupCommandInfo.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MailBox.cs" />
+    <Compile Include="MarginLevel.cs" />
     <Compile Include="MetaTraderException.cs" />
     <Compile Include="NewsTopic.cs" />
     <Compile Include="OnlineRecord.cs" />
     <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportGroupRequest.cs" />
+    <Compile Include="RequestInfo.cs" />
     <Compile Include="ServerFeed.cs" />
     <Compile Include="ServerLog.cs" />
     <Compile Include="SymbolInfo.cs" />

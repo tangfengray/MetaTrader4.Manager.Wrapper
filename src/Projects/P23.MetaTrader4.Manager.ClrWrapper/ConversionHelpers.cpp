@@ -1687,7 +1687,28 @@ TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4:
 		COPY_STR(output->symbol, symbol);
 
 	output->tp = input->Tp;
+	output->type = input->Type;
 	output->volume = input->Volume;
+
+	return output;
+}
+P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeTransInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::TradeTransInfo();
+
+	output->Cmd = input->cmd;	
+	output->Comment = gcnew String(input->comment);
+	output->Crc = input->crc;
+	output->Expiration = input->expiration;
+	output->IeDeviation = input->ie_deviation;
+	output->Order = input->order;
+	output->OrderBy = input->orderby;
+	output->Price = input->price;
+	output->Sl = input->sl;
+	output->Symbol = gcnew String(input->symbol);
+	output->Tp = input->tp;
+	output->Type = input->type;
+	output->Volume = input->volume;
 
 	return output;
 }
@@ -1769,5 +1790,51 @@ DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrade
 	output->to = input->To;
 	output->total = input->Total;
 	
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(RequestInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::RequestInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::RequestInfo();
+
+	output->Balance = input->balance;
+	output->Credit = input->credit;
+	output->Group = gcnew String(input->group);
+
+	output->GwOrder = input->gw_order;
+	output->GwPrice = input->gw_price;
+	output->GwVolume = input->gw_volume;
+	output->Id = input->id;
+	output->Manager = input->manager;
+	
+	output->Prices = gcnew List<double>(2);
+	output->Prices[0] = input->prices[0];
+	output->Prices[1] = input->prices[1];
+	
+	output->Status = input->status;
+	output->Time = input->time;
+	output->Trade = Convert(&input->trade);
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input)
+{
+	P23::MetaTrader4::Manager::Contracts::MarginLevel^ output = gcnew P23::MetaTrader4::Manager::Contracts::MarginLevel();
+
+	output->Balance = input->balance;
+	output->Equity = input->equity;
+	output->Group = gcnew String(input->group);
+	output->Level = input->margin_level;
+
+	output->LevelType = input->level_type;
+	output->Leverage = input->leverage;
+	output->Login = input->login;
+	output->Margin = input->margin;
+	output->MarginFree = input->margin_free;
+	output->MarginType = input->margin_type;
+	output->Updated = input->updated;
+	output->Volume = input->volume;
+
 	return output;
 }

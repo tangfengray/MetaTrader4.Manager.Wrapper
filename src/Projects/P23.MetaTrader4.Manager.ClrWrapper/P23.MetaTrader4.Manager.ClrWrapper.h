@@ -149,6 +149,7 @@ namespace P23{
 				static P23::MetaTrader4::Manager::Contracts::ServerLog^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerLog* input);
 
 				static TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ input);
+				static P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TradeTransInfo* input);
 
 				static GroupCommandInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ input);
 
@@ -159,7 +160,11 @@ namespace P23{
 				static ReportGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ input);
 
 				static DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ input);
-								
+						
+				static P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(RequestInfo* input);
+
+				static P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input);
+												
 			public:
 				//constructors
 				ClrWrapper();
@@ -314,6 +319,31 @@ namespace P23{
 
 				//pumping
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ GroupsGet();
+				P23::MetaTrader4::Manager::Contracts::Configuration::Group^ GroupRecordGet(String^ name);
+				IList<P23::MetaTrader4::Manager::Contracts::SymbolInfo^>^ SymbolInfoUpdated();
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersGet();
+				P23::MetaTrader4::Manager::Contracts::UserRecord^ UserRecordGet(int login);
+				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineGet();
+				P23::MetaTrader4::Manager::Contracts::OnlineRecord^ OnlineRecordGet(int login);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGet();
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetBySymbol(String^ symbol);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetByLogin(int login, String^ group);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetByMarket();
+				P23::MetaTrader4::Manager::Contracts::TradeRecord^ TradeRecordGet(int order);
+				int TradeClearRollback(int order);
+				IList<P23::MetaTrader4::Manager::Contracts::MarginLevel^>^ MarginsGet();
+				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelGet(int login, String^ group);
+				IList<P23::MetaTrader4::Manager::Contracts::RequestInfo^>^ RequestsGet();
+				P23::MetaTrader4::Manager::Contracts::RequestInfo^ RequestInfoGet(int position);
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Plugin^>^ PluginsGet();
+				P23::MetaTrader4::Manager::Contracts::Configuration::PluginWithParameters^ PluginParamGet(int position);
+				int MailLast(String^ path, int length);
+				IList<P23::MetaTrader4::Manager::Contracts::NewsTopic^>^ NewsGet();
+				int NewsTotal();
+				P23::MetaTrader4::Manager::Contracts::NewsTopic^ NewsTopicGet(int position);
+				void NewsBodyRequest(int key);
+				String^ NewsBodyGet(int key);
 			};		
 		}
 	}
