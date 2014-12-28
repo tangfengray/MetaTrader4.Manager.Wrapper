@@ -1818,6 +1818,34 @@ P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::Cl
 	return output;
 }
 
+RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::RequestInfo^ input)
+{
+	RequestInfo* output = new RequestInfo();
+
+	output->balance = input->Balance;
+	output->credit = input->Credit;
+
+	char* group = Convert(input->Group);
+	if (group != NULL)
+		COPY_STR(output->group, group);
+
+	output->gw_order = input->GwOrder;
+	output->gw_price = input->GwPrice;
+	output->gw_volume = input->GwVolume;
+	output->id = input->Id;
+	output->manager = input->Manager;
+
+	output->prices[0] = input->Prices[0];
+	output->prices[1] = input->Prices[1];
+
+	output->status = input->Status;
+	output->time = input->Time;
+	output->trade = *Convert(input->Trade);
+
+	return output;
+}
+
+
 P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input)
 {
 	P23::MetaTrader4::Manager::Contracts::MarginLevel^ output = gcnew P23::MetaTrader4::Manager::Contracts::MarginLevel();

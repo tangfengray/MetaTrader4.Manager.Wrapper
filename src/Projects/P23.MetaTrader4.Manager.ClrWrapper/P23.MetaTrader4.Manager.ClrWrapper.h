@@ -162,6 +162,7 @@ namespace P23{
 				static DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ input);
 						
 				static P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(RequestInfo* input);
+				static RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::RequestInfo^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input);
 												
@@ -344,6 +345,13 @@ namespace P23{
 				P23::MetaTrader4::Manager::Contracts::NewsTopic^ NewsTopicGet(int position);
 				void NewsBodyRequest(int key);
 				String^ NewsBodyGet(int key);
+
+				//--- dealing
+				int DealerSwitch(PumpingCallbackDelegate^ callBackDelegate);
+				P23::MetaTrader4::Manager::Contracts::RequestInfo^ DealerRequestGet();
+				int DealerSend(P23::MetaTrader4::Manager::Contracts::RequestInfo^ info, int requote, int mode);
+				int DealerReject(int id);
+				int DealerReset(int id);
 			};		
 		}
 	}

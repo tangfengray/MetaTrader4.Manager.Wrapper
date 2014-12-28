@@ -5,10 +5,10 @@
 int P23::MetaTrader4::Manager::ClrWrapper::PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate)
 {	
 	if (_callBackHandler.IsAllocated)
-		_callBackHandler.Free();
+		throw gcnew MetaTrader4::Manager::Contracts::MetaTraderException("Callback handler alread allocated");
 
 	_callBackHandler = GCHandle::Alloc(_callBackDelegate);
-	return _manager->Manager->PumpingSwitchEx((MTAPI_NOTIFY_FUNC_EX)Marshal::GetFunctionPointerForDelegate(callBackDelegate).ToPointer(), 0, NULL);
+	return _manager->Manager->PumpingSwitch((MTAPI_NOTIFY_FUNC)Marshal::GetFunctionPointerForDelegate(callBackDelegate).ToPointer(), 0, NULL, 0);
 }
 
 IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ P23::MetaTrader4::Manager::ClrWrapper::GroupsGet()
