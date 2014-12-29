@@ -104,6 +104,9 @@
     <ClCompile Include="Dealing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RiskManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

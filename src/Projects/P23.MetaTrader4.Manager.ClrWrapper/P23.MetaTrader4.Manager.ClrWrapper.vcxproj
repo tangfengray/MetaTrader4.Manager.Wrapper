@@ -101,6 +101,7 @@
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="Pumping.cpp" />
     <ClCompile Include="Reports.cpp" />
+    <ClCompile Include="RiskManagement.cpp" />
     <ClCompile Include="ServerAdministration.cpp" />
     <ClCompile Include="ServerFeeders.cpp" />
     <ClCompile Include="Stdafx.cpp">

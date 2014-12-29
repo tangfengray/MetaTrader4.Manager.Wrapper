@@ -165,6 +165,10 @@ namespace P23{
 				static RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::RequestInfo^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input);
+
+				static P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::Convert(SymbolSummary* input);
+
+				static P23::MetaTrader4::Manager::Contracts::ExposureValue^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ExposureValue* input);
 												
 			public:
 				//constructors
@@ -352,6 +356,18 @@ namespace P23{
 				int DealerSend(P23::MetaTrader4::Manager::Contracts::RequestInfo^ info, int requote, int mode);
 				int DealerReject(int id);
 				int DealerReset(int id);
+
+				//--- risk management
+				IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ SummaryGetAll();
+				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGet(String^ symbol);
+				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGetByCount(int symbol);
+				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGetByType(int sectype);
+				int SummaryCurrency(String^ cur, int maxchars);
+				IList<P23::MetaTrader4::Manager::Contracts::ExposureValue^>^ ExposureGet();
+				P23::MetaTrader4::Manager::Contracts::ExposureValue^ ExposureValueGet(String^ cur);
+				//---
+				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelRequest(int login);
+				int HistoryCorrect(String^ symbol, int updated);
 			};		
 		}
 	}

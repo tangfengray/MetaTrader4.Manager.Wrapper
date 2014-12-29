@@ -58,6 +58,7 @@
     <Compile Include="Configuration\Time.cs" />
     <Compile Include="DailyGroupRequest.cs" />
     <Compile Include="DailyReport.cs" />
+    <Compile Include="ExposureValue.cs" />
     <Compile Include="GroupCommandInfo.cs" />
     <Compile Include="IConnectionParameters.cs" />
     <Compile Include="MailBox.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ServerFeed.cs" />
     <Compile Include="ServerLog.cs" />
     <Compile Include="SymbolInfo.cs" />
+    <Compile Include="SymbolSummary.cs" />
     <Compile Include="TradeRecord.cs" />
     <Compile Include="TradeRestoreResult.cs" />
     <Compile Include="TradeTransInfo.cs" />

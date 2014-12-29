@@ -1866,3 +1866,39 @@ P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::Cl
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::Convert(SymbolSummary* input)
+{
+	P23::MetaTrader4::Manager::Contracts::SymbolSummary^ output = gcnew P23::MetaTrader4::Manager::Contracts::SymbolSummary();
+
+	output->BuyLots = input->buylots;
+	output->BuyPrice = input->buyprice;
+	output->Count = input->count;
+	output->CovBuyLots = input->covbuylots;
+	output->CovBuyPrice = input->covbuyprice;
+	output->CovOrders = input->covorders;
+	output->CovProfit = input->covprofit;
+	output->CovSellLots = input->covselllots;
+	output->CovSellPrice = input->covsellprice;
+	output->Digits = input->digits;
+	output->Orders = input->orders;
+
+	output->Profit = input->profit;
+	output->SellLots = input->selllots;
+	output->SellPrice = input->sellprice;
+	output->Symbol = gcnew String(input->symbol);
+	output->Type = input->type;
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::ExposureValue^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ExposureValue* input)
+{
+	P23::MetaTrader4::Manager::Contracts::ExposureValue^ output = gcnew P23::MetaTrader4::Manager::Contracts::ExposureValue();
+
+	output->Clients = input->clients;
+	output->Coverage = input->coverage;
+	output->Currency = gcnew String(input->currency);
+
+	return output;
+}
