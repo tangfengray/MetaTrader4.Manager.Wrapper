@@ -169,7 +169,17 @@ namespace P23{
 				static P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::Convert(SymbolSummary* input);
 
 				static P23::MetaTrader4::Manager::Contracts::ExposureValue^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ExposureValue* input);
-												
+					
+				static P23::MetaTrader4::Manager::Contracts::RateInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(RateInfo* input);
+				static RateInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::RateInfo^ input);
+				
+				static ChartInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ChartInfo^ input);
+
+				static TickRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TickRequest^ input);
+
+				static P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickRecord* input);
+				
+				
 			public:
 				//constructors
 				ClrWrapper();
@@ -369,7 +379,7 @@ namespace P23{
 				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelRequest(int login);
 				int HistoryCorrect(String^ symbol, int updated);
 
-				////--- new chart bases
+				//--- new chart bases
 				//virtual RateInfo *   __stdcall ChartRequest(const ChartInfo *chart, __time32_t *timesign, int *total) = 0;
 				//virtual int          __stdcall ChartAdd(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
 				//virtual int          __stdcall ChartUpdate(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;

@@ -1902,3 +1902,77 @@ P23::MetaTrader4::Manager::Contracts::ExposureValue^ P23::MetaTrader4::Manager::
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::RateInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(RateInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::RateInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::RateInfo();
+
+	output->Close = input->close;
+	output->Ctm = input->ctm;
+	output->High = input->high;
+	output->Low = input->low;
+	output->Open = input->open;
+	output->Vol = input->vol;
+
+	return output;
+}
+
+RateInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::RateInfo^ input)
+{
+	RateInfo* output = new RateInfo();
+
+	output->close = input->Close;
+	output->ctm = input->Ctm;
+	output->high = input->High;
+	output->low = input->Low;
+	output->open = input->Open;
+	output->vol = input->Vol;
+
+	return output;
+}
+
+ChartInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ChartInfo^ input)
+{
+	ChartInfo* output = new ChartInfo();
+
+	output->end = input->End;
+	output->mode = input->Mode;
+	output->period = input->Period;
+	output->start = input->Start;
+
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	output->timesign = input->TimeSign;
+
+	return output;
+}
+
+TickRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TickRequest^ input)
+{
+	TickRequest* output = new TickRequest();
+
+	output->flags = input->Flags;
+	output->from = input->From;
+	output->to = input->To;
+
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickRecord* input)
+{
+	P23::MetaTrader4::Manager::Contracts::TickRecord^ output = gcnew P23::MetaTrader4::Manager::Contracts::TickRecord();
+
+	output->Ask = input->ask;
+	output->Bid = input->bid;
+	output->Ctm = input->ctm;
+	output->DataFeed = input->datafeed;
+	output->Flags = input->flags;
+
+	return output;
+}
