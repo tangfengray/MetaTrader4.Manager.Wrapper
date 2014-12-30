@@ -368,6 +368,14 @@ namespace P23{
 				//---
 				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelRequest(int login);
 				int HistoryCorrect(String^ symbol, int updated);
+
+				////--- new chart bases
+				//virtual RateInfo *   __stdcall ChartRequest(const ChartInfo *chart, __time32_t *timesign, int *total) = 0;
+				//virtual int          __stdcall ChartAdd(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
+				//virtual int          __stdcall ChartUpdate(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
+				//virtual int          __stdcall ChartDelete(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
+				////--- ticks base
+				//virtual TickRecord*  __stdcall TicksRequest(const TickRequest *request, int *total) = 0;
 			};		
 		}
 	}
