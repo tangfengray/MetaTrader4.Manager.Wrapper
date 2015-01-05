@@ -22,12 +22,12 @@ namespace P23{
 			public:
 				CManagerFactory    Factory;
 				CManagerInterface *Manager;
-				CManager() : Factory(NULL), Manager(NULL)
+				CManager(LPCSTR lib_path = NULL) : Factory(lib_path), Manager(NULL)
 				{
 					Factory.WinsockStartup();
 					if (Factory.IsValid() == FALSE || (Manager = Factory.Create(ManAPIVersion)) == NULL)
 					{
-						return;
+						System::Diagnostics::Debug::WriteLine("Manager Created");						
 					}
 				}
 				~CManager()
@@ -183,7 +183,9 @@ namespace P23{
 			public:
 				//constructors
 				ClrWrapper();
-				ClrWrapper(P23::MetaTrader4::Manager::Contracts::IConnectionParameters^ connectionParameters);
+				ClrWrapper(String^ metatraderLibraryPath);
+				ClrWrapper(P23::MetaTrader4::Manager::Contracts::ConnectionParameters^ connectionParameters);
+				ClrWrapper(P23::MetaTrader4::Manager::Contracts::ConnectionParameters^ connectionParameters, String^ metatraderLibraryPath);
 
 				//Destructors, finalizers
 				~ClrWrapper();
@@ -380,12 +382,12 @@ namespace P23{
 				int HistoryCorrect(String^ symbol, int updated);
 
 				//--- new chart bases
-				//virtual RateInfo *   __stdcall ChartRequest(const ChartInfo *chart, __time32_t *timesign, int *total) = 0;
-				//virtual int          __stdcall ChartAdd(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
-				//virtual int          __stdcall ChartUpdate(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
-				//virtual int          __stdcall ChartDelete(LPCSTR symbol, const int period, const RateInfo *rates, int *count) = 0;
-				////--- ticks base
-				//virtual TickRecord*  __stdcall TicksRequest(const TickRequest *request, int *total) = 0;
+				IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ ChartRequest(P23::MetaTrader4::Manager::Contracts::ChartInfo^ chart, UInt32 timesign);
+				int ChartAdd(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+				int ChartUpdate(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+				int ChartDelete(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+				//--- ticks base
+				IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request);
 			};		
 		}
 	}

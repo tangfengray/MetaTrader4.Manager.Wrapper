@@ -61,7 +61,7 @@
     <Compile Include="DailyReport.cs" />
     <Compile Include="ExposureValue.cs" />
     <Compile Include="GroupCommandInfo.cs" />
-    <Compile Include="IConnectionParameters.cs" />
+    <Compile Include="ConnectionParameters.cs" />
     <Compile Include="MailBox.cs" />
     <Compile Include="MarginLevel.cs" />
     <Compile Include="MetaTraderException.cs" />

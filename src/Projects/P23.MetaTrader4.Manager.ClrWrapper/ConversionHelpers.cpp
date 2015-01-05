@@ -1838,7 +1838,7 @@ RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 	output->prices[0] = input->Prices[0];
 	output->prices[1] = input->Prices[1];
 
-	output->status = input->Status;
+	output->status = (char)input->Status;
 	output->time = input->Time;
 	output->trade = *Convert(input->Trade);
 
@@ -1953,7 +1953,7 @@ TickRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 {
 	TickRequest* output = new TickRequest();
 
-	output->flags = input->Flags;
+	output->flags = (char)input->Flags;
 	output->from = input->From;
 	output->to = input->To;
 

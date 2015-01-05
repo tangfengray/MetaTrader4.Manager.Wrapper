@@ -16,41 +16,41 @@ IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ P23::MetaTrader4::M
 
 P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::SummaryGet(String^ symbol)
 {
-	SymbolSummary* s;
-	int result = _manager->Manager->SummaryGet(Convert(symbol), s);
+	SymbolSummary s;
+	int result = _manager->Manager->SummaryGet(Convert(symbol), &s);
 	if (result != RET_OK)
 	{
 		P23::MetaTrader4::Manager::Contracts::MetaTraderException^ e = gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException();
 		e->ErrorCode = result;
 		throw e;
 	}
-	return Convert(s);
+	return Convert(&s);
 }
 
 P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::SummaryGetByCount(int symbol)
 {
-	SymbolSummary* s;
-	int result = _manager->Manager->SummaryGetByCount(symbol, s);
+	SymbolSummary s;
+	int result = _manager->Manager->SummaryGetByCount(symbol, &s);
 	if (result != RET_OK)
 	{
 		P23::MetaTrader4::Manager::Contracts::MetaTraderException^ e = gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException();
 		e->ErrorCode = result;
 		throw e;
 	}
-	return Convert(s);
+	return Convert(&s);
 }
 
 P23::MetaTrader4::Manager::Contracts::SymbolSummary^ P23::MetaTrader4::Manager::ClrWrapper::SummaryGetByType(int sectype)
 {
-	SymbolSummary* s;
-	int result = _manager->Manager->SummaryGetByCount(sectype, s);
+	SymbolSummary s;
+	int result = _manager->Manager->SummaryGetByCount(sectype, &s);
 	if (result != RET_OK)
 	{
 		P23::MetaTrader4::Manager::Contracts::MetaTraderException^ e = gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException();
 		e->ErrorCode = result;
 		throw e;
 	}
-	return Convert(s);
+	return Convert(&s);
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::SummaryCurrency(String^ cur, int maxchars)
@@ -71,28 +71,28 @@ IList<P23::MetaTrader4::Manager::Contracts::ExposureValue^>^ P23::MetaTrader4::M
 
 P23::MetaTrader4::Manager::Contracts::ExposureValue^ P23::MetaTrader4::Manager::ClrWrapper::ExposureValueGet(String^ cur)
 {
-	ExposureValue* s;
-	int result = _manager->Manager->ExposureValueGet(Convert(cur), s);
+	ExposureValue s;
+	int result = _manager->Manager->ExposureValueGet(Convert(cur), &s);
 	if (result != RET_OK)
 	{
 		P23::MetaTrader4::Manager::Contracts::MetaTraderException^ e = gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException();
 		e->ErrorCode = result;
 		throw e;
 	}
-	return Convert(s);
+	return Convert(&s);
 }
 
 P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::MarginLevelRequest(int login)
 {
-	MarginLevel* m;
-	int result = _manager->Manager->MarginLevelRequest(login, m);
+	MarginLevel m;
+	int result = _manager->Manager->MarginLevelRequest(login, &m);
 	if (result != RET_OK)
 	{
 		P23::MetaTrader4::Manager::Contracts::MetaTraderException^ e = gcnew P23::MetaTrader4::Manager::Contracts::MetaTraderException();
 		e->ErrorCode = result;
 		throw e;
 	}
-	return Convert(m);
+	return Convert(&m);
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::HistoryCorrect(String^ symbol, int updated)

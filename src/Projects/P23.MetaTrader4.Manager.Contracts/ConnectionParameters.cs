@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
-    public interface IConnectionParameters
+    public class ConnectionParameters
     {
-        int Login { get; }
-        String Server { get;}
-        String Password { get;}
+        public int Login { get; set; }
+        public String Server { get; set; }
+        public String Password { get; set; }
     }
 
     

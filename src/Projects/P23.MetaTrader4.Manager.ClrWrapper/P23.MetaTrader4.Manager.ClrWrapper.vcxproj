@@ -86,6 +86,7 @@
     <ClCompile Include="AdministratorDatabaseCommands.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Backups.cpp" />
+    <ClCompile Include="ChartBases.cpp" />
     <ClCompile Include="ConfigurationDeletes.cpp" />
     <ClCompile Include="ConfigurationRequests.cpp" />
     <ClCompile Include="ConfigurationShifts.cpp" />
