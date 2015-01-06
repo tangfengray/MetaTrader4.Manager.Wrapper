@@ -4,25 +4,49 @@
 
 IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ P23::MetaTrader4::Manager::ClrWrapper::ChartRequest(P23::MetaTrader4::Manager::Contracts::ChartInfo^ chart, UInt32 timesign)
 {
-	throw gcnew NotImplementedException();
+	int total = 0;
+	__time32_t time = (__time32_t)timesign;
+	RateInfo* res = _manager->Manager->ChartRequest(Convert(chart), &time, &total);
+	IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::RateInfo^>();
+	for (int i = 0; i < total; i++)
+		output->Add(Convert(&res[i]));
+	return output;	
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::ChartAdd(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates)
 {
-	throw gcnew NotImplementedException();
+	int total = rates->Count;
+	RateInfo* unmanagedRates = new RateInfo[total];
+	for (int i = 0; i < total; i++)
+		unmanagedRates[i] = *Convert(rates[i]);
+	return _manager->Manager->ChartAdd(Convert(symbol), period, unmanagedRates, &total);
+	
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::ChartUpdate(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates)
 {
-	throw gcnew NotImplementedException();
+	int total = rates->Count;
+	RateInfo* unmanagedRates = new RateInfo[total];
+	for (int i = 0; i < total; i++)
+		unmanagedRates[i] = *Convert(rates[i]);
+	return _manager->Manager->ChartUpdate(Convert(symbol), period, unmanagedRates, &total);
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::ChartDelete(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates)
 {
-	throw gcnew NotImplementedException();
+	int total = rates->Count;
+	RateInfo* unmanagedRates = new RateInfo[total];
+	for (int i = 0; i < total; i++)
+		unmanagedRates[i] = *Convert(rates[i]);
+	return _manager->Manager->ChartDelete(Convert(symbol), period, unmanagedRates, &total);
 }
 
 IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ P23::MetaTrader4::Manager::ClrWrapper::TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request)
 {
-	throw gcnew NotImplementedException();
+	int total = 0;	
+	TickRecord* res = _manager->Manager->TicksRequest(Convert(request), &total);
+	IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TickRecord^>();
+	for (int i = 0; i < total; i++)
+		output->Add(Convert(&res[i]));
+	return output;
 }
