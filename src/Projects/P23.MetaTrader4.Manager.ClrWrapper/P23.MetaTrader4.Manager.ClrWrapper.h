@@ -285,7 +285,6 @@ namespace P23{
 				//--- administrator databases commands
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  AdmUsersRequest(String^ group);
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ AdmTradesRequest(String^ group, int openOnly);
-				int AdmBalanceCheck(IList<int>^ logins);
 				int AdmBalanceFix(IList<int>^ logins);
 				int AdmTradesDelete(IList<int>^ orders);
 				int AdmTradeRecordModify(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
@@ -388,6 +387,17 @@ namespace P23{
 				int ChartDelete(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
 				//--- ticks base
 				IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request);
+
+				//--- internal methods
+				/*int PumpingSwitchEx(MTAPI_NOTIFY_FUNC_EX pfnFunc, const int flags, void *param);
+				int UsersSyncStart(UInt32 timestamp);
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersSyncRead();
+				IList<int>^ UsersSnapshot();
+				int TradesSyncStart(UInt32 timestamp);
+				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesSyncRead();
+				IList<int>^ TradesSnapshot();
+				int DailySyncStart(UInt32 timestamp);
+				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailySyncRead();*/
 			};		
 		}
 	}

@@ -36,15 +36,6 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	return result;
 }
 
-int P23::MetaTrader4::Manager::ClrWrapper::AdmBalanceCheck(IList<int>^ logins)
-{
-	int total = logins->Count;
-	int* l = new int[total];
-	for (int i = 0; i < total; total++)
-		l[i] = logins[i];
-	return _manager->Manager->AdmBalanceCheck(l, &total);
-}
-
 int P23::MetaTrader4::Manager::ClrWrapper::AdmBalanceFix(IList<int>^ logins)
 {
 	int total = logins->Count;
