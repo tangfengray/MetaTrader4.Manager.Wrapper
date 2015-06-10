@@ -6,11 +6,6 @@ using namespace System::Runtime::CompilerServices;
 using namespace System::Runtime::InteropServices;
 using namespace System::Security::Permissions;
 
-//
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
 [assembly:AssemblyTitleAttribute(L"P23.MetaTrader4.Manager.ClrWrapper")];
 [assembly:AssemblyDescriptionAttribute("Managed wrapper for mtmanapi.dll")];
 [assembly:AssemblyConfigurationAttribute(L"")];
@@ -20,17 +15,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTrademarkAttribute(L"")];
 [assembly:AssemblyCultureAttribute(L"")];
 
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the value or you can default the Revision and Build Numbers
-// by using the '*' as shown below:
-
+// Version should be also specified in app.rc file
 [assembly:AssemblyVersionAttribute("0.1.*")];
 
 [assembly:ComVisible(false)];
