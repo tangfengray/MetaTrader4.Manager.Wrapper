@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MetaTrader4.Manager.Wrapper</id>
+    <version>0.1.0.0</version>
+    <authors>Uriil</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Managed wrapper around mtmanapi.dll</description>
+  </metadata>
+  <files>
+    <file src="P23.MetaTrader4.Manager.ClrWrapper.dll" target="lib" />
+    <file src="P23.MetaTrader4.Manager.Contracts.dll" target="lib" />
+    <file src="mtmanapi.dll" target="unmanaged" />
+    <file src="mtmanapi64.dll" target="unmanaged" />
+    <file src="MetaTrader4.Manager.Wrapper.targets" target="build" />
+  </files>
+</package>
