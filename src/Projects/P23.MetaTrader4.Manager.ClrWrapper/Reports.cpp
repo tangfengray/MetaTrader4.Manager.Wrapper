@@ -4,8 +4,11 @@
 
 IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Manager::ClrWrapper::ReportsRequest(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ request, IList<int>^ logins)
 {
-	int total = logins->Count;
-	TradeRecord* records = _manager->Manager->ReportsRequest(Convert(request), Convert(logins), &total);
+	int total = 0;
+	ReportGroupRequest* convertedRequest = Convert(request);
+	convertedRequest->total = logins->Count;
+
+	TradeRecord* records = _manager->Manager->ReportsRequest(convertedRequest, Convert(logins), &total);
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ result = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&records[i]));
@@ -14,8 +17,11 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 
 IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ P23::MetaTrader4::Manager::ClrWrapper::DailyReportsRequest(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ request, IList<int>^ logins)
 {
-	int total = logins->Count;
-	DailyReport* records = _manager->Manager->DailyReportsRequest(Convert(request), Convert(logins), &total);
+	int total = 0;
+	DailyGroupRequest* convertedRequest = Convert(request);
+	convertedRequest->total = logins->Count;
+
+	DailyReport* records = _manager->Manager->DailyReportsRequest(convertedRequest, Convert(logins), &total);
 	IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ result = gcnew List<P23::MetaTrader4::Manager::Contracts::DailyReport^>();
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&records[i]));

@@ -1763,8 +1763,11 @@ P23::MetaTrader4::Manager::Contracts::DailyReport^ P23::MetaTrader4::Manager::Cl
 
 ReportGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ input)
 {
-	ReportGroupRequest* output = new ReportGroupRequest();
+	if (System::String::IsNullOrEmpty(input->Name))
+		throw gcnew ArgumentNullException("Name");
 
+	ReportGroupRequest* output = new ReportGroupRequest();
+		
 	output->from = input->From;
 
 	char* name = Convert(input->Name);
@@ -1772,13 +1775,15 @@ ReportGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrad
 		COPY_STR(output->name, name);
 	
 	output->to = input->To;
-	output->total = input->Total;
 
 	return output;
 }
 
 DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ input)
 {
+	if (System::String::IsNullOrEmpty(input->Name))
+		throw gcnew ArgumentNullException("Name");
+
 	DailyGroupRequest* output = new DailyGroupRequest();
 
 	output->from = input->From;
@@ -1788,7 +1793,6 @@ DailyGroupRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrade
 		COPY_STR(output->name, name);
 
 	output->to = input->To;
-	output->total = input->Total;
 	
 	return output;
 }
