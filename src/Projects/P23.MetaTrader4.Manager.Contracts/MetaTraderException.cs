@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
@@ -14,8 +11,8 @@ namespace P23.MetaTrader4.Manager.Contracts
         public MetaTraderException(string message) : base(message) { }
         public MetaTraderException(string message, Exception inner) : base(message, inner) { }
         protected MetaTraderException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context)
+          SerializationInfo info,
+          StreamingContext context)
             : base(info, context) { }
     }
 }

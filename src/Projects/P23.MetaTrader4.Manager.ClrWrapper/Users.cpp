@@ -16,8 +16,12 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ P23::MetaTrader4::Mana
 {
 	int total = logins->Count;
 	int* l = new int[total];
+	for (int i = 0; i < logins->Count; i++)
+		l[i] = logins[i];
+
 	UserRecord* users = _manager->Manager->UserRecordsRequest(l, &total);
 	IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::UserRecord^>();
+
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&users[i]));
 	return output;
