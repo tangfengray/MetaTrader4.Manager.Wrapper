@@ -1464,6 +1464,7 @@ P23::MetaTrader4::Manager::Contracts::TradeRecord^  P23::MetaTrader4::Manager::C
 	output->GwVolume = input->gw_volume;
 	output->Login = input->login;
 	output->Magic = input->magic;
+	output->MarginRate = input->margin_rate;
 	output->OpenPrice = input->open_price;
 	output->OpenTime = input->open_time;
 	output->Order = input->order;
@@ -1508,6 +1509,7 @@ TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::M
 	output->gw_volume = input->GwVolume;
 	output->login = input->Login;
 	output->magic = input->Magic;
+	output->margin_rate = input->MarginRate;
 	output->open_price = input->OpenPrice;
 	output->open_time = input->OpenTime;
 	output->order = input->Order;
@@ -1848,7 +1850,6 @@ RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 
 	return output;
 }
-
 
 P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::ClrWrapper::Convert(MarginLevel* input)
 {

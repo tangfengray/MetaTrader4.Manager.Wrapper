@@ -36,7 +36,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int Activation { get; set; }       // used by MT Manager
         public short GwOpenPrice { get; set; }    // gateway order price deviation (pips) from order open price
         public short GwClosePrice { get; set; }   // gateway order price deviation (pips) from order close price
-        public double MarginTate { get; set; }    // margin convertation rate (rate of convertation from margin currency to deposit one)
+        public double MarginRate { get; set; }    // margin convertation rate (rate of convertation from margin currency to deposit one)
         public UInt32 Timestamp { get; set; }     // timestamp
     }
 }
