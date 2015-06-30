@@ -13,3 +13,9 @@
 Release
 /src/Projects/P23.MetaTrader4.Manager.ClrWrapper/P23.MetaTrader4.Manager.ClrWrapper.sdf
 /src/Libraries/mtmanapi/logs/*.log
+symbols.raw
+symgroups.raw
+logs
+news
+/src/Projects/P23.MetaTrader4.Manager.ClrWrapper/P23.MetaTrader4.Manager.ClrWrapper.v12.suo
+ipch

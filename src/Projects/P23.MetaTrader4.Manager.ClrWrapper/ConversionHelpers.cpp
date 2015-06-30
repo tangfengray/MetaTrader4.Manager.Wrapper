@@ -489,6 +489,7 @@ ConHoliday* P23::MetaTrader4::Manager::ClrWrapper::Convert(Holiday^ configuratio
 Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
 {
 	Symbol^ newConfiguration = gcnew Symbol();
+	newConfiguration->Sessions = gcnew List<Sessions^>();
 
 	newConfiguration->AskTickValue = configuration->ask_tickvalue;
 	newConfiguration->BackgroundColor = configuration->background_color;
@@ -525,7 +526,7 @@ Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
 	newConfiguration->RealTime = configuration->realtime;
 
 	for (int i = 0; i < 7; i++)
-		newConfiguration->Sessions[i] = Convert(&configuration->sessions[i]);
+		newConfiguration->Sessions->Insert(i, Convert(&configuration->sessions[i]));
 
 	newConfiguration->Source = gcnew String(configuration->source);
 	newConfiguration->Spread = configuration->spread;
@@ -634,12 +635,14 @@ ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
 Sessions^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSessions* configuration)
 {
 	Sessions^ newConfiguration = gcnew Sessions();
+	newConfiguration->Quote = gcnew List<Session^>();
+	newConfiguration->Trade = gcnew List<Session^>();
 		
 	for (int i = 0; i < 3; i++)
-		newConfiguration->Quote[i] = Convert(&configuration->quote[i]);
+		newConfiguration->Quote->Insert(i, Convert(&configuration->quote[i]));;
 
 	for (int i = 0; i < 3; i++)
-		newConfiguration->Trade[i] = Convert(&configuration->trade[i]);
+		newConfiguration->Trade->Insert(i, Convert(&configuration->trade[i]));
 
 	return newConfiguration;
 }
