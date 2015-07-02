@@ -41,6 +41,10 @@ namespace P23{
 
 			public delegate void PumpingCallbackDelegate(int i);
 
+			public delegate void ExtendedCallBackDelegate(int code, int type, void *data, void *param);
+
+			public delegate void PumpingTradesUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
+
 			public ref class ClrWrapper : IDisposable
 			{
 			private:
@@ -48,6 +52,8 @@ namespace P23{
 				bool						_isDisposed;
 				GCHandle					_callBackHandler = GCHandle();
 				PumpingCallbackDelegate^	_callBackDelegate;
+				ExtendedCallBackDelegate^	_extendedPumpingCallBack;
+				void						ExtendedPumpingNotify(int code, int type, void *data, void *param);
 				
 				//Helpers
 				static char* Convert(System::String^ inputString);
@@ -178,9 +184,17 @@ namespace P23{
 				static TickRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TickRequest^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickRecord* input);
-				
-				
+								
 			public:
+				//Extended pumping events
+				event PumpingTradesUpdated ^	TradeAdded;
+				event PumpingTradesUpdated ^	TradeUpdated;
+				event PumpingTradesUpdated ^	TradeClosed;
+				event PumpingTradesUpdated ^	TradeDeleted;
+				event EventHandler^				PumpingStarted;
+				event EventHandler^				PumpingStopped;
+				event EventHandler^				BidAskUpdated;
+
 				//constructors
 				ClrWrapper();
 				ClrWrapper(String^ metatraderLibraryPath);
@@ -389,7 +403,7 @@ namespace P23{
 				IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request);
 
 				//--- internal methods
-				/*int PumpingSwitchEx(MTAPI_NOTIFY_FUNC_EX pfnFunc, const int flags, void *param);
+				int PumpingSwitchEx();
 				int UsersSyncStart(UInt32 timestamp);
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersSyncRead();
 				IList<int>^ UsersSnapshot();
@@ -397,7 +411,7 @@ namespace P23{
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesSyncRead();
 				IList<int>^ TradesSnapshot();
 				int DailySyncStart(UInt32 timestamp);
-				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailySyncRead();*/
+				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailySyncRead();
 			};		
 		}
 	}

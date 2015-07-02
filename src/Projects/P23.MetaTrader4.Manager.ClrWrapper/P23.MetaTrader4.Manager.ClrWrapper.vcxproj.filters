@@ -110,6 +110,9 @@
     <ClCompile Include="ChartBases.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PumpingExtended.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

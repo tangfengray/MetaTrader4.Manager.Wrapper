@@ -101,6 +101,7 @@
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="Pumping.cpp" />
+    <ClCompile Include="PumpingExtended.cpp" />
     <ClCompile Include="Reports.cpp" />
     <ClCompile Include="RiskManagement.cpp" />
     <ClCompile Include="ServerAdministration.cpp" />
