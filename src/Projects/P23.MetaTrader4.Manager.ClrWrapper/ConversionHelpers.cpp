@@ -1984,3 +1984,21 @@ P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::Clr
 
 	return output;
 }
+
+SymbolProperties* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::SymbolProperties^ input)
+{
+	SymbolProperties* output = new SymbolProperties();
+
+	output->color = input->Color;
+	output->exemode = input->Exemode;
+	output->smoothing = input->Smoothing;
+	output->spread = input->Spread;
+	output->spread_balance = input->SpreadBalance;
+	output->stops_level = input->StopsLevel;
+		
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	return output;
+}

@@ -184,7 +184,9 @@ namespace P23{
 				static TickRequest* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TickRequest^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickRecord* input);
-								
+
+				static SymbolProperties* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::SymbolProperties^ input);
+												
 			public:
 				//Extended pumping events
 				event PumpingTradesUpdated ^	TradeAdded;
@@ -412,6 +414,26 @@ namespace P23{
 				IList<int>^ TradesSnapshot();
 				int DailySyncStart(UInt32 timestamp);
 				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailySyncRead();
+
+				//--- profit recalculation
+				int TradeCalcProfit(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
+				
+				//--- new symbol commands
+				int SymbolChange(P23::MetaTrader4::Manager::Contracts::SymbolProperties^ prop);
+				
+				//--- network statistics
+				int BytesSent();
+				int BytesReceived();
+				
+				//---
+				int ManagerCommon(Common^ common);
+				
+				//--- log access
+				void LogsOut(int code, System::String^ source, System::String^ msg);
+				void LogsMode(int mode);
+				
+				//--- check license
+				int LicenseCheck(System::String^ licenseName);
 			};		
 		}
 	}

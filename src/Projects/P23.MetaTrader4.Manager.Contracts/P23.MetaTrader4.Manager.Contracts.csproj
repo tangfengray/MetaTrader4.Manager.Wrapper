@@ -75,6 +75,7 @@
     <Compile Include="ServerFeed.cs" />
     <Compile Include="ServerLog.cs" />
     <Compile Include="SymbolInfo.cs" />
+    <Compile Include="SymbolProperties.cs" />
     <Compile Include="SymbolSummary.cs" />
     <Compile Include="TickRecord.cs" />
     <Compile Include="TickRequest.cs" />

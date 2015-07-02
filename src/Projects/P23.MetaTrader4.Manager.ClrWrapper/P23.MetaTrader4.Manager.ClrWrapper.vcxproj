@@ -87,6 +87,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Backups.cpp" />
     <ClCompile Include="ChartBases.cpp" />
+    <ClCompile Include="CheckLicense.cpp" />
     <ClCompile Include="ConfigurationDeletes.cpp" />
     <ClCompile Include="ConfigurationRequests.cpp" />
     <ClCompile Include="ConfigurationShifts.cpp" />
@@ -96,10 +97,15 @@
     <ClCompile Include="Dealing.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Journal.cpp" />
+    <ClCompile Include="LogAccess.cpp" />
     <ClCompile Include="ManagerCommands.cpp" />
+    <ClCompile Include="ManagerCommon.cpp" />
+    <ClCompile Include="NetworkStatistics.cpp" />
+    <ClCompile Include="NewSymbolCommands.cpp" />
     <ClCompile Include="Orders.cpp" />
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
+    <ClCompile Include="ProfitRecalculation.cpp" />
     <ClCompile Include="Pumping.cpp" />
     <ClCompile Include="PumpingExtended.cpp" />
     <ClCompile Include="Reports.cpp" />
