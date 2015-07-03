@@ -186,7 +186,18 @@ namespace P23{
 				static P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickRecord* input);
 
 				static SymbolProperties* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::SymbolProperties^ input);
-												
+						
+				static P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayAccount* input);
+				static ConGatewayAccount* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ input);
+
+				static P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayMarkup* input);
+				static ConGatewayMarkup* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^ input);
+
+				static P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayRule* input);
+				static ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ input);
+				//ConGatewayAccount*
+				//ConGatewayMarkup* 
+				//ConGatewayRule* Cf
 			public:
 				//Extended pumping events
 				event PumpingTradesUpdated ^	TradeAdded;
@@ -434,6 +445,29 @@ namespace P23{
 				
 				//--- check license
 				int LicenseCheck(System::String^ licenseName);
+
+				//--- gateway configs
+				//ConGatewayAccount* CfgRequestGatewayAccount(int *total) = 0;
+				//ConGatewayMarkup* CfgRequestGatewayMarkup(int *total) = 0;
+				//ConGatewayRule* CfgRequestGatewayRule(int *total) = 0;
+				
+				//--- configuration update
+				//int CfgUpdateGatewayAccount(const ConGatewayAccount* cfg) = 0;
+				//int CfgUpdateGatewayMarkup(const ConGatewayMarkup* cfg) = 0;
+				//int CfgUpdateGatewayRule(const ConGatewayRule *cfg) = 0;
+				
+				//--- configuration delete
+				//int CfgDeleteGatewayAccount(const int pos) = 0;
+				//int CfgDeleteGatewayMarkup(const int pos) = 0;
+				//int CfgDeleteGatewayRule(const int pos) = 0;
+				
+				//--- configuration shift
+				//int CfgShiftGatewayAccount(const int pos, const int shift) = 0;
+				//int CfgShiftGatewayMarkup(const int pos, const int shift) = 0;
+				//int CfgShiftGatewayRule(const int pos, const int shift) = 0;
+				
+				//--- administrator databases commands
+				//BalanceDiff* __stdcall AdmBalanceCheck(int *logins, int *total) = 0;
 			};		
 		}
 	}

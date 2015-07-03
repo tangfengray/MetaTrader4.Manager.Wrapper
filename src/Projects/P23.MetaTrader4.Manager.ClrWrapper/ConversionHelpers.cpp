@@ -2002,3 +2002,151 @@ SymbolProperties* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayAccount* input)
+{
+	P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ output = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount();
+	output->NotifyLogins = gcnew List<int>();
+
+	output->Address = gcnew String(input->address);
+	output->Enable = input->enable;
+	output->Flags = input->flags;
+	output->ID = input->id;
+	output->Login = input->login;
+	output->Name = gcnew String(input->name);
+
+	for (int i = 0; i < 8; i++)
+		output->NotifyLogins->Add(input->notify_logins[i]);
+
+	output->Password = gcnew String(input->password);
+	output->Type = input->type;
+
+	return output;
+}
+
+ConGatewayAccount* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ input)
+{ 
+	if (input->NotifyLogins == nullptr)
+		throw gcnew ArgumentNullException("NotifyLogins");
+
+	if (input->NotifyLogins->Count > 0)
+		throw gcnew ArgumentException("Maximum allowed number of NotifyLogins: 8");
+
+	ConGatewayAccount* output = new ConGatewayAccount();
+
+	char* address = Convert(input->Address);
+	if (address != NULL)
+		COPY_STR(output->address, address);
+
+	char* name = Convert(input->Name);
+	if (name != NULL)
+		COPY_STR(output->name, name);
+
+	char* password = Convert(input->Password);
+	if (password != NULL)
+		COPY_STR(output->password, password);
+
+	output->enable = input->Enable;
+	output->flags = input->Flags;
+	output->id = input->ID;
+	output->login = input->Login;
+	output->type = input->Type;
+	
+	for (int i = 0; i < input->NotifyLogins->Count; i++)
+		output->notify_logins[i] = input->NotifyLogins[i];
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayMarkup* input) 
+{ 
+	P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^ output = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup();
+	
+	output->AccountID = input->account_id;
+	output->AccountName = gcnew String(input->account_name);
+	output->AskMarkup = input->ask_markup;
+	output->BidMarkup = input->bid_markup;
+	output->Enable = input->enable;
+	output->Source = gcnew String(input->source);
+	output->Symbol = gcnew String(input->symbol);
+	
+	return output;
+}
+
+ConGatewayMarkup* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^ input) 
+{ 
+	ConGatewayMarkup* output = new ConGatewayMarkup();
+
+	char* accountName = Convert(input->AccountName);
+	if (accountName != NULL)
+		COPY_STR(output->account_name, accountName);
+
+	char* source = Convert(input->Source);
+	if (source != NULL)
+		COPY_STR(output->source, source);
+
+	char* symbol = Convert(input->Symbol);
+	if (symbol != NULL)
+		COPY_STR(output->symbol, symbol);
+
+	output->account_id = input->AccountID;
+	output->ask_markup = input->AskMarkup;
+	output->bid_markup = input->BidMarkup;
+	output->enable = input->Enable;
+
+	return output;
+}
+
+P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayRule* input)	 
+{ 
+	P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ output = gcnew P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule();
+	
+	output->Enable = input->enable;
+	output->ExeAccountID = input->exe_account_id;
+	output->ExeAccountName = gcnew String(input->exe_account_name);
+	output->ExeAccountPos = input->exe_account_pos;
+	output->ExeMaxDeviation = input->exe_max_deviation;
+	output->ExeMaxLosingSlippage = input->exe_max_losing_slippage;
+	output->ExeMaxLosingSlippageLots = input->exe_max_losing_slippage_lots;
+	output->ExeMaxProfitSlippage = input->exe_max_profit_slippage;
+	output->ExeMaxProfitSlippageLots = input->exe_max_profit_slippage_lots;
+	output->ExeVolumePercent = input->exe_volume_percent;
+	output->Name = gcnew String(input->name);
+	output->RequestGroup = gcnew String(input->request_group);
+	output->RequestSymbol = gcnew String(input->request_symbol);
+	
+	return output;
+}
+
+ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ input)	 
+{ 
+	ConGatewayRule* output = new ConGatewayRule();
+
+	char* exe_account_name = Convert(input->ExeAccountName);
+	if (exe_account_name != NULL)
+		COPY_STR(output->exe_account_name, exe_account_name);
+
+	char* name = Convert(input->Name);
+	if (name != NULL)
+		COPY_STR(output->name, name);
+
+	char* request_group = Convert(input->RequestGroup);
+	if (request_group != NULL)
+		COPY_STR(output->request_group, request_group);
+
+	char* request_symbol = Convert(input->RequestSymbol);
+	if (request_symbol != NULL)
+		COPY_STR(output->request_symbol, request_symbol);
+
+	output->enable = input->Enable;
+	output->exe_account_id = input->ExeAccountID;
+	output->exe_account_pos = input->ExeAccountPos;
+	output->exe_max_deviation = input->ExeMaxDeviation;
+	output->exe_max_losing_slippage = input->ExeMaxLosingSlippage;
+	output->exe_max_losing_slippage_lots = input->ExeMaxLosingSlippageLots;
+	output->exe_max_profit_slippage = input->ExeMaxProfitSlippage;
+	output->exe_max_profit_slippage_lots = input->ExeMaxProfitSlippageLots;
+	output->exe_volume_percent = input->ExeVolumePercent;
+
+	return output;
+}
