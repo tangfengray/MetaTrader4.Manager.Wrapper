@@ -195,6 +195,8 @@ namespace P23{
 
 				static P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayRule* input);
 				static ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ input);
+
+				static P23::MetaTrader4::Manager::Contracts::BalanceDiff^ P23::MetaTrader4::Manager::ClrWrapper::Convert(BalanceDiff* input);
 				
 			public:
 				//Extended pumping events
@@ -465,7 +467,7 @@ namespace P23{
 				int CfgShiftGatewayRule(int pos, int shift);
 				
 				//--- administrator databases commands
-				//BalanceDiff* __stdcall AdmBalanceCheck(int *logins, int *total) = 0;
+				IList<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>^  AdmBalanceCheck(IList<int>^ logins);
 			};		
 		}
 	}

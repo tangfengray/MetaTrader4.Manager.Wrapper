@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackupInfo.cs" />
+    <Compile Include="BalanceDiff.cs" />
     <Compile Include="ChartInfo.cs" />
     <Compile Include="Configuration\Access.cs" />
     <Compile Include="Configuration\Backup.cs" />

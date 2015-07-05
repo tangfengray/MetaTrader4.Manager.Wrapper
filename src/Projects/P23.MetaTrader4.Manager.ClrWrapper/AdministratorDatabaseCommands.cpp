@@ -40,7 +40,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::AdmBalanceFix(IList<int>^ logins)
 {
 	int total = logins->Count;
 	int* l = new int[total];
-	for (int i = 0; i < total; total++)
+	for (int i = 0; i < total; i++)
 		l[i] = logins[i];
 	return _manager->Manager->AdmBalanceFix(l, total);
 }
@@ -49,7 +49,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::AdmTradesDelete(IList<int>^ orders)
 {
 	int total = orders->Count;
 	int* l = new int[total];
-	for (int i = 0; i < total; total++)
+	for (int i = 0; i < total; i++)
 		l[i] = orders[i];
 	return _manager->Manager->AdmTradesDelete(l, total);
 }
@@ -57,4 +57,17 @@ int P23::MetaTrader4::Manager::ClrWrapper::AdmTradesDelete(IList<int>^ orders)
 int P23::MetaTrader4::Manager::ClrWrapper::AdmTradeRecordModify(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade)
 {	
 	return _manager->Manager->AdmTradeRecordModify(Convert(trade));
+}
+
+IList<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>^ P23::MetaTrader4::Manager::ClrWrapper::AdmBalanceCheck(IList<int>^ logins)
+{
+	int total = 0;
+	int* l = new int[logins->Count];
+	for (int i = 0; i < logins->Count; i++)
+		l[i] = logins[i];
+	BalanceDiff* balanceDiff = _manager->Manager->AdmBalanceCheck(l, &total);
+	IList<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>();
+	for (int i = 0; i < total; i++)
+		output->Add(Convert(&balanceDiff[i]));
+	return output;
 }

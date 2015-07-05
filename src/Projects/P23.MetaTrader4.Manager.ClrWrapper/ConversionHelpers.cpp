@@ -2150,3 +2150,13 @@ ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4:
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::BalanceDiff^ P23::MetaTrader4::Manager::ClrWrapper::Convert(BalanceDiff* input)
+{
+	P23::MetaTrader4::Manager::Contracts::BalanceDiff^ output = gcnew P23::MetaTrader4::Manager::Contracts::BalanceDiff();
+
+	output->Diff = input->diff;
+	output->Login = input->login;
+
+	return output;
+}
