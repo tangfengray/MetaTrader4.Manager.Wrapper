@@ -95,6 +95,10 @@
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ConversionHelpers.cpp" />
     <ClCompile Include="Dealing.cpp" />
+    <ClCompile Include="GaetwayConfigurationShifts.cpp" />
+    <ClCompile Include="GatewayConfigurationDeletes.cpp" />
+    <ClCompile Include="GatewayConfigurationRequests.cpp" />
+    <ClCompile Include="GatewayConfigurationUpdates.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Journal.cpp" />
     <ClCompile Include="LogAccess.cpp" />

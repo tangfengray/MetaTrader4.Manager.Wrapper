@@ -131,6 +131,18 @@
     <ClCompile Include="CheckLicense.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GatewayConfigurationRequests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GatewayConfigurationUpdates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GatewayConfigurationDeletes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GaetwayConfigurationShifts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

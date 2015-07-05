@@ -195,9 +195,7 @@ namespace P23{
 
 				static P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGatewayRule* input);
 				static ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ input);
-				//ConGatewayAccount*
-				//ConGatewayMarkup* 
-				//ConGatewayRule* Cf
+				
 			public:
 				//Extended pumping events
 				event PumpingTradesUpdated ^	TradeAdded;
@@ -447,24 +445,24 @@ namespace P23{
 				int LicenseCheck(System::String^ licenseName);
 
 				//--- gateway configs
-				//ConGatewayAccount* CfgRequestGatewayAccount(int *total) = 0;
-				//ConGatewayMarkup* CfgRequestGatewayMarkup(int *total) = 0;
-				//ConGatewayRule* CfgRequestGatewayRule(int *total) = 0;
+				IList<GatewayAccount^>^ CfgRequestGatewayAccount();
+				IList<GatewayMarkup^>^ CfgRequestGatewayMarkup();
+				IList<GatewayRule^>^ CfgRequestGatewayRule();
 				
 				//--- configuration update
-				//int CfgUpdateGatewayAccount(const ConGatewayAccount* cfg) = 0;
-				//int CfgUpdateGatewayMarkup(const ConGatewayMarkup* cfg) = 0;
-				//int CfgUpdateGatewayRule(const ConGatewayRule *cfg) = 0;
+				int CfgUpdateGatewayAccount(GatewayAccount^ cfg);
+				int CfgUpdateGatewayMarkup(GatewayMarkup^ cfg);
+				int CfgUpdateGatewayRule(GatewayRule^ cfg);
 				
 				//--- configuration delete
-				//int CfgDeleteGatewayAccount(const int pos) = 0;
-				//int CfgDeleteGatewayMarkup(const int pos) = 0;
-				//int CfgDeleteGatewayRule(const int pos) = 0;
+				int CfgDeleteGatewayAccount(int pos);
+				int CfgDeleteGatewayMarkup(int pos);
+				int CfgDeleteGatewayRule(int pos);
 				
 				//--- configuration shift
-				//int CfgShiftGatewayAccount(const int pos, const int shift) = 0;
-				//int CfgShiftGatewayMarkup(const int pos, const int shift) = 0;
-				//int CfgShiftGatewayRule(const int pos, const int shift) = 0;
+				int CfgShiftGatewayAccount(int pos, int shift);
+				int CfgShiftGatewayMarkup(int pos, int shift);
+				int CfgShiftGatewayRule(int pos, int shift);
 				
 				//--- administrator databases commands
 				//BalanceDiff* __stdcall AdmBalanceCheck(int *logins, int *total) = 0;
