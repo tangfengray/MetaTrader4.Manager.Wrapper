@@ -1323,8 +1323,8 @@ P23::MetaTrader4::Manager::Contracts::UserRecord^  P23::MetaTrader4::Manager::Cl
 	output->Login = input->login;
 	output->Mqid = input->mqid;
 	output->Name = gcnew String(input->name);
-	output->Password = gcnew String(input->password);
-	output->PasswordInvestor = gcnew String(input->password_investor);
+	//output->Password = gcnew String(input->password);
+	//output->PasswordInvestor = gcnew String(input->password_investor);
 	output->PasswordPhone = gcnew String(input->password_phone);
 	output->Phone = gcnew String(input->phone);
 	output->PrevBalance = input->prevbalance;
