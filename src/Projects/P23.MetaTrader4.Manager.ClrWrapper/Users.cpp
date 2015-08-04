@@ -29,7 +29,11 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ P23::MetaTrader4::Mana
 
 int P23::MetaTrader4::Manager::ClrWrapper::UserRecordNew(P23::MetaTrader4::Manager::Contracts::UserRecord^ user)
 {
-	return _manager->Manager->UserRecordNew(Convert(user));
+	UserRecord* userRecord = Convert(user);
+	int result = _manager->Manager->UserRecordNew(userRecord);
+	if (result == 0)
+		user->Login == userRecord->login;
+	return result;
 }
 
 int P23::MetaTrader4::Manager::ClrWrapper::UserRecordUpdate(P23::MetaTrader4::Manager::Contracts::UserRecord^ user)
