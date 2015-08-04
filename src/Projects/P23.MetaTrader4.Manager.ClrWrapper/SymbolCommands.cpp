@@ -16,6 +16,8 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^>^ P23::MetaTr
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&symbols[i]));
 
+	_manager->Manager->MemFree(symbols);
+
 	return result;
 }
 

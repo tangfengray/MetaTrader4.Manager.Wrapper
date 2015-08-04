@@ -11,5 +11,7 @@ IList<P23::MetaTrader4::Manager::Contracts::ServerLog^>^ P23::MetaTrader4::Manag
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&logs[i]));
 
+	_manager->Manager->MemFree(logs);
+
 	return output;
 }

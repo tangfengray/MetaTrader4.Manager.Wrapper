@@ -12,6 +12,8 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ P23::MetaTra
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&groups[i]));
 
+	_manager->Manager->MemFree(groups);
+
 	return result;
 }
 

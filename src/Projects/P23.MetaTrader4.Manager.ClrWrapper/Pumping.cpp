@@ -18,6 +18,9 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ P23::MetaTra
 	IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&groups[i]));
+
+	_manager->Manager->MemFree(groups);
+
 	return output;
 }
 
@@ -54,6 +57,9 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ P23::MetaTrader4::Mana
 	IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::UserRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -80,6 +86,9 @@ IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ P23::MetaTrader4::Ma
 	IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -106,6 +115,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -117,6 +129,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -128,6 +143,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -139,6 +157,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -170,6 +191,9 @@ IList<P23::MetaTrader4::Manager::Contracts::MarginLevel^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::MarginLevel^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::MarginLevel^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -196,6 +220,9 @@ IList<P23::MetaTrader4::Manager::Contracts::RequestInfo^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::RequestInfo^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::RequestInfo^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -222,6 +249,9 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::Plugin^>^ P23::MetaTr
 	IList<P23::MetaTrader4::Manager::Contracts::Configuration::Plugin^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::Configuration::Plugin^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -253,6 +283,9 @@ IList<P23::MetaTrader4::Manager::Contracts::NewsTopic^>^ P23::MetaTrader4::Manag
 	IList<P23::MetaTrader4::Manager::Contracts::NewsTopic^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::NewsTopic^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 

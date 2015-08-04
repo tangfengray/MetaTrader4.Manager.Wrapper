@@ -9,6 +9,9 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^>^ P23
 	ConGatewayAccount* result = _manager->Manager->CfgRequestGatewayAccount(&total);
 	for (int i = 0; i < total; i++)
 		configurations->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return configurations;
 }
 
@@ -19,6 +22,9 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::GatewayMarkup^>^  P23
 	ConGatewayMarkup* result = _manager->Manager->CfgRequestGatewayMarkup(&total);
 	for (int i = 0; i < total; i++)
 		configurations->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return configurations;
 }
 
@@ -29,5 +35,8 @@ IList<P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^>^  P23::
 	ConGatewayRule* result = _manager->Manager->CfgRequestGatewayRule(&total);
 	for (int i = 0; i < total; i++)
 		configurations->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return configurations;
 }

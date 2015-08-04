@@ -11,6 +11,9 @@ IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ P23::MetaTrader4::M
 	IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&s[i]));
+
+	_manager->Manager->MemFree(s);
+
 	return output;
 }
 
@@ -66,6 +69,9 @@ IList<P23::MetaTrader4::Manager::Contracts::ExposureValue^>^ P23::MetaTrader4::M
 	IList<P23::MetaTrader4::Manager::Contracts::ExposureValue^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::ExposureValue^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&s[i]));
+
+	_manager->Manager->MemFree(s);
+
 	return output;
 }
 

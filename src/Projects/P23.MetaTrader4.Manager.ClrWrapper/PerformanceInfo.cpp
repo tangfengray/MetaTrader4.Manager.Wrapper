@@ -8,5 +8,8 @@ IList<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>^ P23::MetaTrader4:
 	IList<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>^ result = gcnew List<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>();
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&infos[i]));
+
+	_manager->Manager->MemFree(infos);
+
 	return result;
 }

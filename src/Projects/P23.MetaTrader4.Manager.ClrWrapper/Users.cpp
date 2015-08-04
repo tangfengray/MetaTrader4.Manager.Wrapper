@@ -9,6 +9,9 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ P23::MetaTrader4::Mana
 	IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::UserRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&users[i]));
+
+	_manager->Manager->MemFree(users);
+
 	return output;
 }
 
@@ -24,6 +27,9 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ P23::MetaTrader4::Mana
 
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&users[i]));
+
+	_manager->Manager->MemFree(users);
+
 	return output;
 }
 
@@ -66,5 +72,8 @@ IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ P23::MetaTrader4::Ma
 	IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&users[i]));
+
+	_manager->Manager->MemFree(users);
+
 	return output;
 }

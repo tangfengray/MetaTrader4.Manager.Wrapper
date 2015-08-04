@@ -14,6 +14,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&trades[i]));
+
+	_manager->Manager->MemFree(trades);
+
 	return output;
 }
 
@@ -28,6 +31,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&trades[i]));
+
+	_manager->Manager->MemFree(trades);
+
 	return output;
 }
 
@@ -38,6 +44,9 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRecord^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&trades[i]));
+
+	_manager->Manager->MemFree(trades);
+
 	return output;
 }
 

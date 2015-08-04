@@ -6,10 +6,13 @@ IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ P23::MetaTrader4::Manage
 {
 	int total = 0;
 	__time32_t time = (__time32_t)timesign;
-	RateInfo* res = _manager->Manager->ChartRequest(Convert(chart), &time, &total);
+	RateInfo* result = _manager->Manager->ChartRequest(Convert(chart), &time, &total);
 	IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::RateInfo^>();
 	for (int i = 0; i < total; i++)
-		output->Add(Convert(&res[i]));
+		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
+
 	return output;	
 }
 
@@ -44,9 +47,9 @@ int P23::MetaTrader4::Manager::ClrWrapper::ChartDelete(String^ symbol, int perio
 IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ P23::MetaTrader4::Manager::ClrWrapper::TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request)
 {
 	int total = 0;	
-	TickRecord* res = _manager->Manager->TicksRequest(Convert(request), &total);
+	TickRecord* result = _manager->Manager->TicksRequest(Convert(request), &total);
 	IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TickRecord^>();
 	for (int i = 0; i < total; i++)
-		output->Add(Convert(&res[i]));
+		output->Add(Convert(&result[i]));
 	return output;
 }

@@ -10,6 +10,8 @@ IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^ P23::MetaTrader4::Mana
 	for (int i = 0; i < total; i++)	
 		output->Add(Convert(&result[i]));
 	
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -21,6 +23,8 @@ IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  P23::MetaTrader4::Man
 	BackupInfo* result = _manager->Manager->BackupInfoOrders(mode, &total);
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
 
 	return output;
 }
@@ -39,6 +43,8 @@ IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  P23::MetaTrader4::Man
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
 
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -56,6 +62,8 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
 
+	_manager->Manager->MemFree(result);
+
 	return output;
 }
 
@@ -67,9 +75,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::BackupRestoreUsers(IList<P23::MetaTra
 	for (int i = 0; i < users->Count; i++)
 		u[i] = *Convert(users[i]);
 
-	int result = _manager->Manager->BackupRestoreUsers(u, total);
-
-	return result;
+	return _manager->Manager->BackupRestoreUsers(u, total);
 }
 
 IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ P23::MetaTrader4::Manager::ClrWrapper::BackupRestoreOrders(IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ trades)
@@ -85,6 +91,8 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ P23::MetaTrade
 	IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>();
 	for (int i = 0; i < total; i++)
 		output->Add(Convert(&result[i]));
+
+	_manager->Manager->MemFree(result);
 
 	return output;
 }

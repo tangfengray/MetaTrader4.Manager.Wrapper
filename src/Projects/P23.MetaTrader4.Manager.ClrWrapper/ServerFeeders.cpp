@@ -8,6 +8,9 @@ IList<P23::MetaTrader4::Manager::Contracts::ServerFeed^>^ P23::MetaTrader4::Mana
 	IList<P23::MetaTrader4::Manager::Contracts::ServerFeed^>^ result = gcnew List<P23::MetaTrader4::Manager::Contracts::ServerFeed^>();
 	for (int i = 0; i < total; i++)
 		result->Add(Convert(&feeders[i]));
+
+	_manager->Manager->MemFree(feeders);
+
 	return result;
 }
 
