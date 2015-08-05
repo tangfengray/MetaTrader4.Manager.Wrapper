@@ -50,6 +50,8 @@ namespace P23{
 			public ref class ClrWrapper : IDisposable
 			{
 			private:
+				const int					NumberOfSecondsInDay = 86400;
+
 				CManager*					_manager;
 				bool						_isDisposed;
 				GCHandle					_callBackHandler = GCHandle();

@@ -4,6 +4,15 @@
 
 IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Manager::ClrWrapper::ReportsRequest(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ request, IList<int>^ logins)
 {
+	if (request == nullptr)
+		throw gcnew ArgumentNullException("request");
+
+	if (logins == nullptr)
+		throw gcnew ArgumentNullException("logins");
+
+	if (logins->Count == 0)
+		throw gcnew ArgumentException("At least one login should be provided", "logins");
+
 	int total = 0;
 	ReportGroupRequest* convertedRequest = Convert(request);
 	convertedRequest->total = logins->Count;
@@ -20,6 +29,18 @@ IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Man
 
 IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ P23::MetaTrader4::Manager::ClrWrapper::DailyReportsRequest(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ request, IList<int>^ logins)
 {
+	if (request == nullptr)
+		throw gcnew ArgumentNullException("request");
+
+	if (logins == nullptr)
+		throw gcnew ArgumentNullException("logins");
+
+	if (logins->Count == 0)
+		throw gcnew ArgumentException("At least one login should be provided", "logins");
+
+	if (request->To - request->From < NumberOfSecondsInDay)
+		throw gcnew ArgumentException("Minimum difference between To and From should be 24 hours", "request");
+
 	int total = 0;
 	DailyGroupRequest* convertedRequest = Convert(request);
 	convertedRequest->total = logins->Count;
@@ -44,5 +65,8 @@ int P23::MetaTrader4::Manager::ClrWrapper::ExternalCommand(String^ dataIn, int s
 //--- plugins
 int P23::MetaTrader4::Manager::ClrWrapper::PluginUpdate(PluginWithParameters^ plugin)
 {
+	if (plugin == nullptr)
+		throw gcnew ArgumentNullException("plugin");
+
 	return _manager->Manager->PluginUpdate(Convert(plugin));
 }
