@@ -38,7 +38,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::UserRecordNew(P23::MetaTrader4::Manag
 	UserRecord* userRecord = Convert(user);
 	int result = _manager->Manager->UserRecordNew(userRecord);
 	if (result == 0)
-		user->Login == userRecord->login;
+		user->Login = userRecord->login;
 	return result;
 }
 
