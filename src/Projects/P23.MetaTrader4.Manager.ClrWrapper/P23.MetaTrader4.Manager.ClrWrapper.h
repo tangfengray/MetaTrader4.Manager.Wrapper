@@ -43,9 +43,11 @@ namespace P23{
 
 			public delegate void ExtendedCallBackDelegate(int code, int type, void *data, void *param);
 
-			public delegate void PumpingTradesUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
+			public delegate void TradeRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
 			
-			public delegate void OnlineRecordsUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
+			public delegate void OnlineRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
+			
+			public delegate void UserRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ onlineRecord);
 
 			public ref class ClrWrapper : IDisposable
 			{
@@ -204,14 +206,15 @@ namespace P23{
 				
 			public:
 				//Extended pumping events
-				event PumpingTradesUpdated ^	TradeAdded;
-				event PumpingTradesUpdated ^	TradeUpdated;
-				event PumpingTradesUpdated ^	TradeClosed;
-				event PumpingTradesUpdated ^	TradeDeleted;
+				event TradeRecordUpdated^		TradeAdded;
+				event TradeRecordUpdated^		TradeUpdated;
+				event TradeRecordUpdated^		TradeClosed;
+				event TradeRecordUpdated^		TradeDeleted;
 				event EventHandler^				PumpingStarted;
 				event EventHandler^				PumpingStopped;
 				event EventHandler^				BidAskUpdated;
-				event OnlineRecordsUpdated^		OnlineUpdated;
+				event OnlineRecordUpdated^		OnlineUpdated;
+				event UserRecordUpdated^		UserUpdated;
 
 				//constructors
 				ClrWrapper();

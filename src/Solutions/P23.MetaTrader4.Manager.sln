@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P23.MetaTrader4.Manager.ClrWrapper", "..\Projects\P23.MetaTrader4.Manager.ClrWrapper\P23.MetaTrader4.Manager.ClrWrapper.vcxproj", "{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}"
 EndProject
@@ -9,24 +9,46 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.MetaTrader4.Manager.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.MetaTrader4.Manager.Tests", "..\Projects\P23.MetaTrader4.Manager.Tests\P23.MetaTrader4.Manager.Tests.csproj", "{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.MetaTrader4.Manager.ConsoleTestClient", "..\Projects\P23.MetaTrader4.Manager.ConsoleTestClient\P23.MetaTrader4.Manager.ConsoleTestClient.csproj", "{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Debug|Win32.Build.0 = Debug|Win32
+		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Release|Any CPU.ActiveCfg = Release|Win32
 		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Release|Win32.ActiveCfg = Release|Win32
 		{4FB30E8D-10BB-46BA-9AFE-DF840256ED03}.Release|Win32.Build.0 = Release|Win32
+		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Debug|Win32.ActiveCfg = Debug|x86
 		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Debug|Win32.Build.0 = Debug|x86
+		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Release|Win32.ActiveCfg = Release|x86
 		{79770E69-B697-4B93-855B-A48D41D7FFD1}.Release|Win32.Build.0 = Release|x86
+		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Debug|Win32.ActiveCfg = Debug|x86
 		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Debug|Win32.Build.0 = Debug|x86
+		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Release|Win32.ActiveCfg = Release|x86
 		{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}.Release|Win32.Build.0 = Release|x86
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Debug|Win32.Build.0 = Debug|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Release|Win32.ActiveCfg = Release|Any CPU
+		{88A7F687-6BB9-491E-BBB7-1E2C275BC5FF}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

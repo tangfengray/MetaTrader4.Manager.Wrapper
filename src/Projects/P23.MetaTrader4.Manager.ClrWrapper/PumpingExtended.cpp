@@ -15,8 +15,6 @@ int P23::MetaTrader4::Manager::ClrWrapper::PumpingSwitchEx()
 
 void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int type, void *data, void *param)
 {
-	if (code != 15)
-		System::Console::WriteLine(code);
 	switch (code)
 	{
 		case PUMP_START_PUMPING:
@@ -35,7 +33,12 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 			//Needs to be implemented
 			break;
 		case PUMP_UPDATE_USERS:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				UserRecord *user = (UserRecord*)data;
+				P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord = P23::MetaTrader4::Manager::ClrWrapper::Convert(user);
+				UserUpdated(this, userRecord);
+			}
 			break;
 		case PUMP_UPDATE_ONLINE:
 			if (data != NULL)
