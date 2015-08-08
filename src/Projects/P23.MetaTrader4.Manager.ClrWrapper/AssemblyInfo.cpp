@@ -16,7 +16,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyCultureAttribute(L"")];
 
 // Version should be also specified in app.rc file
-[assembly:AssemblyVersionAttribute("0.1.2.2")];
+[assembly:AssemblyVersionAttribute("0.1.2.3")];
 
 [assembly:ComVisible(false)];
 
