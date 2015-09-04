@@ -47,7 +47,7 @@ namespace P23{
 			
 			public delegate void OnlineRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
 			
-			public delegate void UserRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ onlineRecord);
+			public delegate void UserRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord);
 
 			public ref class ClrWrapper : IDisposable
 			{
@@ -203,6 +203,8 @@ namespace P23{
 				static ConGatewayRule* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::Configuration::GatewayRule^ input);
 
 				static P23::MetaTrader4::Manager::Contracts::BalanceDiff^ P23::MetaTrader4::Manager::ClrWrapper::Convert(BalanceDiff* input);
+				
+				static P23::MetaTrader4::Manager::Contracts::TickInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickInfo* input);
 				
 			public:
 				//Extended pumping events
@@ -402,6 +404,12 @@ namespace P23{
 				int DealerSend(P23::MetaTrader4::Manager::Contracts::RequestInfo^ info, int requote, int mode);
 				int DealerReject(int id);
 				int DealerReset(int id);
+
+				//---
+				IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ TickInfoLast(String^ symbol);
+				int SymbolsGroupsGet(IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ groups);
+				long ServerTime();
+				IList<P23::MetaTrader4::Manager::Contracts::MailBox^>^ MailsRequest();
 
 				//--- risk management
 				IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ SummaryGetAll();

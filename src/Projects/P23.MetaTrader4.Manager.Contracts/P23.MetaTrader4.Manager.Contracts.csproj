@@ -99,6 +99,7 @@
     <Compile Include="SymbolInfo.cs" />
     <Compile Include="SymbolProperties.cs" />
     <Compile Include="SymbolSummary.cs" />
+    <Compile Include="TickInfo.cs" />
     <Compile Include="TickRecord.cs" />
     <Compile Include="TickRequest.cs" />
     <Compile Include="TradeRecord.cs" />

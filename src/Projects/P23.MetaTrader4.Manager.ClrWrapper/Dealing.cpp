@@ -40,3 +40,37 @@ int P23::MetaTrader4::Manager::ClrWrapper::DealerReset(int id)
 {
 	return _manager->Manager->DealerReset(id);
 }
+
+IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ P23::MetaTrader4::Manager::ClrWrapper::TickInfoLast(String^ symbol) 
+{
+	int total = 0;
+	TickInfo* ticks = _manager->Manager->TickInfoLast(Convert(symbol), &total);
+	IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::TickInfo^>();
+	for (int i = 0; i < total; i++) {
+		output->Add(Convert(&ticks[i]));
+	}
+
+	return output;
+}
+
+int P23::MetaTrader4::Manager::ClrWrapper::SymbolsGroupsGet(IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ groups)
+{
+	throw gcnew NotImplementedException();
+}
+
+long P23::MetaTrader4::Manager::ClrWrapper::ServerTime()
+{
+	return _manager->Manager->ServerTime();
+}
+
+IList<P23::MetaTrader4::Manager::Contracts::MailBox^>^ P23::MetaTrader4::Manager::ClrWrapper::MailsRequest()
+{
+	int total = 0;
+	MailBox* mails = _manager->Manager->MailsRequest(&total);
+	IList<P23::MetaTrader4::Manager::Contracts::MailBox^>^ output = gcnew List<P23::MetaTrader4::Manager::Contracts::MailBox^>();
+	for (int i = 0; i < total; i++) {
+		output->Add(Convert(&mails[i]));
+	}
+
+	return output;
+}

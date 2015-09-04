@@ -2160,3 +2160,15 @@ P23::MetaTrader4::Manager::Contracts::BalanceDiff^ P23::MetaTrader4::Manager::Cl
 
 	return output;
 }
+
+P23::MetaTrader4::Manager::Contracts::TickInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickInfo* input)
+{
+	P23::MetaTrader4::Manager::Contracts::TickInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::TickInfo();
+
+	output->Ask = input->ask;
+	output->Bid = input->bid;
+	output->Ctm = input->ctm;
+	output->Symbol = gcnew String(input->symbol);
+
+	return output;
+}

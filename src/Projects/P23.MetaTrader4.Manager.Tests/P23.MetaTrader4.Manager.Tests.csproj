@@ -70,6 +70,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CfgRequestTests.cs" />
+    <Compile Include="ChartsTests.cs" />
     <Compile Include="ExtendedPumpingTests.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
