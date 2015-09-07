@@ -134,7 +134,7 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 	newConfiguration->MonthlyStateMode = configuration->monthly_state_mode;
 	newConfiguration->Name = gcnew String(configuration->name);
 	newConfiguration->OptimizationCounter = configuration->optimization_counter;
-	newConfiguration->OptimizationLasttime = configuration->optimization_lasttime;
+	newConfiguration->OptimizationLastTime = configuration->optimization_lasttime;
 	newConfiguration->OptimizationTime = configuration->optimization_time;
 	newConfiguration->OverMonthLastMonth = configuration->overmonth_last_month;
 	newConfiguration->OverNightLastDay = configuration->overnight_last_day;
@@ -198,7 +198,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 		COPY_STR(newConfiguration->name, name);
 	
 	newConfiguration->optimization_counter = configuration->OptimizationCounter;
-	newConfiguration->optimization_lasttime = configuration->OptimizationLasttime;
+	newConfiguration->optimization_lasttime = configuration->OptimizationLastTime;
 	newConfiguration->optimization_time = configuration->OptimizationTime;
 	newConfiguration->overmonth_last_month = configuration->OverMonthLastMonth;
 	newConfiguration->overnight_last_day = configuration->OverNightLastDay;

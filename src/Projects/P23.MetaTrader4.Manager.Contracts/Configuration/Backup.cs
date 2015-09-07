@@ -2,37 +2,124 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents backup configuration
+    /// </summary>
     public class Backup
     {
-        //---
-        public string FullBackupPath { get; set; }      // path to backup
-        public int FullBackupPeriod { get; set; }       // full backup's period-BACKUP_1HOUR, BACKUP_4HOURS, BACKUP_1DAY
-        public int FullBackupStore { get; set; }        // full backup's store time-BU_STORE_1MONTH, BU_STORE_3MONTHS, BU_STORE_6MONTHS,BU_STORE_1YEAR
-        public UInt32 FullBackupLastTime { get; set; }  // full backup's last execution time
-        public short FullBackupShift { get; set; }      // full backup timeshift (minutes)
-        //---
-        public string ExternalPath { get; set; }        // path to external processing directory
-        //---
-        public int ArchivePeriod { get; set; }          // period of archive backup-ARC_BACKUP_5MIN, ARC_BACKUP_15MIN, ARC_BACKUP_30MIN, ARC_BACKUP_1HOUR
-        public int ArchiveStore { get; set; }           // archive backup's store time-ARC_STORE_1WEEK, ARC_STORE_2WEEKS, ARC_STORE_1MONTH, ARC_STORE_3MONTH, ARC_STORE_6MONTH
-        public UInt32 ArchiveLastTime { get; set; }     // archive backup's last execution time
-        //---
-        public string ExportSecurities { get; set; }    // comma separated list of exported securities
-        public string ExportPath { get; set; }          // path to export script
-        public int ExportPeriod { get; set; }           // export period-enumeration EXPORT_1MIN, EXPORT_5MIN, EXPORT_15MIN, EXPORT_30MIN,EXPORT_1HOUR
-        public UInt32 ExportLastTime { get; set; }      // export's last execution time
-        //--- watch dog
-        public int WatchRole { get; set; }              // server role { WATCH_STAND_ALONE, WATCH_MASTER, WATCH_SLAVE }
-        public string WatchPassword { get; set; }       // slave server password
-        public string WatchOpposite { get; set; }       // opposite server IP address and port
-        public int WatchIp { get; set; }                // watch dog ip
-        //--- 
-        public char ArchiveShift { get; set; }          // shift of archive backup time (in minutes)
-        //---
-        public char WatchState { get; set; }            // watch dog state
-        public char WatchFailover { get; set; }         // watch dog failover mode
-        public int WatchTimeout { get; set; }           // watch dog timeout
-        public int WatchLogin { get; set; }             // watch dog login
-        public UInt32 WatchTimestamp { get; set; }      // watch dog timestamp
+        /// <summary>
+        /// Path to backup
+        /// </summary>
+        public string FullBackupPath { get; set; }
+
+        /// <summary>
+        /// Full backup's period-BACKUP_1HOUR, BACKUP_4HOURS, BACKUP_1DAY
+        /// </summary>
+        public int FullBackupPeriod { get; set; }
+
+        /// <summary>
+        /// Full backup's store time-BU_STORE_1MONTH, BU_STORE_3MONTHS, BU_STORE_6MONTHS,BU_STORE_1YEAR
+        /// </summary>
+        public int FullBackupStore { get; set; }
+
+        /// <summary>
+        /// Full backup's last execution time
+        /// </summary>
+        public UInt32 FullBackupLastTime { get; set; }
+
+        /// <summary>
+        /// Full backup timeshift in minutes
+        /// </summary>
+        public short FullBackupShift { get; set; }
+
+        /// <summary>
+        /// Path to external processing directory
+        /// </summary>
+        public string ExternalPath { get; set; }
+
+        /// <summary>
+        /// Period of archive backup-ARC_BACKUP_5MIN, ARC_BACKUP_15MIN, ARC_BACKUP_30MIN, ARC_BACKUP_1HOUR
+        /// </summary>
+        public int ArchivePeriod { get; set; }
+
+        /// <summary>
+        /// Archive backup's store time-ARC_STORE_1WEEK, ARC_STORE_2WEEKS, ARC_STORE_1MONTH, ARC_STORE_3MONTH, ARC_STORE_6MONTH
+        /// </summary>
+        public int ArchiveStore { get; set; }
+
+        /// <summary>
+        /// Archive backup's last execution time
+        /// </summary>
+        public UInt32 ArchiveLastTime { get; set; }
+
+        /// <summary>
+        /// Comma separated list of exported securities
+        /// </summary>
+        public string ExportSecurities { get; set; }
+
+        /// <summary>
+        /// Path to export script
+        /// </summary>
+        public string ExportPath { get; set; }
+
+        /// <summary>
+        /// Export period-enumeration EXPORT_1MIN, EXPORT_5MIN, EXPORT_15MIN, EXPORT_30MIN,EXPORT_1HOUR
+        /// </summary>
+        public int ExportPeriod { get; set; }
+
+        /// <summary>
+        /// Export's last execution time
+        /// </summary>
+        public UInt32 ExportLastTime { get; set; }
+
+        /// <summary>
+        /// Server role { WATCH_STAND_ALONE, WATCH_MASTER, WATCH_SLAVE }
+        /// </summary>
+        public int WatchRole { get; set; }
+
+        /// <summary>
+        /// Slave server password
+        /// </summary>
+        public string WatchPassword { get; set; }
+
+        /// <summary>
+        /// Opposite server IP address and port
+        /// </summary>
+        public string WatchOpposite { get; set; }
+
+        /// <summary>
+        /// Watch dog ip
+        /// </summary>
+        public int WatchIp { get; set; }
+
+        /// <summary>
+        /// Shift of archive backup time in minutes
+        /// </summary>
+        public char ArchiveShift { get; set; }
+
+        /// <summary>
+        /// Watch dog state
+        /// </summary>
+        public char WatchState { get; set; }
+
+        /// <summary>
+        /// Watch dog failover mode
+        /// </summary>
+        public char WatchFailover { get; set; }
+
+        /// <summary>
+        /// Watch dog timeout
+        /// </summary>
+        public int WatchTimeout { get; set; }
+
+        /// <summary>
+        /// Watch dog login
+        /// </summary>
+        public int WatchLogin { get; set; }
+
+        /// <summary>
+        /// Watch dog timestamp
+        /// </summary>
+        public UInt32 WatchTimestamp { get; set; }
     }
 }

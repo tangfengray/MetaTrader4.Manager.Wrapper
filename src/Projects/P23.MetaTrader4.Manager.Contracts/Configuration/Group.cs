@@ -3,59 +3,214 @@ using System.Collections.Generic;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents group configuration
+    /// </summary>
     public class Group
     {
-        //--- common settings
-        public string Name{get;set;}                   // group name
-        public int Enable{get;set;}                     // enable group
-        public int Timeout{get;set;}                    // trade confirmation timeout (seconds)
-        public int AdvSecurity{get;set;}                // enable advanced security
-        //--- statements
-        public string Company{get;set;}                 // company name
-        public string Signature{get;set;}               // statements signature
-        public string SupportPage{get;set;}             // company support page
-        public string SmtpServer{get;set;}              // statements SMTP server
-        public string SmtpLogin{get;set;}               // statements SMTP login
-        public string SmtpPassword{get;set;}            // statements SMTP password
-        public string SupportEmail{get;set;}            // support email
-        public string Templates{get;set;}               // path to directory with custom templates
-        public int Copies{get;set;}                     // copy statements on support email
-        public int Reports{get;set;}                    // enable statements
-        //--- default settings
-        public int DefaultLeverage{get;set;}            // default leverage (user don't specify leverage himself)
-        public double DefaultDeposit{get;set;}          // default deposit  (user don't specify balance  himself)
-        //--- securities
-        public int MaxSecurities{get;set;}              // maximum simultaneous securities
-        public IList<GroupSecurity> SecGroups{get;set;} // security group settings
-        public IList<GroupMargin> SecMargins{get;set;}  // special securities settings
-        public int SecMarginsTotal{get;set;}            // count of special securities settings
-        //--- margin & interest
-        public string Currency{get;set;}                // deposit currency
-        public double Credit{get;set;}                  // virtual credit
-        public int MarginCall{get;set;}                 // margin call level (percents)
-        public int MarginMode{get;set;}                 // margin mode-MARGIN_DONT_USE,MARGIN_USE_ALL,MARGIN_USE_PROFIT,MARGIN_USE_LOSS
-        public int MarginStopout{get;set;}              // stop out level
-        public double InterestRate{get;set;}            // annual interest rate (percents)
-        public int UseSwap{get;set;}                    // use rollovers & interestrate
-        //--- rights
-        public int News{get;set;}                       // news mode
-        public int Rights{get;set;}                     // rights bit mask-ALLOW_FLAG_EMAIL
-        public int CheckIePrices{get;set;}              // check IE prices on requests
-        public int MaxPositions{get;set;}               // maximum orders and open positions
-        public int CloseReopen{get;set;}                // partial close mode (if !=0 original position will be fully closed and remain position will be fully reopened)
-        public int HedgeProhibited{get;set;}            // hedge prohibition flag
-        public int CloseFifo{get;set;}                  // fifo rule 
-        public int HedgeLargeLeg{get;set;}              // use large leg margin for hedged positions        
-        //---
-        public int MarginType{get;set;}                 // margin controlling type { MARGIN_TYPE_PERCENT,  MARGIN_TYPE_CURRENCY }
-        //--- archives
-        public int ArchivePeriod{get;set;}              // inactivity period after which account moves to archive base (in days)
-        public int ArchiveMaxBalance{get;set;}          // maxumum balance of accounts to move in archive base
-        //---
-        public int StopOutSkipHedged{get;set;}          // skip fully hedged accounts when checking for stopout
-        public int ArchivePendingPeriod{get;set;}       // pendings clean period
-        //--- allowed news languages
-        public IList<UInt32> NewsLanguages{get;set;}    // LANGID array
-       // public UInt32 NewsLanguagesTotal{get;set;}      // news languages total
+        /// <summary>
+        /// Group name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Enable group
+        /// </summary>
+        public int Enable { get; set; }
+
+        /// <summary>
+        /// Trade confirmation timeout (seconds)
+        /// </summary>
+        public int Timeout { get; set; }
+
+        /// <summary>
+        /// Enable advanced security
+        /// </summary>
+        public int AdvSecurity { get; set; }
+
+        /// <summary>
+        /// Company name
+        /// </summary>
+        public string Company { get; set; }
+
+        /// <summary>
+        /// Statements signature
+        /// </summary>
+        public string Signature { get; set; }
+
+        /// <summary>
+        /// Company support page
+        /// </summary>
+        public string SupportPage { get; set; }
+
+        /// <summary>
+        /// Statements SMTP server
+        /// </summary>
+        public string SmtpServer { get; set; }
+
+        /// <summary>
+        /// Statements SMTP login
+        /// </summary>
+        public string SmtpLogin { get; set; }
+
+        /// <summary>
+        /// Statements SMTP password
+        /// </summary>
+        public string SmtpPassword { get; set; }
+
+        /// <summary>
+        /// Support email
+        /// </summary>
+        public string SupportEmail { get; set; }
+
+        /// <summary>
+        /// Path to directory with custom templates
+        /// </summary>
+        public string Templates { get; set; }
+
+        /// <summary>
+        /// Copy statements on support email
+        /// </summary>
+        public int Copies { get; set; }
+
+        /// <summary>
+        /// Enable statements
+        /// </summary>
+        public int Reports { get; set; }
+
+        /// <summary>
+        /// Default leverage (user don't specify leverage himself)
+        /// </summary>
+        public int DefaultLeverage { get; set; }
+
+        /// <summary>
+        /// Default deposit  (user don't specify balance  himself)
+        /// </summary>
+        public double DefaultDeposit { get; set; }
+
+        /// <summary>
+        /// Maximum simultaneous securities
+        /// </summary>
+        public int MaxSecurities { get; set; }
+
+        /// <summary>
+        /// Security group settings
+        /// </summary>
+        public IList<GroupSecurity> SecGroups { get; set; }
+
+        /// <summary>
+        /// Special securities settings
+        /// </summary>
+        public IList<GroupMargin> SecMargins { get; set; }
+
+        /// <summary>
+        /// Count of special securities settings
+        /// </summary>
+        public int SecMarginsTotal { get; set; }
+
+        /// <summary>
+        /// Deposit currency
+        /// </summary>
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// Virtual credit
+        /// </summary>
+        public double Credit { get; set; }
+
+        /// <summary>
+        /// Margin call level (percents)
+        /// </summary>
+        public int MarginCall { get; set; }
+
+        /// <summary>
+        /// Margin mode-MARGIN_DONT_USE,MARGIN_USE_ALL,MARGIN_USE_PROFIT,MARGIN_USE_LOSS
+        /// </summary>
+        public int MarginMode { get; set; }
+
+        /// <summary>
+        /// Stop out level
+        /// </summary>
+        public int MarginStopout { get; set; }
+
+        /// <summary>
+        /// Annual interest rate (percents)
+        /// </summary>
+        public double InterestRate { get; set; }
+
+        /// <summary>
+        /// Use rollovers & interestrate
+        /// </summary>
+        public int UseSwap { get; set; }
+
+        /// <summary>
+        /// News mode
+        /// </summary>
+        public int News { get; set; }
+
+        /// <summary>
+        /// Rights bit mask-ALLOW_FLAG_EMAIL
+        /// </summary>
+        public int Rights { get; set; }
+
+        /// <summary>
+        /// Check IE prices on requests
+        /// </summary>
+        public int CheckIePrices { get; set; }
+
+        /// <summary>
+        /// Maximum orders and open positions
+        /// </summary>
+        public int MaxPositions { get; set; }
+
+        /// <summary>
+        /// Partial close mode (if !=0 original position will be fully closed and remain position will be fully reopened)
+        /// </summary>
+        public int CloseReopen { get; set; }
+
+        /// <summary>
+        /// Hedge prohibition flag
+        /// </summary>
+        public int HedgeProhibited { get; set; }
+
+        /// <summary>
+        /// Fifo rule 
+        /// </summary>
+        public int CloseFifo { get; set; }
+
+        /// <summary>
+        /// Use large leg margin for hedged positions    
+        /// </summary>
+        public int HedgeLargeLeg { get; set; }
+
+        /// <summary>
+        /// Margin controlling type { MARGIN_TYPE_PERCENT,  MARGIN_TYPE_CURRENCY }
+        /// </summary>
+        public int MarginType { get; set; }
+
+        /// <summary>
+        /// Inactivity period after which account moves to archive base (in days)
+        /// </summary>
+        public int ArchivePeriod { get; set; }
+
+        /// <summary>
+        /// Maxumum balance of accounts to move in archive base
+        /// </summary>
+        public int ArchiveMaxBalance { get; set; }
+
+        /// <summary>
+        /// Skip fully hedged accounts when checking for stopout
+        /// </summary>
+        public int StopOutSkipHedged { get; set; }
+
+        /// <summary>
+        /// Pendings clean period
+        /// </summary>
+        public int ArchivePendingPeriod { get; set; }
+
+        /// <summary>
+        /// LANGID array
+        /// </summary>
+        public IList<UInt32> NewsLanguages { get; set; }
     }
 }

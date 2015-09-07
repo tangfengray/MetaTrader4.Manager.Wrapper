@@ -3,60 +3,219 @@ using System.Collections.Generic;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents common configuration
+    /// </summary>
     public class Common
     {
-        public string Owner { get; set; }              // servers owner (include version & build)
-        public string Name { get; set; }               // server name
-        public UInt32 Address { get; set; }            // IP address assigned to the server
-        public int Port { get; set; }                  // port
-        public UInt32 Timeout { get; set; }            // sockets timeout
-        public int TypeOfDemo { get; set; }            // demo-accounts type (DEMO_DISABLED, DEMO_PROLONG, DEMO_FIXED)
-        public int TimeOfDemo { get; set; }            // demo-account living time
-        public int DayLightCorrection { get; set; }    // allow daylight correction
+        /// <summary>
+        /// Servers owner (include version & build)
+        /// </summary>
+        public string Owner { get; set; }
 
-        public int TimeZone { get; set; }              // time zone 0-GMT{get;set;}-1=GMT-1{get;set;}1=GMT+1{get;set;}
-        public string TimeSync { get; set; }           // time synchronization server address
-        //---
-        public int MinClient { get; set; }             // minimal authorized client version
-        public int MinApi { get; set; }                // minimal authorized client version
-        public UInt32 FeederTimeout { get; set; }      // data feed switch timeout
-        public int KeepEmails { get; set; }            // internal mail keep period
-        public int EndHour { get; set; }               // end of day time-hour
-        public int EndMinute { get; set; }             // end of day time-minute
-        //---
-        public int OptimizationTime { get; set; }      // optimization start time (minutes)
-        public int OptimizationLasttime { get; set; }  // optimization last time
-        public int OptimizationCounter { get; set; }   // internal variable   
-        //---
-        public int AntiFlood { get; set; }             // enable antiflood control
-        public int FloodControl { get; set; }          // max. antiflood connections
-        //---
-        public int LiveUpdateMode { get; set; }        // LiveUpdate mode (LIVE_UPDATE_NO,LIVE_UPDATE_ALL,LIVE_UPDATE_NO_SERVER)
-        //---
-        public int LastOrder { get; set; }             // last order's ticket     (read only)
-        public int LastLogin { get; set; }             // last account's number   (read only)
-        public int LostLogin { get; set; }             // lost commission's login (read only)
-        //---
-        public int RolloversMode { get; set; }         // rollover mode (ROLLOVER_NORMAL,ROLLOVER_REOPEN_BY_CLOSE_PRICE,ROLLOVER_REOPEN_BY_BID)
-        //---
-        public string PathDatabase { get; set; }       // path to databases
-        public string PathHistory { get; set; }        // path to history bases
-        public string PathLog { get; set; }            // path to log
-        //--- overnigths
-        public UInt32 OverNightLastDay { get; set; }   // day of last overnight
-        public UInt32 OverNightLastTime { get; set; }  // time of last overnight
-        public UInt32 OverNightPrevTime { get; set; }  // time of время next to last overnight
-        //--- month reports
-        public UInt32 OverMonthLastMonth { get; set; } // month of last report
-        //--- performance base
-        public string Adapters { get; set; }           // network adapters list (read-only)
-        public List<UInt32> BindAdresses { get; set; } // array of avaible IP addresses
-        public short ServerVersion { get; set; }       // server version
-        public short ServerBuild { get; set; }         // server build
-        public List<UInt32> WebAdresses { get; set; }  // web services access list (comma separated IP addresses)
-        public int StatementMode { get; set; }         // statement generation time (STATEMENT_END_DAY,STATEMENT_START_DAY)
-        public int MonthlyStateMode { get; set; }      // monthly statement generation day (MONTHLY_STATEMENT_END_MONTH,MONTHLY_STATEMENT_START_MONTH)
-        public int KeepTicks { get; set; }             // ticks keep period
-        public int StatementWeekend { get; set; }      // generate statements at weekends
+        /// <summary>
+        /// Server name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// IP address assigned to the server
+        /// </summary>
+        public UInt32 Address { get; set; }
+
+        /// <summary>
+        /// Port
+        /// </summary>
+        public int Port { get; set; }
+
+        /// <summary>
+        /// Sockets timeout
+        /// </summary>
+        public UInt32 Timeout { get; set; }
+
+        /// <summary>
+        /// Demo-accounts type (DEMO_DISABLED, DEMO_PROLONG, DEMO_FIXED)
+        /// </summary>
+        public int TypeOfDemo { get; set; }
+
+        /// <summary>
+        /// Demo-account living time
+        /// </summary>
+        public int TimeOfDemo { get; set; }
+
+        /// <summary>
+        /// Allow daylight correction
+        /// </summary>
+        public int DayLightCorrection { get; set; }
+
+        /// <summary>
+        /// Time zone 0-GMT{get;set;}-1=GMT-1{get;set;}1=GMT+1{get;set;}
+        /// </summary>
+        public int TimeZone { get; set; }
+
+        /// <summary>
+        /// Time synchronization server address
+        /// </summary>
+        public string TimeSync { get; set; }
+
+        /// <summary>
+        /// Minimal authorized client version
+        /// </summary>
+        public int MinClient { get; set; }
+
+        /// <summary>
+        /// Minimal authorized client version
+        /// </summary>
+        public int MinApi { get; set; }
+
+        /// <summary>
+        /// Data feed switch timeout
+        /// </summary>
+        public UInt32 FeederTimeout { get; set; }
+
+        /// <summary>
+        /// Internal mail keep period
+        /// </summary>
+        public int KeepEmails { get; set; }
+
+        /// <summary>
+        /// End of day time-hour
+        /// </summary>
+        public int EndHour { get; set; }
+
+        /// <summary>
+        /// End of day time-minute
+        /// </summary>
+        public int EndMinute { get; set; }
+
+        /// <summary>
+        /// Optimization start time (minutes)
+        /// </summary>
+        public int OptimizationTime { get; set; }
+
+        /// <summary>
+        /// Optimization last time
+        /// </summary>
+        public int OptimizationLastTime { get; set; }
+
+        /// <summary>
+        /// Internal variable   
+        /// </summary>
+        public int OptimizationCounter { get; set; }
+
+        /// <summary>
+        /// Enable antiflood control
+        /// </summary>
+        public int AntiFlood { get; set; }
+
+        /// <summary>
+        /// Max. antiflood connections
+        /// </summary>
+        public int FloodControl { get; set; }
+
+        /// <summary>
+        /// LiveUpdate mode (LIVE_UPDATE_NO,LIVE_UPDATE_ALL,LIVE_UPDATE_NO_SERVER)
+        /// </summary>
+        public int LiveUpdateMode { get; set; }
+
+        /// <summary>
+        /// Last order's ticket (read only)
+        /// </summary>
+        public int LastOrder { get; set; }
+
+        /// <summary>
+        /// Last account's number (read only)
+        /// </summary>
+        public int LastLogin { get; set; }
+
+        /// <summary>
+        /// Lost commission's login (read only)
+        /// </summary>
+        public int LostLogin { get; set; }
+
+        /// <summary>
+        /// Rollover mode (ROLLOVER_NORMAL,ROLLOVER_REOPEN_BY_CLOSE_PRICE,ROLLOVER_REOPEN_BY_BID)
+        /// </summary>
+        public int RolloversMode { get; set; }
+
+        /// <summary>
+        /// Path to databases
+        /// </summary>
+        public string PathDatabase { get; set; }
+
+        /// <summary>
+        /// Path to history bases
+        /// </summary>
+        public string PathHistory { get; set; }
+
+        /// <summary>
+        /// Path to log
+        /// </summary>
+        public string PathLog { get; set; }
+
+        /// <summary>
+        /// Day of last overnight
+        /// </summary>
+        public UInt32 OverNightLastDay { get; set; }
+
+        /// <summary>
+        /// Time of last overnight
+        /// </summary>
+        public UInt32 OverNightLastTime { get; set; }
+
+        /// <summary>
+        /// Time of next to last overnight
+        /// </summary>
+        public UInt32 OverNightPrevTime { get; set; }
+
+        /// <summary>
+        /// Month of last report
+        /// </summary>
+        public UInt32 OverMonthLastMonth { get; set; } // 
+
+        /// <summary>
+        /// Network adapters list (read-only)
+        /// </summary>
+        public string Adapters { get; set; }
+
+        /// <summary>
+        /// Array of avaible IP addresses
+        /// </summary>
+        public List<UInt32> BindAdresses { get; set; }
+
+        /// <summary>
+        /// Server version
+        /// </summary>
+        public short ServerVersion { get; set; }
+
+        /// <summary>
+        /// Server build
+        /// </summary>
+        public short ServerBuild { get; set; }
+
+        /// <summary>
+        /// Web services access list (comma separated IP addresses)
+        /// </summary>
+        public List<UInt32> WebAdresses { get; set; }
+
+        /// <summary>
+        /// Statement generation time (STATEMENT_END_DAY,STATEMENT_START_DAY)
+        /// </summary>
+        public int StatementMode { get; set; }
+
+        /// <summary>
+        /// Monthly statement generation day (MONTHLY_STATEMENT_END_MONTH,MONTHLY_STATEMENT_START_MONTH)
+        /// </summary>
+        public int MonthlyStateMode { get; set; }
+
+        /// <summary>
+        /// Ticks keep period
+        /// </summary>
+        public int KeepTicks { get; set; }
+
+        /// <summary>
+        /// Generate statements at weekends
+        /// </summary>
+        public int StatementWeekend { get; set; }
     }
 }

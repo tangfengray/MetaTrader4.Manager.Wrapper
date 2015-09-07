@@ -1,13 +1,43 @@
 ﻿namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents gateway markup configuration
+    /// </summary>
     public class GatewayMarkup
     {
-        public int Enable { get; set; }                     // enable flag 0 - disabled, 1 - enabled
-        public string Source { get; set; }                  // source symbol\symbols mask\symbols group name
-        public string Symbol { get; set; }                  // local symbol name
-        public string AccountName { get; set; }             // account name (obsolete)
-        public int AccountID { get; set; }                  // account internal id (obsolete)
-        public int BidMarkup { get; set; }                  // bid markup in pips
-        public int AskMarkup { get; set; }                  // ask markup in pips
+        /// <summary>
+        /// Enable flag 0 - disabled, 1 - enabled
+        /// </summary>
+        public int Enable { get; set; }
+
+        /// <summary>
+        /// Source symbol\symbols mask\symbols group name
+        /// </summary>
+        public string Source { get; set; }
+
+        /// <summary>
+        /// Local symbol name
+        /// </summary>
+        public string Symbol { get; set; }
+
+        /// <summary>
+        /// Account name (obsolete)
+        /// </summary>
+        public string AccountName { get; set; }
+
+        /// <summary>
+        /// Account internal id (obsolete)
+        /// </summary>
+        public int AccountID { get; set; }
+
+        /// <summary>
+        /// Bid markup in pips
+        /// </summary>
+        public int BidMarkup { get; set; }
+
+        /// <summary>
+        /// Ask markup in pips
+        /// </summary>
+        public int AskMarkup { get; set; }
     }
 }

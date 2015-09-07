@@ -2,16 +2,54 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents gateway account configuration
+    /// </summary>
     public class GatewayAccount
     {
-        public int Enable { get; set; }                      // enable flag 0 - disabled, 1 - enabled
-        public string Name { get; set; }                     // public name
-        public int ID { get; set; }                          // internal id
-        public int Type { get; set; }                        // type (obsolete)
-        public int Login { get; set; }                       // STP MT4 login
-        public string Address { get; set; }                  // MT4 server address
-        public string Password { get; set; }                 // STP MT4 password
-        public List<int> NotifyLogins { get; set; }          // list of logins for internal email notification
-        public int Flags { get; set; }                       // flag fields
+        /// <summary>
+        /// Enable flag 0 - disabled, 1 - enabled
+        /// </summary>
+        public int Enable { get; set; }
+
+        /// <summary>
+        /// Public name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Internal id
+        /// </summary>
+        public int ID { get; set; }
+
+        /// <summary>
+        /// Type (obsolete)
+        /// </summary>
+        public int Type { get; set; }
+
+        /// <summary>
+        /// STP MT4 login
+        /// </summary>
+        public int Login { get; set; }
+
+        /// <summary>
+        /// MT4 server address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// STP MT4 password
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// List of logins for internal email notification
+        /// </summary>
+        public List<int> NotifyLogins { get; set; }
+
+        /// <summary>
+        /// Flag fields
+        /// </summary>
+        public int Flags { get; set; }
     }
 }
