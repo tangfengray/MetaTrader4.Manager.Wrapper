@@ -2,16 +2,54 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents synchronization configuration
+    /// </summary>
     public class Synchronization
     {
-        public string Server { get; set; }                   // name (address
-        public int UnusedPort { get; set; }                  // port
-        public string Login { get; set; }                    // for future use-login
-        public string Password { get; set; }                 // for future use=password
-        public int Enable { get; set; }                      // enable sychronization
-        public int Mode { get; set; }                        // synchronization mode: HB_ADD,HB_UPDATE,HB_INSERT
-        public UInt32 From { get; set; }                     // synchronization range (<0-whole chart)
-        public UInt32 To { get; set; }                       // synchronization range (<0-whole chart)
-        public string Securities { get; set; }               // symbols list
+        /// <summary>
+        /// Name (address)
+        /// </summary>
+        public string Server { get; set; }
+
+        /// <summary>
+        /// Port
+        /// </summary>
+        public int UnusedPort { get; set; }
+
+        /// <summary>
+        /// For future use-login
+        /// </summary>
+        public string Login { get; set; }
+
+        /// <summary>
+        /// For future use=password
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Enable sychronization
+        /// </summary>
+        public int Enable { get; set; }
+
+        /// <summary>
+        /// Synchronization mode: HB_ADD,HB_UPDATE,HB_INSERT
+        /// </summary>
+        public int Mode { get; set; }
+
+        /// <summary>
+        /// Synchronization range (0-whole chart)
+        /// </summary>
+        public UInt32 From { get; set; }
+
+        /// <summary>
+        /// Synchronization range (0-whole chart)
+        /// </summary>
+        public UInt32 To { get; set; }
+
+        /// <summary>
+        /// Symbols list
+        /// </summary>
+        public string Securities { get; set; }
     }
 }

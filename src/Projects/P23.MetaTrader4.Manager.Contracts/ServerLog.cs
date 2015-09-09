@@ -1,10 +1,28 @@
 ﻿namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents server log
+    /// </summary>
     public class ServerLog
     {
-        public int Code { get; set; }                 // code
-        public string Time { get; set; }              // time
-        public string Ip { get; set; }                // ip
-        public string Message { get; set; }           // message
+        /// <summary>
+        /// Code
+        /// </summary>
+        public int Code { get; set; }
+
+        /// <summary>
+        /// Time
+        /// </summary>
+        public string Time { get; set; }
+
+        /// <summary>
+        /// IP
+        /// </summary>
+        public string Ip { get; set; }
+
+        /// <summary>
+        /// Message
+        /// </summary>
+        public string Message { get; set; }
     }
 }

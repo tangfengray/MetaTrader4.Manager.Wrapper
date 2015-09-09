@@ -2,45 +2,137 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents manager configuration
+    /// </summary>
     public class Manager
     {
-        public int Login { get; set; }                       // login
-        //--- rights
-        public int ManagerRights { get; set; }               // right to add & change client records
-        public int Money { get; set; }                       // right to balance & credit management
-        public int Online { get; set; }                      // right to see online users
-        public int Riskman { get; set; }                     // right to use analyzer
-        public int Broker { get; set; }                      // right to deal
-        public int Admin { get; set; }                       // right to server administration
-        public int Logs { get; set; }                        // right to see logs
-        public int Reports { get; set; }                     // right to see reports
-        public int Trades { get; set; }                      // right to add/modify/delete trades
-        public int MarketWatch { get; set; }                 // right to change spread, spread balance, stop levels, execution mode and send quotes
-        public int Email { get; set; }                       // right to send internal mail
-        public int UserDetails { get; set; }                 // right to see clients private data-name,country,address,phone,email etc.
-        public int SeeTrades { get; set; }                   // right to see trades
-        public int News { get; set; }                        // right to send news
-        public int Plugins { get; set; }                     // right to configure plugins
-        public int ServerReports { get; set; }               // right to receive server reports
-        public int TechSupport { get; set; }                 // right to access to technical support page
-        //--- IP filtration
-        public int IpFilter { get; set; }                    // enable IP control
-        public ulong IpFrom { get; set; }                    // range of allowed IPs
-        public ulong IpTo { get; set; }                      // range of allowed IPs
-        //---
-        public string Mailbox { get; set; }                  // name of mailbox for internal mail
-        public string Groups { get; set; }                   // comma separated list of managed groups (allowed '*' wildcard)
-        public IList<ManagerSecurity> SecGroups { get; set; }// manager rights for security groups
+        /// <summary>
+        /// Login
+        /// </summary>
+        public int Login { get; set; }
 
-        public string Name { get; set; }                     // manager name (read only)
-        public int InfoDepth { get; set; }                   // maximum available data (in days)    
+        /// <summary>
+        /// Right to add & change client records
+        /// </summary>
+        public int ManagerRights { get; set; }
+
+        /// <summary>
+        /// Right to balance & credit management
+        /// </summary>
+        public int Money { get; set; }
+
+        /// <summary>
+        /// Right to see online users
+        /// </summary>
+        public int Online { get; set; }
+
+        /// <summary>
+        /// Right to use analyzer
+        /// </summary>
+        public int Riskman { get; set; }
+
+        /// <summary>
+        /// Right to deal
+        /// </summary>
+        public int Broker { get; set; }
+
+        /// <summary>
+        /// Right to server administration
+        /// </summary>
+        public int Admin { get; set; }
+
+        /// <summary>
+        /// Right to see logs
+        /// </summary>
+        public int Logs { get; set; }
+
+        /// <summary>
+        /// Right to see reports
+        /// </summary>
+        public int Reports { get; set; }
+
+        /// <summary>
+        /// Right to add/modify/delete trades
+        /// </summary>
+        public int Trades { get; set; }
+
+        /// <summary>
+        /// Right to change spread, spread balance, stop levels, execution mode and send quotes
+        /// </summary>
+        public int MarketWatch { get; set; }
+
+        /// <summary>
+        /// Right to send internal mail
+        /// </summary>
+        public int Email { get; set; }
+
+        /// <summary>
+        /// Right to see clients private data-name,country,address,phone,email etc.
+        /// </summary>
+        public int UserDetails { get; set; }
+
+        /// <summary>
+        /// Right to see trades
+        /// </summary>
+        public int SeeTrades { get; set; }
+
+        /// <summary>
+        /// Right to send news
+        /// </summary>
+        public int News { get; set; }
+
+        /// <summary>
+        /// Right to configure plugins
+        /// </summary>
+        public int Plugins { get; set; }
+
+        /// <summary>
+        /// Right to receive server reports
+        /// </summary>
+        public int ServerReports { get; set; }
+
+        /// <summary>
+        /// Right to access to technical support page
+        /// </summary>
+        public int TechSupport { get; set; }
+
+        /// <summary>
+        /// Enable IP control
+        /// </summary>
+        public int IpFilter { get; set; }
+
+        //range of allowed IPs
+        public ulong IpFrom { get; set; }
+
+        /// <summary>
+        /// range of allowed IPs
+        /// </summary>
+        public ulong IpTo { get; set; }
+
+        /// <summary>
+        /// Name of mailbox for internal mail
+        /// </summary>
+        public string Mailbox { get; set; }
+
+        /// <summary>
+        /// Comma separated list of managed groups (allowed '*' wildcard)
+        /// </summary>
+        public string Groups { get; set; }
+
+        /// <summary>
+        /// Manager rights for security groups
+        /// </summary>
+        public IList<ManagerSecurity> SecGroups { get; set; }
+
+        /// <summary>
+        /// Manager name (read only)
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Maximum available data (in days)
+        /// </summary>
+        public int InfoDepth { get; set; }
     }
-
-    public class ManagerSecurity
-    {
-        public int Enable { get; set; }                      // enable
-        public int MinimumLots { get; set; }                 // min. lots
-        public int MaximumLots { get; set; }                 // max. lots
-
-    };
 }

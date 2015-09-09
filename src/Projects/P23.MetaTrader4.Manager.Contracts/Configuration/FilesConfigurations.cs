@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace P23.MetaTrader4.Manager.Contracts
+﻿namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
     /// <summary>
-    /// Object that represents backup information
+    /// Object that represents files configuration
     /// </summary>
-    public class BackupInfo
+    public class FilesConfigurations
     {
         /// <summary>
         /// File name
@@ -18,8 +16,8 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int Size { get; set; }
 
         /// <summary>
-        /// File time
+        /// File hash
         /// </summary>
-        public UInt32 Time { get; set; }
+        public string Hash { get; set; }
     }
 }

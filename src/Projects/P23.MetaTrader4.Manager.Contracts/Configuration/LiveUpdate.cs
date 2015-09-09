@@ -2,24 +2,54 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents live updates configuration
+    /// </summary>
     public class LiveUpdate
     {
-        public string Company { get; set; }                  // company
-        public string Path { get; set; }                     // path to LiveUpdate
-        public int Version { get; set; }                     // version
-        public int Build { get; set; }                       // build
-        public int MaxConnect { get; set; }                  // max. simultaneous connections
-        public int Connections { get; set; }                 // current connections (read only)
-        public int Type { get; set; }                        // type LIVE_UPDATE_*
-        public int Enable { get; set; }                      // enable
-        //public int TotalFiles { get; set; }                  // total files count
-        public IList<FilesConfigurations> Files { get; set; }       // files' configurations
-    }
+        /// <summary>
+        /// Company
+        /// </summary>
+        public string Company { get; set; }
 
-    public class FilesConfigurations
-    {
-        public string File { get; set; }                     // file name
-        public int Size { get; set; }                        // file size
-        public string Hash { get; set; }                     // file hash
+        /// <summary>
+        /// Path to LiveUpdate
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Version
+        /// </summary>
+        public int Version { get; set; }
+
+        /// <summary>
+        /// Build
+        /// </summary>
+        public int Build { get; set; }
+
+        /// <summary>
+        /// Max. simultaneous connections
+        /// </summary>
+        public int MaxConnect { get; set; }
+
+        /// <summary>
+        /// Current connections (read only)
+        /// </summary>
+        public int Connections { get; set; }
+
+        /// <summary>
+        /// Type LIVE_UPDATE_*
+        /// </summary>
+        public int Type { get; set; }
+
+        /// <summary>
+        /// Enable
+        /// </summary>
+        public int Enable { get; set; }
+
+        /// <summary>
+        /// Files configurations
+        /// </summary>
+        public IList<FilesConfigurations> Files { get; set; }
     }
 }

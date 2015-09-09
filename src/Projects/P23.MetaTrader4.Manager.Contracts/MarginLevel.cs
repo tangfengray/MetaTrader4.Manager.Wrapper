@@ -1,18 +1,68 @@
 ﻿namespace P23.MetaTrader4.Manager.Contracts
 {
-   public class MarginLevel
-   {
-       public int Login { get; set; }           // user login
-       public string Group { get; set; }        // user group
-       public int Leverage { get; set; }        // user leverage
-       public int Updated { get; set; }         // (internal)
-       public double Balance { get; set; }      // balance+credit
-       public double Equity { get; set; }       // equity
-       public int Volume { get; set; }          // lots
-       public double Margin { get; set; }       // margin requirements
-       public double MarginFree { get; set; }   // free margin
-       public double Level { get; set; }  // margin level
-       public int MarginType { get; set; }      // margin controlling type (percent/currency)
-       public int LevelType { get; set; }       // level type(ok/margincall/stopout)
-   }
+    /// <summary>
+    /// Object that represents margin level
+    /// </summary>
+    public class MarginLevel
+    {
+        /// <summary>
+        /// User login
+        /// </summary>
+        public int Login { get; set; }
+
+        /// <summary>
+        /// User group
+        /// </summary>
+        public string Group { get; set; }
+
+        /// <summary>
+        /// User leverage
+        /// </summary>
+        public int Leverage { get; set; }
+
+        /// <summary>
+        /// (internal)
+        /// </summary>
+        public int Updated { get; set; }
+
+        /// <summary>
+        /// Balance + Credit
+        /// </summary>
+        public double Balance { get; set; }
+
+        /// <summary>
+        /// Equity
+        /// </summary>
+        public double Equity { get; set; }
+
+        /// <summary>
+        /// Lots
+        /// </summary>
+        public int Volume { get; set; }
+
+        /// <summary>
+        /// Margin requirements
+        /// </summary>
+        public double Margin { get; set; }
+
+        /// <summary>
+        /// Free margin
+        /// </summary>
+        public double MarginFree { get; set; }
+
+        /// <summary>
+        /// Margin level
+        /// </summary>
+        public double Level { get; set; }
+
+        /// <summary>
+        /// Margin controlling type (percent/currency)
+        /// </summary>
+        public int MarginType { get; set; }
+
+        /// <summary>
+        /// Level type(ok/margincall/stopout)
+        /// </summary>
+        public int LevelType { get; set; }
+    }
 }

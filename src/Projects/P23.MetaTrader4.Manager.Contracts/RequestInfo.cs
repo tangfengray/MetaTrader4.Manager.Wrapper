@@ -3,23 +3,74 @@ using System.Collections.Generic;
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents request info
+    /// </summary>
     public class RequestInfo
     {
-        //--- general props
-        public int Id{get;set;}                  // request id
-        public char Status{get;set;}             // request status
-        public UInt32 Time{get;set;}             // request time
-        public int Manager{get;set;}             // manager processing request (if any)
-        //--- user info
-        public int Login{get;set;}               // user login
-        public string Group{get;set;}            // user group
-        public double Balance{get;set;}          // user balance
-        public double Credit{get;set;}           // user credit
-        //--- processing trade transaction
-        public IList<double> Prices{get;set;}    // bid/ask
-        public TradeTransInfo Trade{get;set;}    // trade transaction
-        public int GwVolume{get;set;}            // gateway order volume
-        public int GwOrder{get;set;}             // gateway order ticket
-        public short GwPrice{get;set;}           // gateway order price deviation (pips) from request price
+        /// <summary>
+        /// Request id
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Request status
+        /// </summary>
+        public char Status { get; set; }
+
+        /// <summary>
+        /// Request time
+        /// </summary>
+        public UInt32 Time { get; set; }
+
+        /// <summary>
+        /// Manager processing request (if any)
+        /// </summary>
+        public int Manager { get; set; }
+
+        /// <summary>
+        /// User login
+        /// </summary>
+        public int Login { get; set; }
+
+        /// <summary>
+        /// User group
+        /// </summary>
+        public string Group { get; set; }
+
+        /// <summary>
+        /// User balance
+        /// </summary>
+        public double Balance { get; set; }
+
+        /// <summary>
+        /// User credit
+        /// </summary>
+        public double Credit { get; set; }
+
+        /// <summary>
+        /// Bid/Ask
+        /// </summary>
+        public IList<double> Prices { get; set; }
+        
+        /// <summary>
+        /// Trade transaction
+        /// </summary>
+        public TradeTransInfo Trade { get; set; }
+
+        /// <summary>
+        /// Gateway order volume
+        /// </summary>
+        public int GwVolume { get; set; }
+
+        /// <summary>
+        /// Gateway order ticket
+        /// </summary>
+        public int GwOrder { get; set; }
+
+        /// <summary>
+        /// Gateway order price deviation (pips) from request price
+        /// </summary>
+        public short GwPrice { get; set; }
     }
 }

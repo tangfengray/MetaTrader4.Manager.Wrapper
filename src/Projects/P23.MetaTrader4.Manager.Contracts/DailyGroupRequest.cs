@@ -2,13 +2,24 @@
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents daily group request
+    /// </summary>
     public class DailyGroupRequest
     {
-        public string Name { get; set; }            // group name
-        public UInt32 From { get; set; }            // from
-        public UInt32 To { get; set; }              // to
-        
-        [Obsolete]
-        public int Total { get; set; }              // total logins in request group
+        /// <summary>
+        /// Group name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// From
+        /// </summary>
+        public UInt32 From { get; set; }
+
+        /// <summary>
+        /// To
+        /// </summary>
+        public UInt32 To { get; set; }
     }
 }

@@ -2,17 +2,19 @@
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents sessions configuration
+    /// </summary>
     public class Sessions
     {
-        public IList<Session> Quote { get; set; }  // quote sessions
-        public IList<Session> Trade { get; set; }  // trade sessions
-    }
+        /// <summary>
+        /// Quote sessions
+        /// </summary>
+        public IList<Session> Quote { get; set; }
 
-    public class Session
-    {
-        public short OpenHour { get; set; }        // session open  time: hour & minute
-        public short OpenMin { get; set; }
-        public short CloseHour { get; set; }       // session close time: hour & minute
-        public short CloseMin { get; set; }
+        /// <summary>
+        /// Trade sessions
+        /// </summary>
+        public IList<Session> Trade { get; set; }
     }
 }

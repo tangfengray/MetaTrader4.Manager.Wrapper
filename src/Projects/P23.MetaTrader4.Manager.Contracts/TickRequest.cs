@@ -2,11 +2,29 @@
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents tick request
+    /// </summary>
     public class TickRequest
     {
-        public string Symbol { get; set; }             // symbol
-        public UInt32 From { get; set; }               // start of period
-        public UInt32 To { get; set; }                 // end of period
-        public char Flags { get; set; }                // TICK_FLAG_* flags
+        /// <summary>
+        /// Symbol
+        /// </summary>
+        public string Symbol { get; set; }
+
+        /// <summary>
+        /// Start of period
+        /// </summary>
+        public UInt32 From { get; set; }
+
+        /// <summary>
+        /// End of period
+        /// </summary>
+        public UInt32 To { get; set; }
+
+        /// <summary>
+        /// TICK_FLAG_* flags
+        /// </summary>
+        public char Flags { get; set; }
     }
 }

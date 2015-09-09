@@ -62,6 +62,7 @@
     <Compile Include="ChartInfo.cs" />
     <Compile Include="Configuration\Access.cs" />
     <Compile Include="Configuration\Backup.cs" />
+    <Compile Include="Configuration\FilesConfigurations.cs" />
     <Compile Include="Configuration\GatewayAccount.cs" />
     <Compile Include="Configuration\Common.cs" />
     <Compile Include="Configuration\GatewayMarkup.cs" />
@@ -69,11 +70,17 @@
     <Compile Include="Configuration\DataServer.cs" />
     <Compile Include="Configuration\Feeder.cs" />
     <Compile Include="Configuration\Group.cs" />
+    <Compile Include="Configuration\GroupMargin.cs" />
     <Compile Include="Configuration\GroupSecurity.cs" />
     <Compile Include="Configuration\Holiday.cs" />
     <Compile Include="Configuration\LiveUpdate.cs" />
     <Compile Include="Configuration\Manager.cs" />
+    <Compile Include="Configuration\ManagerSecurity.cs" />
+    <Compile Include="Configuration\Plugin.cs" />
+    <Compile Include="Configuration\PluginConfigurationParameter.cs" />
     <Compile Include="Configuration\PluginParameters.cs" />
+    <Compile Include="Configuration\PluginWithParameters.cs" />
+    <Compile Include="Configuration\Session.cs" />
     <Compile Include="Configuration\Sessions.cs" />
     <Compile Include="Configuration\Symbol.cs" />
     <Compile Include="Configuration\SymbolGroup.cs" />
@@ -82,6 +89,7 @@
     <Compile Include="DailyGroupRequest.cs" />
     <Compile Include="DailyReport.cs" />
     <Compile Include="ExposureValue.cs" />
+    <Compile Include="FeedDescription.cs" />
     <Compile Include="GroupCommandInfo.cs" />
     <Compile Include="ConnectionParameters.cs" />
     <Compile Include="MailBox.cs" />

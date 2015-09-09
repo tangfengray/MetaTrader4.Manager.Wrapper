@@ -1,18 +1,19 @@
 ﻿namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
     /// <summary>
-    /// Object that represents symbol group configuration
+    /// Object that represents plugin parameter configuration
     /// </summary>
-    public class SymbolGroup
+    public class PluginConfigurationParameter
     {
         /// <summary>
-        /// Group name
+        /// parameter name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Group description
+        /// Parameter value
         /// </summary>
-        public string Description { get; set; }
+        public string Value { get; set; }
+
     }
 }

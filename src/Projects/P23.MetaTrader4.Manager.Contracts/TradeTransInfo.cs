@@ -2,20 +2,74 @@
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents trade transaction info
+    /// </summary>
     public class TradeTransInfo
     {
-        public byte Type { get; set; }          // trade transaction type
-        public short Cmd { get; set; }          // trade command
-        public int Order { get; set; }          // order
-        public int OrderBy { get; set; }        // order by
-        public string Symbol { get; set; }      // trade symbol
-        public int Volume { get; set; }         // trade volume
-        public double Price { get; set; }       // trade price
-        public double Sl { get; set; }          // stoploss
-        public double Tp { get; set; }          // takeprofit
-        public int IeDeviation { get; set; }    // deviation on IE
-        public string Comment { get; set; }     // comment
-        public UInt32 Expiration { get; set; }  // pending order expiration time
-        public int Crc { get; set; }            // crc
+        /// <summary>
+        /// Trade transaction type
+        /// </summary>
+        public byte Type { get; set; }
+
+        /// <summary>
+        ///Trade command
+        /// </summary>
+        public short Cmd { get; set; }
+
+        /// <summary>
+        /// Order
+        /// </summary>
+        public int Order { get; set; }
+
+        /// <summary>
+        /// Login, in case of closing with opposite second order ticket
+        /// </summary>
+        public int OrderBy { get; set; }
+
+        /// <summary>
+        /// Trade symbol
+        /// </summary>
+        public string Symbol { get; set; }
+
+        /// <summary>
+        /// Trade volume
+        /// </summary>
+        public int Volume { get; set; }
+
+        /// <summary>
+        /// Trade price(open, close), amount to deposit in case of balance operation
+        /// </summary>
+        public double Price { get; set; }
+
+        /// <summary>
+        /// Stop Loss
+        /// </summary>
+        public double Sl { get; set; }
+
+        /// <summary>
+        /// Take Profit
+        /// </summary>
+        public double Tp { get; set; }
+
+        /// <summary>
+        /// Deviation on IE
+        /// </summary>
+        public int IeDeviation { get; set; }
+
+        /// <summary>
+        /// Comment
+        /// </summary>
+        public string Comment { get; set; }
+
+        /// <summary>
+        /// Pending order expiration time
+        /// </summary>
+        public UInt32 Expiration { get; set; }
+
+        /// <summary>
+        /// Crc
+        /// </summary>
+        public int Crc { get; set; }
     }
 }

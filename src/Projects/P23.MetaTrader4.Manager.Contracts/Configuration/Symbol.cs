@@ -3,72 +3,264 @@ using System.Collections.Generic;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
+    /// <summary>
+    /// Object that represents symbol configuration
+    /// </summary>
     public class Symbol
     {
-        //--- common settings
-        public string Name { get; set; }                  // name
-        public string Description { get; set; }             // description
-        public string Source { get; set; }                  // synonym
-        public string Currency { get; set; }                // currency
-        public int Type { get; set; }                       // security group (see ConSymbolGroup)
-        public int Digits { get; set; }                     // security precision
-        public int Trade { get; set; }                      // trade mode
-        //--- external settings
-        public UInt32 BackgroundColor { get; set; }         // background color
-        public int Count { get; set; }                      // symbols index
-        public int CountOriginal { get; set; }              // symbols index in market watch
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string Name { get; set; }
 
-        //--- sessions
-        public int RealTime { get; set; }                   // allow real time quotes
-        public UInt32 Starting { get; set; }                // trades starting date (UNIX time)
-        public UInt32 Expiration { get; set; }              // trades end date      (UNIX time)
-        public IList<Sessions> Sessions { get; set; }       // quote & trade sessions
-        //--- profits
-        public int ProfitMode { get; set; }                 // profit calculation mode
-        
-        //--- filtration
-        public int Filter { get; set; }                     // filter value
-        public int FilterCounter { get; set; }              // filtration parameter
-        public double FilterLimit { get; set; }             // max. permissible deviation from last quote (percents)
-        public int FilterSmoothing { get; set; }            // smoothing
-        
-        public int Logging { get; set; }                    // enable to log quotes
-        //--- spread & swaps
-        public int Spread { get; set; }                     // spread
-        public int SpreadBalance { get; set; }              // spread balance
-        public int Exemode { get; set; }                    // execution mode
-        public int SwapEnable { get; set; }                 // enable swaps
-        public int SwapType { get; set; }                   // swap type
-        public double SwapLong { get; set; }                // swaps values for long & short postions
+        /// <summary>
+        /// Description
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Synonym
+        /// </summary>
+        public string Source { get; set; }
+
+        /// <summary>
+        /// Currency
+        /// </summary>
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// Security group (see SymbolGroup)
+        /// </summary>
+        public int Type { get; set; }
+
+        /// <summary>
+        /// Security precision
+        /// </summary>
+        public int Digits { get; set; }
+
+        /// <summary>
+        /// Trade mode
+        /// </summary>
+        public int Trade { get; set; }
+
+        /// <summary>
+        /// Background color
+        /// </summary>
+        public UInt32 BackgroundColor { get; set; }
+
+        /// <summary>
+        /// Symbols index
+        /// </summary>
+        public int Count { get; set; }
+
+        /// <summary>
+        /// Symbols index in market watch
+        /// </summary>
+        public int CountOriginal { get; set; }
+
+        /// <summary> 
+        /// Allow real time quotes
+        /// </summary>
+        public int RealTime { get; set; }
+
+        /// <summary>
+        /// Trades starting date (UNIX time)
+        /// </summary>
+        public UInt32 Starting { get; set; }
+
+        /// <summary>
+        /// Trades end date      (UNIX time)
+        /// </summary>
+        public UInt32 Expiration { get; set; }
+
+        /// <summary>
+        /// Quote & trade sessions
+        /// </summary>
+        public IList<Sessions> Sessions { get; set; }
+
+        /// <summary>
+        /// Profit calculation mode
+        /// </summary>
+        public int ProfitMode { get; set; }
+
+        /// <summary>
+        /// Filter value
+        /// </summary>
+        public int Filter { get; set; }
+
+        /// <summary>
+        /// Filtration parameter
+        /// </summary>
+        public int FilterCounter { get; set; }
+
+        /// <summary>
+        /// Max. permissible deviation from last quote (percents)
+        /// </summary>
+        public double FilterLimit { get; set; }
+
+        /// <summary>
+        /// Smoothing
+        /// </summary>
+        public int FilterSmoothing { get; set; }
+
+        /// <summary>
+        /// Enable to log quotes
+        /// </summary>
+        public int Logging { get; set; }
+
+        /// <summary>
+        /// Spread
+        /// </summary>
+        public int Spread { get; set; }
+
+        /// <summary>
+        /// Spread balance
+        /// </summary>
+        public int SpreadBalance { get; set; }
+
+        /// <summary>
+        /// Execution mode
+        /// </summary>
+        public int Exemode { get; set; }
+
+        /// <summary>
+        /// Enable swaps
+        /// </summary>
+        public int SwapEnable { get; set; }
+
+        /// <summary>
+        /// Swap type
+        /// </summary>
+        public int SwapType { get; set; }
+
+        /// <summary>
+        /// Swaps values for long postions
+        /// </summary>
+        public double SwapLong { get; set; }
+
+        /// <summary>
+        /// Swaps values for short postions
+        /// </summary>
         public double SwapShort { get; set; }
-        public int SwapRollover3Days { get; set; }          // triple rollover day-0-Monday,1-Tuesday...4-Friday
-        public double ContractSize { get; set; }            // contract size
-        public double TickValue { get; set; }               // one tick value
-        public double TickSize { get; set; }                // one tick size
-        public int StopsLevel { get; set; }                 // stops deviation value
-        //---            овернайты и прочие свопы
-        public int GtcPendings { get; set; }                // GTC mode { ORDERS_DAILY, ORDERS_GTC, ORDERS_DAILY_NO_STOPS }
-        //--- margin calculation
-        public int MarginMode { get; set; }                 // margin calculation mode
-        public double MarginInitial { get; set; }           // initial margin
-        public double MarginMaintenance { get; set; }       // margin maintenance
-        public double MarginHedged { get; set; }            // hadget margin
-        public double MarginDivider { get; set; }           // margin divider
-        //--- calclulated variables (internal data)
-        public double Point { get; set; }                   // point size-(1/(10^digits)
-        public double Multiply { get; set; }                // multiply 10^digits
-        public double BidTickValue { get; set; }            // tickvalue for bid
-        public double AskTickValue { get; set; }            // tickvalue for ask
-        //---
-        public int LongOnly { get; set; }                   // allow only BUY positions
-        public int InstantMaxVolume { get; set; }           // max. volume for Instant Execution
-        //---
-        public string MarginCurrency { get; set; }          // currency of margin requirments
-        public int FreezeLevel { get; set; }                // modification freeze level
-        public int MarginHedgedStrong { get; set; }         // strong hedged margin mode
-        public UInt32 ValueDate { get; set; }               // value date
-        public int QuotesDelay { get; set; }                // quotes delay after session start
-        public int SwapOpenPrice { get; set; }         	    // use open price at swaps calculation in SWAP_BY_INTEREST mode
-        public int SwapVariationMargin { get; set; }        // charge variation margin on rollover
+
+        /// <summary>
+        /// Triple rollover day-0-Monday,1-Tuesday...4-Friday
+        /// </summary>
+        public int SwapRollover3Days { get; set; }
+
+        /// <summary>
+        /// Contract size
+        /// </summary>
+        public double ContractSize { get; set; }
+
+        /// <summary>
+        /// One tick value
+        /// </summary>
+        public double TickValue { get; set; }
+
+        /// <summary>
+        /// One tick size
+        /// </summary>
+        public double TickSize { get; set; }
+
+        /// <summary>
+        /// Stops deviation value
+        /// </summary>
+        public int StopsLevel { get; set; }
+
+        /// <summary>
+        /// GTC mode { ORDERS_DAILY, ORDERS_GTC, ORDERS_DAILY_NO_STOPS }
+        /// </summary>
+        public int GtcPendings { get; set; }
+        
+        /// <summary>
+        /// Margin calculation mode
+        /// </summary>
+        public int MarginMode { get; set; }
+
+        /// <summary>
+        /// Initial margin
+        /// </summary>
+        public double MarginInitial { get; set; }
+
+        /// <summary>
+        /// Margin maintenance
+        /// </summary>
+        public double MarginMaintenance { get; set; }
+
+        /// <summary>
+        /// Hadget margin
+        /// </summary>
+        public double MarginHedged { get; set; }
+
+        /// <summary>
+        /// Margin divider
+        /// </summary>
+        public double MarginDivider { get; set; }
+
+        /// <summary>
+        /// Point size-(1/(10^digits)
+        /// </summary>
+        public double Point { get; set; }
+
+        /// <summary>
+        /// Multiply 10^digits
+        /// </summary>
+        public double Multiply { get; set; }
+
+        /// <summary>
+        /// Tick value for bid
+        /// </summary>
+        public double BidTickValue { get; set; }
+
+        /// <summary>
+        /// Tick value for ask
+        /// </summary>
+        public double AskTickValue { get; set; }
+
+        /// <summary>
+        /// Allow only BUY positions
+        /// </summary>
+        public int LongOnly { get; set; }
+
+        /// <summary>
+        /// Max. volume for Instant Execution
+        /// </summary>
+        public int InstantMaxVolume { get; set; }
+
+        /// <summary>
+        /// Currency of margin requirments
+        /// </summary>
+        public string MarginCurrency { get; set; }
+
+        /// <summary>
+        /// Modification freeze level
+        /// </summary>
+        public int FreezeLevel { get; set; }
+
+        /// <summary>
+        /// Strong hedged margin mode
+        /// </summary>
+        public int MarginHedgedStrong { get; set; }
+
+        /// <summary>
+        /// Value date
+        /// </summary>
+        public UInt32 ValueDate { get; set; }
+
+        /// <summary>
+        /// Quotes delay after session start
+        /// </summary>
+        public int QuotesDelay { get; set; }
+
+        /// <summary>
+        /// Use open price at swaps calculation in SWAP_BY_INTEREST mode
+        /// </summary>
+        public int SwapOpenPrice { get; set; }
+
+        /// <summary>
+        /// Charge variation margin on rollover
+        /// </summary>
+        public int SwapVariationMargin { get; set; }
     }
 }

@@ -1,10 +1,28 @@
 ﻿namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Object that represents group command
+    /// </summary>
     public class GroupCommandInfo
     {
-        public int Len { get; set; }             // length of users list
-        public char Command { get; set; }        // group coommand
-        public string NewGroup { get; set; }     // new group
-        public int Leverage { get; set; }        // new leverage
+        /// <summary>
+        /// Length of users list
+        /// </summary>
+        public int Len { get; set; }
+
+        /// <summary>
+        /// Group coommand
+        /// </summary>
+        public char Command { get; set; }
+
+        /// <summary>
+        /// New group
+        /// </summary>
+        public string NewGroup { get; set; }
+
+        /// <summary>
+        /// New leverage
+        /// </summary>
+        public int Leverage { get; set; }
     }
 }
