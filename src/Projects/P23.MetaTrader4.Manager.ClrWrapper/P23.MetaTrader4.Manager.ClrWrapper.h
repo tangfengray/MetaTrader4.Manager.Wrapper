@@ -49,6 +49,9 @@ namespace P23{
 			
 			public delegate void UserRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord);
 
+			/// <summary>
+			/// Wrapper around mtmanapi.dll to provede managed access to MT4 manager API
+			/// </summary>
 			public ref class ClrWrapper : IDisposable
 			{
 			private:
@@ -207,116 +210,506 @@ namespace P23{
 				static P23::MetaTrader4::Manager::Contracts::TickInfo^ P23::MetaTrader4::Manager::ClrWrapper::Convert(TickInfo* input);
 				
 			public:
-				//Extended pumping events
+				
+				/// <summary>
+				/// Event rised when added new trade. Works only in extended pumping mode
+				/// </summary>
 				event TradeRecordUpdated^		TradeAdded;
+
+				/// <summary>
+				/// Event rised when trade changed. Works only in extended pumping mode
+				/// </summary>
 				event TradeRecordUpdated^		TradeUpdated;
+
+				/// <summary>
+				/// Event rised when trade closed. Works only in extended pumping mode
+				/// </summary>
 				event TradeRecordUpdated^		TradeClosed;
+
+				/// <summary>
+				/// Event rised when pending order deleted. Works only in extended pumping mode
+				/// </summary>
 				event TradeRecordUpdated^		TradeDeleted;
+
+				/// <summary>
+				/// Event rised when pumping started. Works only in pumping mode
+				/// </summary>
 				event EventHandler^				PumpingStarted;
+
+				/// <summary>
+				/// Event rised when pumping stopped. Works only in pumping mode
+				/// </summary>
 				event EventHandler^				PumpingStopped;
+
+				/// <summary>
+				/// Event rised when new quote recieved. Works only in extended pumping mode
+				/// </summary>
 				event EventHandler^				BidAskUpdated;
+
+				/// <summary>
+				/// Event rised when online users updated. Works only in extended pumping mode
+				/// </summary>
 				event OnlineRecordUpdated^		OnlineUpdated;
+
+				/// <summary>
+				/// Event rised when user record changes. Works only in extended pumping mode
+				/// </summary>
 				event UserRecordUpdated^		UserUpdated;
 
 				//constructors
+				/// <summary>
+				/// Instantiate ClrWrapper, no connection will be created, mtmanapi.dll should be located in current directory
+				/// </summary>
 				ClrWrapper();
+
+				/// <summary>
+				/// Instantiate ClrWrapper, no connection will be created
+				/// </summary>
+				/// <param name="metatraderLibraryPath">path to mtmanapi.dll</param>
 				ClrWrapper(String^ metatraderLibraryPath);
+
+				/// <summary>
+				/// Instantiate ClrWrapper, connection will be created, mtmanapi.dll should be located in current directory
+				/// </summary>
+				/// <param name="connectionParameters">parameters to connect to MT server</param>
 				ClrWrapper(P23::MetaTrader4::Manager::Contracts::ConnectionParameters^ connectionParameters);
+
+				/// <summary>
+				/// Instantiate ClrWrapper, connection will be created
+				/// </summary>
+				/// <param name="connectionParameters">parameters to connect to MT server</param>
+				/// <param name="metatraderLibraryPath">path to mtmanapi.dll</param>
 				ClrWrapper(P23::MetaTrader4::Manager::Contracts::ConnectionParameters^ connectionParameters, String^ metatraderLibraryPath);
 
 				//Destructors, finalizers
 				~ClrWrapper();
 				!ClrWrapper();
 
-				//--- service methods				
+				//--- service methods	
+				/// <summary>
+				/// Get error description for provided code
+				/// </summary>
+				/// <param name="code">error code</param>
 				System::String^ ErrorDescription(int code);
 
 				//--- connection
+				/// <summary>
+				/// Connect to MT server
+				/// </summary>
+				/// <param name="server">MT Server address(ip:port). It's recomended to user actual MT server address, not data center</param>
 				int Connect(System::String^ server);
+				
+				/// <summary>
+				/// Disconnect from MT server
+				/// </summary>
 				int Disconnect();
+
+				/// <summary>
+				/// Check connection to MT server
+				/// </summary>
 				int IsConnected();
+				
+				/// <summary>
+				/// Login into MT server, connection must be established
+				/// </summary>
+				/// <param name="login">manager's login</param>
+				/// <param name="password">manager's password</param>
 				int Login(int login, System::String^ password);
+				
+				/// <summary>
+				/// Login into MT server, using RSA key
+				/// </summary>
+				/// <param name="keyPath">path to the RSA - keys file</param>
 				int LoginSecured(System::String^ keyPath);
+
+				/// <summary>
+				/// Send public key to MT server
+				/// </summary>
+				/// <param name="keyPath">path to the RSA - keys file</param>
 				int KeysSend(System::String^ keyPath);
+
+				/// <summary>
+				/// Ping MT server
+				/// </summary>
 				int Ping();
+
+				/// <summary>
+				/// Change manager's password
+				/// </summary>
+				/// <param name="password">new password</param>
+				/// <param name="isInvestor">0 - change trader's password, 1 - change investor's password</param>
 				int PasswordChange(System::String^ password, int isInvestor);
+
+				/// <summary>
+				/// Request manager rights for provided manager
+				/// </summary>
+				/// <param name="manager">manager structure</param>
 				int ManagerRights(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager);
 
 				//--- server administration commands
+				/// <summary>
+				/// Restart MT server
+				/// </summary>
 				int SrvRestart();
+
+				/// <summary>
+				/// Synchronize history data
+				/// </summary>
 				int SrvChartsSync();
+				
+				/// <summary>
+				/// Start LiveUpdate
+				/// </summary>				
 				int SrvLiveUpdateStart();
+
+				/// <summary>
+				/// Restart data feeds
+				/// </summary>	
 				int SrvFeedsRestart();
 
 				//--- server configuration
 				//--- configuration request
+				/// <summary>
+				/// Request common configuration section
+				/// </summary>	
 				Common^  CfgRequestCommon();
+
+				/// <summary>
+				/// Request time configuration section
+				/// </summary>	
 				Time^  CfgRequestTime();
+
+				/// <summary>
+				/// Request backup configuration section
+				/// </summary>	
 				Backup^  CfgRequestBackup();
+
+				/// <summary>
+				/// Request symbol group configuration section
+				/// </summary>	
 				SymbolGroup^  CfgRequestSymbolGroup();
+
+				/// <summary>
+				/// Request accesses configuration
+				/// </summary>	
 				IList<Access^>^      CfgRequestAccess();
+
+				/// <summary>
+				/// Request dataservers configuration
+				/// </summary>	
 				IList<DataServer^>^  CfgRequestDataServer();
+
+				/// <summary>
+				/// Request holidays configuration
+				/// </summary>	
 				IList<Holiday^>^     CfgRequestHoliday();
+
+				/// <summary>
+				/// Request symbols configuration
+				/// </summary>
 				IList<Symbol^>^      CfgRequestSymbol();
+
+				/// <summary>
+				/// Request groups configuration
+				/// </summary>
 				IList<Group^>^       CfgRequestGroup();
+
+				/// <summary>
+				/// Request managers configuration
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Manager^>^     CfgRequestManager();
+				
+				/// <summary>
+				/// Request feeders configuration
+				/// </summary>
 				IList<Feeder^>^      CfgRequestFeeder();
+				
+				/// <summary>
+				/// Request live updates configuration
+				/// </summary>
 				IList<LiveUpdate^>^  CfgRequestLiveUpdate();
+				
+				/// <summary>
+				/// Request synchronizations configuration
+				/// </summary>
 				IList<Synchronization^>^        CfgRequestSync();
+
+				/// <summary>
+				/// Request plugins configuration
+				/// </summary>
 				IList<PluginWithParameters^>^ CfgRequestPlugin();
 
 				//--- configuration update
+				/// <summary>
+				/// Update common configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateCommon(Common^ configuration);
+
+				/// <summary>
+				/// Create access configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
+				/// <param name="position">place where new configuration should be inserted</param>
 				int CfgUpdateAccess(Access^ configuration, int position);
+
+				/// <summary>
+				/// Create date server configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
+				/// <param name="position">place where new configuration should be inserted</param>
 				int CfgUpdateDataServer(DataServer^ configuration, int position);
+
+				/// <summary>
+				/// Update time configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateTime(Time^ configuration);
+
+				/// <summary>
+				/// Create new holiday configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
+				/// <param name="position">place where new configuration should be inserted</param>
 				int CfgUpdateHoliday(Holiday^ configuration, int position);
+
+				/// <summary>
+				/// Update or create symbol configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateSymbol(Symbol^ configuration);
+
+				/// <summary>
+				/// Create symbol group configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
+				/// <param name="position">place where new configuration should be inserted</param>
 				int CfgUpdateSymbolGroup(SymbolGroup^ configuration, int position);
+
+				/// <summary>
+				/// Create or update configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateGroup(Group^ configuration);
+
+				/// <summary>
+				/// Create or update manager configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateManager(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ configuration);
+				
+				/// <summary>
+				/// Create or update feeder configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateFeeder(Feeder^ configuration);
+				
+				/// <summary>
+				/// Update backup configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateBackup(Backup^ configuration);
+
+				/// <summary>
+				/// Create or update live update configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateLiveUpdate(LiveUpdate^ configuration);
+
+				/// <summary>
+				/// Create or update synchronization configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdateSync(Synchronization^ configuration);
+
+				/// <summary>
+				/// Create or update plugin configuration
+				/// </summary>
+				/// <param name="configuration">new configuration parameters</param>
 				int CfgUpdatePlugin(Plugin^ configuration, IList<PluginConfigurationParameter^>^ parameters);
 
 				//--- configuration delete
+				/// <summary>
+				/// Delete access configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteAccess(int position);
+
+				/// <summary>
+				/// Delete data server configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteDataServer(int position);
+
+				/// <summary>
+				/// Delete holiday configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteHoliday(int position);
+
+				/// <summary>
+				/// Delete symbol configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteSymbol(int position);
+
+				/// <summary>
+				/// Delete group configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteGroup(int position);
+
+				/// <summary>
+				/// Delete manager configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteManager(int position);
+
+				/// <summary>
+				/// Delete feeder configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteFeeder(int position);
+
+				/// <summary>
+				/// Delete live update configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteLiveUpdate(int position);
+
+				/// <summary>
+				/// Delete synchonization configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be deleted(zero-based index)</param>
 				int CfgDeleteSync(int position);
 
 				//--- configuration shift
+				/// <summary>
+				/// Shift position for access configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftAccess(int position, int shift);
+
+				/// <summary>
+				/// Shift position for data server configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftDataServer(int position, int shift);
+
+				/// <summary>
+				/// Shift position for holiday configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftHoliday(int position, int shift);
+				
+				/// <summary>
+				/// Shift position for symbol configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftSymbol(int position, int shift);
+
+				/// <summary>
+				/// Shift position for group configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftGroup(int position, int shift);
+
+				/// <summary>
+				/// Shift position for manager configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftManager(int position, int shift);
+
+				/// <summary>
+				/// Shift position for feeder configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftFeeder(int position, int shift);
+
+				/// <summary>
+				/// Shift position for live update configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftLiveUpdate(int position, int shift);
+
+				/// <summary>
+				/// Shift position for synchronization configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftSync(int position, int shift);
+
+				/// <summary>
+				/// Shift position for plugin configuration
+				/// </summary>
+				/// <param name="position">position of configuration to be shifter(zero-based index)</param>
+				/// <param name="shift">offset from current position</param>
 				int CfgShiftPlugin(int position, int shift);
 
 				//--- server feeders
+				/// <summary>
+				/// Request all available on MT server data feeds
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::ServerFeed^>^ SrvFeeders();
+
+				/// <summary>
+				/// Request logs of configured data feed
+				/// </summary>
+				/// <param name="name">feed name</param>
 				String^ SrvFeederLog(String^ name);
 
 				//--- performance info
+				/// <summary>
+				/// Request performance counters from MT server
+				/// </summary>
+				/// <param name="from">from</param>
 				IList<P23::MetaTrader4::Manager::Contracts::PerformanceInfo^>^ PerformaneRequest(UInt32 from);
 
 				//--- users/trades backups
+				/// <summary>
+				/// Request for the file list of backups of the account database
+				/// </summary>
+				/// <param name="mode">mode</param>
 				IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  BackupInfoUsers(int mode);
+
+				/// <summary>
+				/// Request for the file list of backups of the order database
+				/// </summary>
+				/// <param name="mode">mode</param>
 				IList<P23::MetaTrader4::Manager::Contracts::BackupInfo^>^  BackupInfoOrders(int mode);
+
+				/// <summary>
+				/// Search for users in specified backup
+				/// </summary>
+				/// <param name="file">name of backup file</param>
+				/// <param name="request">search string</param>
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  BackupRequestUsers(String^ file, String^ request);
+				
+				/// <summary>
+				/// Search for orders in specified backup
+				/// </summary>
+				/// <param name="file">name of backup file</param>
+				/// <param name="request">search string</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ BackupRequestOrders(String^ file, String^ request);
+				
+				/// <summary>
+				/// Restore specified users from backup
+				/// </summary>
+				/// <param name="users">users to be restored</param>
 				int BackupRestoreUsers(IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ users);
+				
+				/// <summary>
+				/// Restore specified orders from backup
+				/// </summary>
+				/// <param name="users">orders to be restored</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ trades);
 
 				//--- administrator databases commands
