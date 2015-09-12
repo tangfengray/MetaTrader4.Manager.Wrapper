@@ -3,7 +3,7 @@
   <metadata>
     <id>MetaTrader4.Manager.Wrapper</id>
 	<title>MetaTrader4.Manager.Wrapper</title>
-    <version>0.1.2.3</version>
+    <version>0.1.3.0</version>
     <authors>Uriil</authors>
     <projectUrl>https://github.com/Uriil/MetaTrader4.Manager.Wrapper</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,7 +13,9 @@
   </metadata>
   <files>
     <file src="P23.MetaTrader4.Manager.ClrWrapper.dll" target="lib" />
+    <file src="P23.MetaTrader4.Manager.ClrWrapper.xml" target="lib" />
     <file src="P23.MetaTrader4.Manager.Contracts.dll" target="lib" />
+    <file src="P23.MetaTrader4.Manager.Contracts.xml" target="lib" />
     <file src="mtmanapi.dll" target="unmanaged" />
     <file src="mtmanapi64.dll" target="unmanaged" />
     <file src="MetaTrader4.Manager.Wrapper.targets" target="build" />
