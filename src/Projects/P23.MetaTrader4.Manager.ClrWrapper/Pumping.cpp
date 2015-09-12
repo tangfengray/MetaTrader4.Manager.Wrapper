@@ -272,7 +272,8 @@ P23::MetaTrader4::Manager::Contracts::Configuration::PluginWithParameters^ P23::
 
 int P23::MetaTrader4::Manager::ClrWrapper::MailLast(String^ path, int length)
 {
-	return _manager->Manager->MailLast(Convert(path), &length);
+	//return _manager->Manager->MailLast(Convert(path), &length);
+	throw gcnew NotImplementedException();
 }
 
 IList<P23::MetaTrader4::Manager::Contracts::NewsTopic^>^ P23::MetaTrader4::Manager::ClrWrapper::NewsGet()

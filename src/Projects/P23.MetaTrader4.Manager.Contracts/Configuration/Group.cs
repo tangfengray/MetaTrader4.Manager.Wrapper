@@ -139,7 +139,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public double InterestRate { get; set; }
 
         /// <summary>
-        /// Use rollovers & interestrate
+        /// Use rollovers and interestrate
         /// </summary>
         public int UseSwap { get; set; }
 

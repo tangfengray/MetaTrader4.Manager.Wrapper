@@ -9,7 +9,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
     public class Common
     {
         /// <summary>
-        /// Servers owner (include version & build)
+        /// Servers owner (include version and build)
         /// </summary>
         public string Owner { get; set; }
 

@@ -4,5 +4,6 @@
 
 int P23::MetaTrader4::Manager::ClrWrapper::ManagerCommon(Common^ common)
 {
-	return _manager->Manager->ManagerCommon(Convert(common));
+	throw gcnew NotImplementedException();
+	//return _manager->Manager->ManagerCommon(Convert(common));
 }

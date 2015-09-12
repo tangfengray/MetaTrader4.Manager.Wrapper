@@ -38,7 +38,7 @@ IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ P23::MetaTrader4::Man
 	if (logins->Count == 0)
 		throw gcnew ArgumentException("At least one login should be provided", "logins");
 
-	if (request->To - request->From < NumberOfSecondsInDay)
+	if (request->To - request->From < (unsigned int)NumberOfSecondsInDay)
 		throw gcnew ArgumentException("Minimum difference between To and From should be 24 hours", "request");
 
 	int total = 0;

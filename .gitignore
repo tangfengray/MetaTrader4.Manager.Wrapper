@@ -22,3 +22,4 @@ ipch
 /src/Solutions/.vs/P23.MetaTrader4.Manager/v14/*.suo
 obj
 bin
+/src/Projects/P23.MetaTrader4.Manager.ClrWrapper/*.user

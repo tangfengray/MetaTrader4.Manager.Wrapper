@@ -13,12 +13,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int Login { get; set; }
 
         /// <summary>
-        /// Right to add & change client records
+        /// Right to add and change client records
         /// </summary>
         public int ManagerRights { get; set; }
 
         /// <summary>
-        /// Right to balance & credit management
+        /// Right to balance and credit management
         /// </summary>
         public int Money { get; set; }
 
@@ -101,8 +101,10 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// Enable IP control
         /// </summary>
         public int IpFilter { get; set; }
-
-        //range of allowed IPs
+        
+        /// <summary>
+        /// range of allowed IPs
+        /// </summary>
         public ulong IpFrom { get; set; }
 
         /// <summary>

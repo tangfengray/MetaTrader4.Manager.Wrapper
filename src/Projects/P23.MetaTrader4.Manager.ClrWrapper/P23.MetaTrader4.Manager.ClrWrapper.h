@@ -242,7 +242,7 @@ namespace P23{
 				event EventHandler^				PumpingStopped;
 
 				/// <summary>
-				/// Event rised when new quote recieved. Works only in extended pumping mode
+				/// Event rised when new quote received. Works only in extended pumping mode
 				/// </summary>
 				event EventHandler^				BidAskUpdated;
 
@@ -709,173 +709,712 @@ namespace P23{
 				/// <summary>
 				/// Restore specified orders from backup
 				/// </summary>
-				/// <param name="users">orders to be restored</param>
+				/// <param name="trades">orders to be restored</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRestoreResult^>^ BackupRestoreOrders(IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ trades);
 
 				//--- administrator databases commands
-				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^  AdmUsersRequest(String^ group);
+				/// <summary>
+				/// Request for accounts from the current database
+				/// </summary>
+				/// <param name="group">the list of groups or accounts separated by commas</param>
+				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ AdmUsersRequest(String^ group);
+
+				/// <summary>
+				/// Request for orders from the current database
+				/// </summary>
+				/// <param name="group">list of groups, accounts, or orders, separated by commas</param>
+				/// <param name="openOnly">0 - all, 1 - open only</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ AdmTradesRequest(String^ group, int openOnly);
+
+				/// <summary>
+				/// Correct balance of the accounts according to the trade history
+				/// </summary>
+				/// <param name="logins">list of accounts</param>
 				int AdmBalanceFix(IList<int>^ logins);
+
+				/// <summary>
+				/// Delete orders from current database
+				/// </summary>
+				/// <param name="orders">list of orders</param>
 				int AdmTradesDelete(IList<int>^ orders);
+
+				/// <summary>
+				/// Modify order in current database
+				/// </summary>
+				/// <param name="trade">trade parameters</param>
 				int AdmTradeRecordModify(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
 
 				//--- symbols
+				/// <summary>
+				/// Download symbols configuration from trade server
+				/// </summary>
 				int SymbolsRefresh();
+
+				/// <summary>
+				/// Get symbols configuration. SymbolsRefresh should be called before this method
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^>^ SymbolsGetAll();
+
+				/// <summary>
+				/// Get symbol configuration. SymbolsRefresh should be called before this method
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^ SymbolGet(String^ symbol);
+
+				/// <summary>
+				/// Get short symbol configuration.
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				P23::MetaTrader4::Manager::Contracts::SymbolInfo^ SymbolInfoGet(String^ symbol);
+
+				/// <summary>
+				/// Add symbol to list to recieve updates in pumping mode
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				int SymbolAdd(String^ symbol);
+
+				/// <summary>
+				/// Remove symbol from list to stop recieveing updates in pumping mode
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				int SymbolHide(String^ symbol);
+
 				//--- symbol commands
+				/// <summary>
+				/// Send tick to trade server
+				/// </summary>
+				/// <param name="symbol">symbol</param>
+				/// <param name="bid">bid</param>
+				/// <param name="ask">ask</param>
 				int SymbolSendTick(String^ symbol, double bid, double ask);
 
 				//--- manager commands
+				/// <summary>
+				/// Request a list of available groups of accounts
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ GroupsRequest();
+
+				/// <summary>
+				/// Send a message by the internal mailing system
+				/// </summary>
+				/// <param name="mail">mail content</param>
+				/// <param name="logins">list of adressees</param>
 				int MailSend(P23::MetaTrader4::Manager::Contracts::MailBox^ mail, IList<int>^ logins);
+
+				/// <summary>
+				/// Publish news
+				/// </summary>
+				/// <param name="news">news content</param>
 				int NewsSend(P23::MetaTrader4::Manager::Contracts::NewsTopic^ news);
 
 				//--- journal
+				/// <summary>
+				/// Request for the server log for a certain period of time
+				/// </summary>
+				/// <param name="mode">mode</param>
+				/// <param name="from">from</param>
+				/// <param name="to">to</param>
+				/// <param name="filter">filter</param>
 				IList<P23::MetaTrader4::Manager::Contracts::ServerLog^>^ JournalRequest(int mode, UInt32 from, UInt32 to, String^ filter);
 
 				//--- databases: direct request to the server
 				//--- users
+				/// <summary>
+				/// Request list of all accounts
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersRequest();
+
+				/// <summary>
+				/// Request list of specified accounts
+				/// </summary>
+				/// <param name="logins">list of logins</param>
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UserRecordsRequest(IList<int>^ logins);
+
+				/// <summary>
+				/// Create new account
+				/// </summary>
+				/// <param name="user">account parameters</param>
 				int UserRecordNew(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
+
+				/// <summary>
+				/// Update account
+				/// </summary>
+				/// <param name="user">account parameters</param>
 				int UserRecordUpdate(P23::MetaTrader4::Manager::Contracts::UserRecord^ user);
+
+				/// <summary>
+				/// Execute group operations to lost of accounts
+				/// </summary>
+				/// <param name="info">parameters</param>
+				/// <param name="logins">list of accounts</param>
 				int UsersGroupOp(P23::MetaTrader4::Manager::Contracts::GroupCommandInfo^ info, IList<int>^ logins);
+
+				/// <summary>
+				/// Check trade password
+				/// </summary>
+				/// <param name="login">login</param>
+				/// <param name="password">password</param>
 				int UserPasswordCheck(int login, String^ password);
+
+				/// <summary>
+				/// Change user password
+				/// </summary>
+				/// <param name="login">login</param>
+				/// <param name="password">new password</param>
+				/// <param name="changeInvestor">flag: 0 - change trade password, 1 - change investor password</param>
+				/// <param name="cleanPubKey">flag: 0 - do not clean public key, 1 - clean public key</param>
 				int UserPasswordSet(int login, String^ password, int changeInvestor, int cleanPubKey);
+
+				/// <summary>
+				/// Request list of online accounts
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineRequest();
 
 				//--- orders
+				/// <summary>
+				/// Open, close, delete, modify orders, do balance operations
+				/// </summary>
+				/// <param name="info">parameters</param>
 				int TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info);
+
+				/// <summary>
+				/// Request list of all orders
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesRequest();
+
+				/// <summary>
+				/// Request list of orders for specified tickets
+				/// </summary>
+				/// <param name="orders">list of tickets</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradeRecordsRequest(IList<int>^ orders);
+
+				/// <summary>
+				/// Request trades for specific user in period
+				/// </summary>
+				/// <param name="login">account login</param>
+				/// <param name="from">from</param>
+				/// <param name="to">to</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesUserHistory(int login, UInt32 from, UInt32 to);
+
+				
+				/// <summary>
+				/// Check the Stop Loss and Take Profit levels of an order
+				/// </summary>
+				/// <param name="trade">trade parameters</param>
+				/// <param name="price">price</param>
 				int TradeCheckStops(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ trade, double price);
 
 				//--- reports
+				/// <summary>
+				/// Request list of closed positions for provided list of logins
+				/// </summary>
+				/// <param name="request">request parameters</param>
+				/// <param name="logins">logins</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ ReportsRequest(P23::MetaTrader4::Manager::Contracts::ReportGroupRequest^ request, IList<int>^ logins);
+				
+				/// <summary>
+				/// Request daily reports for provided list of logins
+				/// </summary>
+				/// <param name="request">request parameters</param>
+				/// <param name="logins">logins</param>
 				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailyReportsRequest(P23::MetaTrader4::Manager::Contracts::DailyGroupRequest^ request, IList<int>^ logins);
+				
 				//--- external command
+				/// <summary>
+				/// Send external command to regestered plugins
+				/// </summary>
+				/// <param name="dataIn">input data</param>
+				/// <param name="sizeIn">input data size</param>
+				/// <param name="dataOut">output data</param>
+				/// <param name="sizeOut">output data size</param>
 				int ExternalCommand(String^ dataIn, int sizeIn, String^ dataOut, int sizeOut);
+				
 				//--- plugins
+				/// <summary>
+				/// Change configuration of server plugin
+				/// </summary>
+				/// <param name="plugin">plugin parameters</param>
 				int PluginUpdate(PluginWithParameters^ plugin);
 
 				//pumping
+				/// <summary>
+				/// Switch into pumping mode
+				/// </summary>
+				/// <param name="callBackDelegate">delegate will be invoked on any pumping event</param>
 				int PumpingSwitch(PumpingCallbackDelegate^ callBackDelegate);
+				
+				/// <summary>
+				/// Get all group configurations in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Group^>^ GroupsGet();
+
+				/// <summary>
+				/// Get group configuration in pumping mode
+				/// </summary>
+				/// <param name="name">name of group to return</param>
 				P23::MetaTrader4::Manager::Contracts::Configuration::Group^ GroupRecordGet(String^ name);
+
+				/// <summary>
+				/// Get updated prices in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::SymbolInfo^>^ SymbolInfoUpdated();
+
+				/// <summary>
+				/// Get all users in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersGet();
+
+				/// <summary>
+				/// Get user record in pumping mode
+				/// </summary>
+				/// <param name="login">user login</param>
 				P23::MetaTrader4::Manager::Contracts::UserRecord^ UserRecordGet(int login);
+
+				/// <summary>
+				/// Get online users in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::OnlineRecord^>^ OnlineGet();
+
+				/// <summary>
+				/// Get online user in pumping mode
+				/// </summary>
+				/// <param name="login">user login</param>
 				P23::MetaTrader4::Manager::Contracts::OnlineRecord^ OnlineRecordGet(int login);
+
+				/// <summary>
+				/// Get all open trades in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGet();
+
+				/// <summary>
+				/// Get all open trades for specific symbol in pumping mode
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetBySymbol(String^ symbol);
+
+				/// <summary>
+				/// Get all open trades for specific login in pumping mode
+				/// </summary>
+				/// <param name="login">login</param>
+				/// <param name="group">user group</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetByLogin(int login, String^ group);
+
+				/// <summary>
+				/// Returns orders most proximate to the market like in last list of dealing tab in MT Manager terminal 
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesGetByMarket();
+
+				/// <summary>
+				/// Get open trade in pumping mode
+				/// </summary>
+				/// <param name="order">order</param>
 				P23::MetaTrader4::Manager::Contracts::TradeRecord^ TradeRecordGet(int order);
+
+				/// <summary>
+				/// Clear activation flag
+				/// </summary>
+				/// <param name="order">order</param>
 				int TradeClearRollback(int order);
+
+				/// <summary>
+				/// Get list of margin requirements of accounts in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::MarginLevel^>^ MarginsGet();
+
+				/// <summary>
+				/// Get margin requirement of account in pumping mode
+				/// </summary>
+				/// <param name="login">login</param>
+				/// <param name="group">user group</param>
 				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelGet(int login, String^ group);
+
+				/// <summary>
+				/// Get list of trade requests in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::RequestInfo^>^ RequestsGet();
+
+				/// <summary>
+				/// Get trade request in pumping mode
+				/// </summary>
+				/// <param name="position">position</param>
 				P23::MetaTrader4::Manager::Contracts::RequestInfo^ RequestInfoGet(int position);
+
+				/// <summary>
+				/// Get list of installed plugins in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::Configuration::Plugin^>^ PluginsGet();
+
+				/// <summary>
+				/// Get installed plugin in pumping mode
+				/// </summary>
+				/// <param name="position">position</param>
 				P23::MetaTrader4::Manager::Contracts::Configuration::PluginWithParameters^ PluginParamGet(int position);
+
+				/// <summary>
+				/// Get file path of last mail in pumping mode
+				/// </summary>
+				/// <param name="path">path</param>
+				/// <param name="length">length</param>
 				int MailLast(String^ path, int length);
+
+				/// <summary>
+				/// Get heading of income news in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::NewsTopic^>^ NewsGet();
+
+				/// <summary>
+				/// Get total number of income news in pumping mode
+				/// </summary>
 				int NewsTotal();
+
+				/// <summary>
+				/// Get news for specific position in pumping mode
+				/// </summary>
+				/// <param name="position">news position</param>
 				P23::MetaTrader4::Manager::Contracts::NewsTopic^ NewsTopicGet(int position);
+
+				/// <summary>
+				/// Request news for specific key
+				/// </summary>
+				/// <param name="key">news key</param>
 				void NewsBodyRequest(int key);
+
+				/// <summary>
+				/// Get news for specific key in pumping mode
+				/// </summary>
+				/// <param name="key">news key</param>
 				String^ NewsBodyGet(int key);
 
 				//--- dealing
+				/// <summary>
+				/// Switch into dealer mode
+				/// </summary>
+				/// <param name="callBackDelegate">delegate which will be incoked on dealing event</param>
 				int DealerSwitch(PumpingCallbackDelegate^ callBackDelegate);
+
+				/// <summary>
+				/// Get requests in dealer mode
+				/// </summary>
 				P23::MetaTrader4::Manager::Contracts::RequestInfo^ DealerRequestGet();
+
+				/// <summary>
+				/// Send confirm or requote message for specific request in dealer mode
+				/// </summary>
+				/// <param name="info">request</param>
+				/// <param name="requote">flag: 0 - confirm, 1 - requote</param>
+				/// <param name="mode">mode</param>
 				int DealerSend(P23::MetaTrader4::Manager::Contracts::RequestInfo^ info, int requote, int mode);
+
+				/// <summary>
+				/// Reject dealer request in dealer mode
+				/// </summary>
+				/// <param name="id">request id</param>
 				int DealerReject(int id);
+
+				/// <summary>
+				/// Send dealer request to queue in dealer mode
+				/// </summary>
+				/// <param name="id">request id</param>
 				int DealerReset(int id);
 
 				//---
+				/// <summary>
+				/// Get list of updated quotes in pumping mode
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ TickInfoLast(String^ symbol);
+				
+				/// <summary>
+				/// Get settings of securities groups in pumping mode
+				/// </summary>
 				int SymbolsGroupsGet(IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ groups);
+
+				/// <summary>
+				/// Get server time
+				/// </summary>
 				long ServerTime();
+
+				/// <summary>
+				/// Get last mails of internal mail system
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::MailBox^>^ MailsRequest();
 
 				//--- risk management
+				/// <summary>
+				/// Get trade summary for all symbols in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::SymbolSummary^>^ SummaryGetAll();
+
+				/// <summary>
+				/// Get trade summary for specific symbol in pumping mode
+				/// </summary>
+				/// <param name="symbol">symbol</param>
 				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGet(String^ symbol);
-				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGetByCount(int symbol);
+
+				/// <summary>
+				/// Get trade summary for specific count in pumping mode
+				/// </summary>
+				/// <param name="count">count</param>
+				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGetByCount(int count);
+
+				/// <summary>
+				/// Get trade summary for specific security type in pumping mode
+				/// </summary>
+				/// <param name="sectype">security type</param>
 				P23::MetaTrader4::Manager::Contracts::SymbolSummary^ SummaryGetByType(int sectype);
+
+				/// <summary>
+				/// Get summary currency
+				/// </summary>
+				/// <param name="cur">currency</param>
+				/// <param name="maxchars">maxchars</param>
 				int SummaryCurrency(String^ cur, int maxchars);
+
+				/// <summary>
+				/// Get company's exposure for currencies in pumping mode
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::ExposureValue^>^ ExposureGet();
+
+				/// <summary>
+				/// Get company's exposure for specific currency in pumping mode
+				/// </summary>
+				/// <param name="cur">currency</param>
 				P23::MetaTrader4::Manager::Contracts::ExposureValue^ ExposureValueGet(String^ cur);
 				//---
+
+				/// <summary>
+				/// Get margin level
+				/// </summary>
+				/// <param name="login">login</param>
 				P23::MetaTrader4::Manager::Contracts::MarginLevel^ MarginLevelRequest(int login);
+
+				/// <summary>
+				/// Correct history
+				/// </summary>
+				/// <param name="symbol">symbol</param>
+				/// <param name="updated">updated</param>
 				int HistoryCorrect(String^ symbol, int updated);
 
 				//--- new chart bases
+				/// <summary>
+				/// Request chart data
+				/// </summary>
+				/// <param name="chart">request parameters</param>
+				/// <param name="timesign">timesign</param>
 				IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ ChartRequest(P23::MetaTrader4::Manager::Contracts::ChartInfo^ chart, UInt32 timesign);
+
+				/// <summary>
+				/// Add chart data, bars won't be overriden if exist
+				/// </summary>
+				/// <param name="symbol">symbol</param>
+				/// <param name="period">period</param>
+				/// <param name="rates">data to add</param>
 				int ChartAdd(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+
+				/// <summary>
+				/// Update chart data, bars will be added if missing
+				/// </summary>
+				/// <param name="symbol">symbol</param>
+				/// <param name="period">period</param>
+				/// <param name="rates">data to add</param>
 				int ChartUpdate(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+
+				/// <summary>
+				/// Delete chart data
+				/// </summary>
+				/// <param name="symbol">symbol</param>
+				/// <param name="period">period</param>
+				/// <param name="rates">data to remove</param>
 				int ChartDelete(String^ symbol, int period, IList<P23::MetaTrader4::Manager::Contracts::RateInfo^>^ rates);
+				
 				//--- ticks base
+				/// <summary>
+				/// Request ticks from MT server
+				/// </summary>
+				/// <param name="request">request parameters</param>
 				IList<P23::MetaTrader4::Manager::Contracts::TickRecord^>^ TicksRequest(P23::MetaTrader4::Manager::Contracts::TickRequest^ request);
 
 				//--- internal methods
+				/// <summary>
+				/// Switch into extended pumping mode
+				/// </summary>
 				int PumpingSwitchEx();
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
+				/// <param name="timestamp">timestamp</param>
 				int UsersSyncStart(UInt32 timestamp);
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::UserRecord^>^ UsersSyncRead();
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				IList<int>^ UsersSnapshot();
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				int TradesSyncStart(UInt32 timestamp);
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ TradesSyncRead();
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				IList<int>^ TradesSnapshot();
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				int DailySyncStart(UInt32 timestamp);
+
+				/// <summary>
+				/// Internal use
+				/// </summary>
 				IList<P23::MetaTrader4::Manager::Contracts::DailyReport^>^ DailySyncRead();
 
 				//--- profit recalculation
+				/// <summary>
+				/// Calculate profit for trade in pumping mode
+				/// </summary>
+				/// <param name="trade">trade parameters</param>
 				int TradeCalcProfit(P23::MetaTrader4::Manager::Contracts::TradeRecord^ trade);
 				
 				//--- new symbol commands
+				/// <summary>
+				/// Change symbol properties
+				/// </summary>
+				/// <param name="prop">new values</param>
 				int SymbolChange(P23::MetaTrader4::Manager::Contracts::SymbolProperties^ prop);
 				
 				//--- network statistics
+				/// <summary>
+				/// Get bytes sent
+				/// </summary>
 				int BytesSent();
+
+				/// <summary>
+				/// Get bytes received
+				/// </summary>
 				int BytesReceived();
 				
 				//---
+				/// <summary>
+				/// Get common parameters
+				/// </summary>
 				int ManagerCommon(Common^ common);
 				
 				//--- log access
+				/// <summary>
+				/// Logs Out
+				/// </summary>
+				/// <param name="code">code</param>
+				/// <param name="source">source</param>
+				/// <param name="msg">msg</param>
 				void LogsOut(int code, System::String^ source, System::String^ msg);
+
+				/// <summary>
+				/// Logs Mode
+				/// </summary>
+				/// <param name="mode">mode</param>
 				void LogsMode(int mode);
 				
 				//--- check license
+				/// <summary>
+				/// Check license status
+				/// </summary>
+				/// <param name="licenseName">license name</param>
 				int LicenseCheck(System::String^ licenseName);
 
 				//--- gateway configs
+				/// <summary>
+				/// Request gateway account configurations
+				/// </summary>
 				IList<GatewayAccount^>^ CfgRequestGatewayAccount();
+				
+				/// <summary>
+				/// Request gateway markup configurations
+				/// </summary>
 				IList<GatewayMarkup^>^ CfgRequestGatewayMarkup();
+
+				/// <summary>
+				/// Request gateway rule configurations
+				/// </summary>
 				IList<GatewayRule^>^ CfgRequestGatewayRule();
 				
 				//--- configuration update
+				/// <summary>
+				/// Update gateway account configuration
+				/// </summary>
+				/// <param name="cfg">new configuration parameters</param>
 				int CfgUpdateGatewayAccount(GatewayAccount^ cfg);
+
+				/// <summary>
+				/// Update gateway markup configuration
+				/// </summary>
+				/// <param name="cfg">new configuration parameters</param>
 				int CfgUpdateGatewayMarkup(GatewayMarkup^ cfg);
+
+				/// <summary>
+				/// Update gateway rule configuration
+				/// </summary>
+				/// <param name="cfg">new configuration parameters</param>
 				int CfgUpdateGatewayRule(GatewayRule^ cfg);
 				
 				//--- configuration delete
+				/// <summary>
+				/// Delete gateway account configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be deleted</param>
 				int CfgDeleteGatewayAccount(int pos);
+
+				/// <summary>
+				/// Delete gateway markup configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be deleted</param>
 				int CfgDeleteGatewayMarkup(int pos);
+
+				/// <summary>
+				/// Delete gateway rule configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be deleted</param>
 				int CfgDeleteGatewayRule(int pos);
 				
 				//--- configuration shift
+				/// <summary>
+				/// Shift position of gateway account configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be shifted</param>
+				/// <param name="shift">shift value</param>
 				int CfgShiftGatewayAccount(int pos, int shift);
+
+				/// <summary>
+				/// Shift position of gateway markup configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be shifted</param>
+				/// <param name="shift">shift value</param>
 				int CfgShiftGatewayMarkup(int pos, int shift);
+
+				/// <summary>
+				/// Shift position of gateway rule configuration
+				/// </summary>
+				/// <param name="pos">position of configuration to be shifted</param>
+				/// <param name="shift">shift value</param>
 				int CfgShiftGatewayRule(int pos, int shift);
 				
 				//--- administrator databases commands
+				/// <summary>
+				/// Check balance for provided accounts
+				/// </summary>
+				/// <param name="logins">logins</param>
 				IList<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>^  AdmBalanceCheck(IList<int>^ logins);
 			};		
 		}

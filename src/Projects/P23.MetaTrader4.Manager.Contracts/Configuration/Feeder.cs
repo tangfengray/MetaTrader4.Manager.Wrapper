@@ -61,7 +61,7 @@
         public int TimeoutSleep { get; set; }
 
         /// <summary>
-        /// Reconnect count (see timeout_reconnect & timeout_sleep)
+        /// Reconnect count (see timeout_reconnect and timeout_sleep)
         /// </summary>
         public int AttempsSleep { get; set; }
 
