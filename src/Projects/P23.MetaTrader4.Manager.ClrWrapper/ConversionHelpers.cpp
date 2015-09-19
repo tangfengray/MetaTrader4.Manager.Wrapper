@@ -127,11 +127,11 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 	newConfiguration->KeepTicks = configuration->keepticks;
 	newConfiguration->LastLogin = configuration->lastlogin;
 	newConfiguration->LastOrder = configuration->lastorder;
-	newConfiguration->LiveUpdateMode = configuration->liveupdate_mode;
+	newConfiguration->LiveUpdateMode = (Enums::LiveUpdateMode) configuration->liveupdate_mode;
 	newConfiguration->LostLogin = configuration->lostlogin;
 	newConfiguration->MinClient = configuration->minclient;
 	newConfiguration->MinApi = configuration->minapi;
-	newConfiguration->MonthlyStateMode = configuration->monthly_state_mode;
+	newConfiguration->MonthlyStateMode = (Enums::MonthlyStatementMode) configuration->monthly_state_mode;
 	newConfiguration->Name = gcnew String(configuration->name);
 	newConfiguration->OptimizationCounter = configuration->optimization_counter;
 	newConfiguration->OptimizationLastTime = configuration->optimization_lasttime;
@@ -145,16 +145,16 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 	newConfiguration->PathHistory = gcnew String(configuration->path_history);
 	newConfiguration->PathLog = gcnew String(configuration->path_log);
 	newConfiguration->Port = configuration->port;
-	newConfiguration->RolloversMode = configuration->rollovers_mode;
+	newConfiguration->RolloversMode = (Enums::RolloverMode) configuration->rollovers_mode;
 	newConfiguration->ServerBuild = configuration->server_build;
 	newConfiguration->ServerVersion = configuration->server_version;
-	newConfiguration->StatementMode = configuration->statement_mode; 
+	newConfiguration->StatementMode = (Enums::StatementMode) configuration->statement_mode;
 	newConfiguration->StatementWeekend = configuration->statement_weekend;
 	newConfiguration->TimeOfDemo = configuration->timeofdemo;
 	newConfiguration->Timeout = configuration->timeout;
 	newConfiguration->TimeSync = gcnew String(configuration->timesync);
 	newConfiguration->TimeZone = configuration->timezone;
-	newConfiguration->TypeOfDemo = configuration->typeofdemo;
+	newConfiguration->TypeOfDemo = (Enums::DemoAccountsType)configuration->typeofdemo;
 
 	for (int i = 0; i < 8; i++)
 		newConfiguration->WebAdresses->Add(configuration->web_adresses[i]);
@@ -187,11 +187,11 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 	newConfiguration->keepticks = configuration->KeepTicks;
 	newConfiguration->lastlogin = configuration->LastLogin;
 	newConfiguration->lastorder = configuration->LastOrder;
-	newConfiguration->liveupdate_mode = configuration->LiveUpdateMode;
+	newConfiguration->liveupdate_mode = (int)configuration->LiveUpdateMode;
 	newConfiguration->lostlogin = configuration->LostLogin;
 	newConfiguration->minclient = configuration->MinClient;
 	newConfiguration->minapi = configuration->MinApi;
-	newConfiguration->monthly_state_mode = configuration->MonthlyStateMode;
+	newConfiguration->monthly_state_mode = (int)configuration->MonthlyStateMode;
 
 	char* name = Convert(configuration->Name);
 	if (name != NULL)
@@ -222,10 +222,10 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 		COPY_STR(newConfiguration->path_log, path_log);
 	
 	newConfiguration->port = configuration->Port;
-	newConfiguration->rollovers_mode = configuration->RolloversMode;
+	newConfiguration->rollovers_mode = (int)configuration->RolloversMode;
 	newConfiguration->server_build = configuration->ServerBuild;
 	newConfiguration->server_version = configuration->ServerVersion;
-	newConfiguration->statement_mode = configuration->StatementMode;
+	newConfiguration->statement_mode = (int)configuration->StatementMode;
 	newConfiguration->statement_weekend = configuration->StatementWeekend;
 	newConfiguration->timeofdemo = configuration->TimeOfDemo;
 	newConfiguration->timeout = configuration->Timeout;
@@ -235,7 +235,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 		COPY_STR(newConfiguration->timesync, timesync);
 	
 	newConfiguration->timezone = configuration->TimeZone;
-	newConfiguration->typeofdemo = configuration->TypeOfDemo;
+	newConfiguration->typeofdemo = (int)configuration->TypeOfDemo;
 
 	if (configuration->WebAdresses->Count > 8)
 		throw gcnew ArgumentException("WebAdresses count exceed 8");
@@ -389,7 +389,7 @@ Access^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConAccess* configuration)
 {
 	Access^ newConfiguration = gcnew Access();
 
-	newConfiguration->Action = configuration->action;
+	newConfiguration->Action = (Enums::AccessActionType)configuration->action;
 	newConfiguration->Comment = gcnew String(configuration->comment);
 	newConfiguration->From = configuration->from;
 	newConfiguration->To = configuration->to;
@@ -405,7 +405,7 @@ ConAccess* P23::MetaTrader4::Manager::ClrWrapper::Convert(Access^ configuration)
 	if (comment != NULL)
 		COPY_STR(newConfiguration->comment, comment);
 
-	newConfiguration->action = configuration->Action;
+	newConfiguration->action = (int)configuration->Action;
 	newConfiguration->from = configuration->From;
 	newConfiguration->to = configuration->To;
 

@@ -65,6 +65,11 @@
     <Compile Include="ChartInfo.cs" />
     <Compile Include="Configuration\Access.cs" />
     <Compile Include="Configuration\Backup.cs" />
+    <Compile Include="Configuration\Enums\DemoAccountsType.cs" />
+    <Compile Include="Configuration\Enums\LiveUpdateMode.cs" />
+    <Compile Include="Configuration\Enums\MonthlyStatementMode.cs" />
+    <Compile Include="Configuration\Enums\RolloverMode.cs" />
+    <Compile Include="Configuration\Enums\StatementMode.cs" />
     <Compile Include="Configuration\FilesConfigurations.cs" />
     <Compile Include="Configuration\GatewayAccount.cs" />
     <Compile Include="Configuration\Common.cs" />

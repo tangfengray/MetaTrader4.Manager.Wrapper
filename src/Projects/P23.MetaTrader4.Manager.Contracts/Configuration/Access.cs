@@ -1,4 +1,5 @@
 ﻿using System;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -10,7 +11,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Type of action (FW_BLOCK,FW_PERMIT)
         /// </summary>
-        public int Action { get; set; }
+        public AccessActionType Action { get; set; }
 
         /// <summary>
         /// From addresses

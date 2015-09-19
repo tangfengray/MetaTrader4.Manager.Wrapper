@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -36,7 +37,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Demo-accounts type (DEMO_DISABLED, DEMO_PROLONG, DEMO_FIXED)
         /// </summary>
-        public int TypeOfDemo { get; set; }
+        public DemoAccountsType TypeOfDemo { get; set; }
 
         /// <summary>
         /// Demo-account living time
@@ -116,7 +117,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// LiveUpdate mode (LIVE_UPDATE_NO,LIVE_UPDATE_ALL,LIVE_UPDATE_NO_SERVER)
         /// </summary>
-        public int LiveUpdateMode { get; set; }
+        public LiveUpdateMode LiveUpdateMode { get; set; }
 
         /// <summary>
         /// Last order's ticket (read only)
@@ -136,7 +137,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Rollover mode (ROLLOVER_NORMAL,ROLLOVER_REOPEN_BY_CLOSE_PRICE,ROLLOVER_REOPEN_BY_BID)
         /// </summary>
-        public int RolloversMode { get; set; }
+        public RolloverMode RolloversMode { get; set; }
 
         /// <summary>
         /// Path to databases
@@ -201,12 +202,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Statement generation time (STATEMENT_END_DAY,STATEMENT_START_DAY)
         /// </summary>
-        public int StatementMode { get; set; }
+        public StatementMode StatementMode { get; set; }
 
         /// <summary>
         /// Monthly statement generation day (MONTHLY_STATEMENT_END_MONTH,MONTHLY_STATEMENT_START_MONTH)
         /// </summary>
-        public int MonthlyStateMode { get; set; }
+        public MonthlyStatementMode MonthlyStateMode { get; set; }
 
         /// <summary>
         /// Ticks keep period
