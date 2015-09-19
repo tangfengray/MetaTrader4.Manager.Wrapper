@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using P23.MetaTrader4.Manager.Contracts;
+using P23.MetaTrader4.Manager.Tests.Helpers;
 
 namespace P23.MetaTrader4.Manager.Tests
 {
@@ -8,24 +10,23 @@ namespace P23.MetaTrader4.Manager.Tests
     public class SymbolCommandsTests
     {
         [TestMethod]
-        public void GetSymbolInfo()
+        public void SymbolInfoGet_Invoke_ExpectedDataReturned()
         {
-            using (var mt = new ClrWrapper(new ConnectionParameters { Login = 0, Password = "", Server = "" }, @"D:\ProgrammingWorkspace\MetaTrader4.Manager.Wrapper\src\Libraries\mtmanapi\mtmanapi.dll"))
+            using (var mt = TestHelpers.CreateWrapper())
             {
+                var autoResetEvent = new AutoResetEvent(false);
                 mt.SymbolsRefresh();
-                //without pumping, but depends on MT server settings
-                var r = mt.TicksRequest(new TickRequest() {Symbol = "EURUSD", From = 0, To = int.MaxValue, Flags = (char) 3});
-                Assert.IsNotNull(r);
-                
-                var p = mt.PumpingSwitch((delegate(int i)
+
+                mt.PumpingSwitch((delegate(int i)
                 {
-                    //wait until 0 recieved, thats mean pumping started, and after 
-                    //you will be able to recieve new quotes and access them
+                    if (i == 0)
+                        autoResetEvent.Set();
                 }));
-                Assert.AreEqual(0, p);
-                mt.SymbolAdd("EURUSD");
-                Thread.Sleep(30000);
+
+                autoResetEvent.WaitOne(new TimeSpan(0, 0, 10));
+
                 var symbol = mt.SymbolInfoGet("EURUSD");
+
                 Assert.IsNotNull(symbol);
             }
         }

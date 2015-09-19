@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using P23.MetaTrader4.Manager.Contracts;
+using P23.MetaTrader4.Manager.Tests.Helpers;
 
 namespace P23.MetaTrader4.Manager.Tests
 {
@@ -7,12 +7,12 @@ namespace P23.MetaTrader4.Manager.Tests
     public class CfgRequestTests
     {
         [TestMethod]
-        public void CfgRequestSymbol()
+        public void CfgRequestSymbol_Invoke_SymbolConfigurationsReturned()
         {
-            using (var mt = new ClrWrapper(new ConnectionParameters { Login = 0, Password = "", Server = "" }, @"D:\ProgrammingWorkspace\MetaTrader4.Manager.Wrapper\src\Libraries\mtmanapi\mtmanapi.dll"))
+            using (var mt = TestHelpers.CreateWrapper())
             {
                 var configs = mt.CfgRequestSymbol();
-                Assert.IsNotNull(configs.Count > 0);
+                Assert.IsTrue(configs.Count > 0);
             }
         }
     }

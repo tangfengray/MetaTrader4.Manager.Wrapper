@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace P23.MetaTrader4.Manager.Tests
+namespace P23.MetaTrader4.Manager.Tests.Helpers
 {
-    public static class Helpers
+    public static class Extensions
     {
         public static uint ToUnixTime(this DateTime input)
         {
