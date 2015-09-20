@@ -1,4 +1,6 @@
-﻿namespace P23.MetaTrader4.Manager.Contracts.Configuration
+﻿using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
+
+namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
     /// <summary>
     /// Object that represents feeder configuration
@@ -43,7 +45,7 @@
         /// <summary>
         /// Datafeed mode-enumeration FEED_QUOTES, FEED_NEWS, FEED_QUOTESNEWS
         /// </summary>
-        public int Mode { get; set; }
+        public DataFeedMode Mode { get; set; }
 
         /// <summary>
         /// Max. freeze time (default ~120 sec.)

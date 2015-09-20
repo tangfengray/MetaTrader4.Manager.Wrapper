@@ -6,10 +6,4 @@
         ProlongAtable,
         Fixed
     }
-
-    public enum AccessActionType
-    {
-        Block,
-        Permit
-    }
 }

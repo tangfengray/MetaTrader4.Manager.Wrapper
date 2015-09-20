@@ -1,4 +1,5 @@
 ﻿using System;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -35,7 +36,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Synchronization mode: HB_ADD,HB_UPDATE,HB_INSERT
         /// </summary>
-        public int Mode { get; set; }
+        public SynchronizationMode Mode { get; set; }
 
         /// <summary>
         /// Synchronization range (0-whole chart)

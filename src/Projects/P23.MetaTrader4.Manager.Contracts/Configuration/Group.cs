@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -126,7 +127,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Margin mode-MARGIN_DONT_USE,MARGIN_USE_ALL,MARGIN_USE_PROFIT,MARGIN_USE_LOSS
         /// </summary>
-        public int MarginMode { get; set; }
+        public MarginCalculationMode MarginMode { get; set; }
 
         /// <summary>
         /// Stop out level
@@ -146,12 +147,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// News mode
         /// </summary>
-        public int News { get; set; }
+        public NewsMode News { get; set; }
 
         /// <summary>
         /// Rights bit mask-ALLOW_FLAG_EMAIL
         /// </summary>
-        public int Rights { get; set; }
+        public GroupRights Rights { get; set; }
 
         /// <summary>
         /// Check IE prices on requests
@@ -186,7 +187,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Margin controlling type { MARGIN_TYPE_PERCENT,  MARGIN_TYPE_CURRENCY }
         /// </summary>
-        public int MarginType { get; set; }
+        public MarginControllingType MarginType { get; set; }
 
         /// <summary>
         /// Inactivity period after which account moves to archive base (in days)

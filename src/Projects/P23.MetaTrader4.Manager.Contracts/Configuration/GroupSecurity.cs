@@ -1,4 +1,6 @@
-﻿namespace P23.MetaTrader4.Manager.Contracts.Configuration
+﻿using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
+
+namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
     /// <summary>
     /// Object that represents group security configuration
@@ -18,7 +20,7 @@
         /// <summary>
         /// Dealing mode-EXECUTION_MANUAL,EXECUTION_AUTO,EXECUTION_ACTIVITY
         /// </summary>
-        public int Execution { get; set; }
+        public DealingMode Execution { get; set; }
 
         /// <summary>
         /// Standart commission
@@ -28,12 +30,12 @@
         /// <summary>
         /// Commission type-COMM_TYPE_MONEY,COMM_TYPE_PIPS,COMM_TYPE_PERCENT
         /// </summary>
-        public int CommType { get; set; }
+        public CommissionType CommType { get; set; }
 
         /// <summary>
         /// Commission lots mode-COMMISSION_PER_LOT,COMMISSION_PER_DEAL
         /// </summary>
-        public int CommLots { get; set; }
+        public CommissionLotsMode CommLots { get; set; }
 
         /// <summary>
         /// Agent commission
@@ -43,7 +45,7 @@
         /// <summary>
         /// Agent commission mode-COMM_TYPE_MONEY, COMM_TYPE_PIPS
         /// </summary>
-        public int CommAgentType { get; set; }
+        public CommissionType CommAgentType { get; set; }
 
         /// <summary>
         /// Spread difference in compare with default security spread
@@ -78,7 +80,7 @@
         /// <summary>
         /// Clients trade rights-bit mask see TRADE_DENY_NONE,TRADE_DENY_CLOSEBY,TRADE_DENY_MUCLOSEBY
         /// </summary>
-        public int TradeRights { get; set; }
+        public ClientsTradeRights TradeRights { get; set; }
 
         /// <summary>
         /// Do not resend request to the dealer when client uses deviation
@@ -88,7 +90,7 @@
         /// <summary>
         /// Auto close-out method { CLOSE_OUT_NONE, CLOSE_OUT_HIHI, CLOSE_OUT_LOLO, CLOSE_OUT_HILO, CLOSE_OUT_LOHI, CLOSE_OUT_LOHI, CLOSE_OUT_FIFO, CLOSE_OUT_LIFO, CLOSE_OUT_INTRDAY_FIFO }
         /// </summary>
-        public int AutoCloseOutMode { get; set; }
+        public AutoCloseOutMethod AutoCloseOutMode { get; set; }
 
         /// <summary>
         /// Commission taxes
@@ -98,7 +100,7 @@
         /// <summary>
         /// Agent commission per lot/per deal { COMMISSION_PER_LOT,COMMISSION_PER_DEAL }
         /// </summary>
-        public int CommAgentLots { get; set; }
+        public CommissionLotsMode CommAgentLots { get; set; }
 
         /// <summary>
         /// "soft" margin check

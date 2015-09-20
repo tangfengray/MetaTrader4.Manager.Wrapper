@@ -281,25 +281,25 @@ Backup^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConBackup* configuration)
 	Backup^ newConfiguration = gcnew Backup();
 	
 	newConfiguration->ArchiveLastTime = configuration->archive_lasttime;
-	newConfiguration->ArchivePeriod = configuration->archive_period;
+	newConfiguration->ArchivePeriod = (Enums::ArchiveBackupExecutionPeriod)configuration->archive_period;
 	newConfiguration->ArchiveShift = configuration->archive_shift;
-	newConfiguration->ArchiveStore = configuration->archive_store;
+	newConfiguration->ArchiveStore = (Enums::ArchiveBackupStorePeriod)configuration->archive_store;
 	newConfiguration->ExportLastTime = configuration->export_lasttime;
 	newConfiguration->ExportPath = gcnew String( configuration->export_path);
-	newConfiguration->ExportPeriod = configuration->export_period;
+	newConfiguration->ExportPeriod = (Enums::ExportExecutionPeriod)configuration->export_period;
 	newConfiguration->ExportSecurities = gcnew String(configuration->export_securities);
 	newConfiguration->ExternalPath = gcnew String(configuration->external_path);
 	newConfiguration->FullBackupLastTime = configuration->fullbackup_lasttime;
 	newConfiguration->FullBackupPath = gcnew String(configuration->fullbackup_path);
-	newConfiguration->FullBackupPeriod = configuration->fullbackup_period;
+	newConfiguration->FullBackupPeriod = (Enums::FullBackupExecutionPeriod)configuration->fullbackup_period;
 	newConfiguration->FullBackupShift = configuration->fullbackup_shift;
-	newConfiguration->FullBackupStore = configuration->fullbackup_store;
+	newConfiguration->FullBackupStore = (Enums::FullBackupStorePeriod)configuration->fullbackup_store;
 	newConfiguration->WatchFailover = configuration->watch_failover;
 	newConfiguration->WatchIp = configuration->watch_ip;
 	newConfiguration->WatchLogin = configuration->watch_login;
 	newConfiguration->WatchOpposite = gcnew String(configuration->watch_opposite);
 	newConfiguration->WatchPassword = gcnew String(configuration->watch_password);
-	newConfiguration->WatchRole = configuration->watch_role;
+	newConfiguration->WatchRole = (Enums::ServerRole)configuration->watch_role;
 	newConfiguration->WatchState = configuration->watch_state;
 	newConfiguration->WatchTimeout = configuration->watch_timeout;
 	newConfiguration->WatchTimestamp = configuration->watch_timestamp;
@@ -312,16 +312,16 @@ ConBackup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Backup^ configuration)
 	ConBackup* newConfiguration = new ConBackup();
 
 	newConfiguration->archive_lasttime = configuration->ArchiveLastTime;
-	newConfiguration->archive_period = configuration->ArchivePeriod;
+	newConfiguration->archive_period = (int)configuration->ArchivePeriod;
 	newConfiguration->archive_shift = (char)configuration->ArchiveShift;
-	newConfiguration->archive_store = configuration->ArchiveStore;
+	newConfiguration->archive_store = (int)configuration->ArchiveStore;
 	newConfiguration->export_lasttime = configuration->ExportLastTime;
 
 	char* export_path = Convert(configuration->ExportPath);
 	if (export_path != NULL)
 		COPY_STR(newConfiguration->export_path, export_path);
 	
-	newConfiguration->export_period = configuration->ExportPeriod;
+	newConfiguration->export_period = (int)configuration->ExportPeriod;
 
 	char* export_securities = Convert(configuration->ExportSecurities);
 	if (export_securities != NULL)
@@ -337,9 +337,9 @@ ConBackup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Backup^ configuration)
 	if (fullbackup_path != NULL)
 		COPY_STR(newConfiguration->fullbackup_path, fullbackup_path);
 	
-	newConfiguration->fullbackup_period = configuration->FullBackupPeriod;
+	newConfiguration->fullbackup_period = (int)configuration->FullBackupPeriod;
 	newConfiguration->fullbackup_shift = configuration->FullBackupShift;
-	newConfiguration->fullbackup_store = configuration->FullBackupStore;
+	newConfiguration->fullbackup_store = (int)configuration->FullBackupStore;
 	newConfiguration->watch_failover = (char)configuration->WatchFailover;
 	newConfiguration->watch_ip = configuration->WatchIp;
 	newConfiguration->watch_login = configuration->WatchLogin;
@@ -352,7 +352,7 @@ ConBackup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Backup^ configuration)
 	if (watch_password != NULL)
 		COPY_STR(newConfiguration->watch_password, watch_password);
 	
-	newConfiguration->watch_role = configuration->WatchRole;
+	newConfiguration->watch_role = (int)configuration->WatchRole;
 	newConfiguration->watch_state = (char)configuration->WatchState;
 	newConfiguration->watch_timeout = configuration->WatchTimeout;
 	newConfiguration->watch_timestamp = configuration->WatchTimestamp;
@@ -500,14 +500,14 @@ Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
 	newConfiguration->Currency = gcnew String(configuration->currency);
 	newConfiguration->Description = gcnew String(configuration->description);
 	newConfiguration->Digits = configuration->digits;
-	newConfiguration->Exemode = configuration->exemode;
+	newConfiguration->Exemode = (Enums::SymbolExecutionMode)configuration->exemode;
 	newConfiguration->Expiration = configuration->expiration;
 	newConfiguration->Filter = configuration->filter;
 	newConfiguration->FilterCounter = configuration->filter_counter;
 	newConfiguration->FilterLimit = configuration->filter_limit;
 	newConfiguration->FilterSmoothing = configuration->filter_smoothing;
 	newConfiguration->FreezeLevel = configuration->freeze_level;
-	newConfiguration->GtcPendings = configuration->gtc_pendings;
+	newConfiguration->GtcPendings = (Enums::GtcMode)configuration->gtc_pendings;
 	newConfiguration->InstantMaxVolume = configuration->instant_max_volume;
 	newConfiguration->Logging = configuration->logging;
 	newConfiguration->LongOnly = configuration->long_only;
@@ -517,11 +517,11 @@ Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
 	newConfiguration->MarginHedgedStrong = configuration->margin_hedged_strong;
 	newConfiguration->MarginInitial = configuration->margin_initial;
 	newConfiguration->MarginMaintenance = configuration->margin_maintenance;
-	newConfiguration->MarginMode = configuration->margin_mode;
+	newConfiguration->MarginMode = (Enums::SymbolMarginCalculationMode)configuration->margin_mode;
 	newConfiguration->Multiply = configuration->multiply;
 	newConfiguration->Name = gcnew String(configuration->symbol);
 	newConfiguration->Point = configuration->point;
-	newConfiguration->ProfitMode = configuration->profit_mode;
+	newConfiguration->ProfitMode = (Enums::ProfitCalculationMode)configuration->profit_mode;
 	newConfiguration->QuotesDelay = configuration->quotes_delay;
 	newConfiguration->RealTime = configuration->realtime;
 
@@ -538,11 +538,11 @@ Symbol^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSymbol* configuration)
 	newConfiguration->SwapOpenPrice = configuration->swap_openprice;
 	newConfiguration->SwapRollover3Days = configuration->swap_rollover3days;
 	newConfiguration->SwapShort = configuration->swap_short;
-	newConfiguration->SwapType = configuration->swap_type;
+	newConfiguration->SwapType = (Enums::SwapType)configuration->swap_type;
 	newConfiguration->SwapVariationMargin = configuration->swap_variation_margin;
 	newConfiguration->TickSize = configuration->tick_size;
 	newConfiguration->TickValue = configuration->tick_value;
-	newConfiguration->Trade = configuration->trade;
+	newConfiguration->Trade = (Enums::TradeMode)configuration->trade;
 	newConfiguration->Type = configuration->type;
 	newConfiguration->ValueDate = configuration->value_date;
 
@@ -572,14 +572,14 @@ ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
 		COPY_STR(newConfiguration->description, description);
 
 	newConfiguration->digits = configuration->Digits;
-	newConfiguration->exemode = configuration->Exemode;
+	newConfiguration->exemode = (int)configuration->Exemode;
 	newConfiguration->expiration = configuration->Expiration;
 	newConfiguration->filter = configuration->Filter;
 	newConfiguration->filter_counter = configuration->FilterCounter;
 	newConfiguration->filter_limit = configuration->FilterLimit;
 	newConfiguration->filter_smoothing = configuration->FilterSmoothing;
 	newConfiguration->freeze_level = configuration->FreezeLevel;
-	newConfiguration->gtc_pendings = configuration->GtcPendings;
+	newConfiguration->gtc_pendings = (int)configuration->GtcPendings;
 	newConfiguration->instant_max_volume = configuration->InstantMaxVolume;
 	newConfiguration->logging = configuration->Logging;
 	newConfiguration->long_only = configuration->LongOnly;
@@ -593,7 +593,7 @@ ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
 	newConfiguration->margin_hedged_strong = configuration->MarginHedgedStrong;
 	newConfiguration->margin_initial = configuration->MarginInitial;
 	newConfiguration->margin_maintenance = configuration->MarginMaintenance;
-	newConfiguration->margin_mode = configuration->MarginMode;
+	newConfiguration->margin_mode = (int)configuration->MarginMode;
 	newConfiguration->multiply = configuration->Multiply;
 
 	char* symbol = Convert(configuration->Name);
@@ -601,7 +601,7 @@ ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
 		COPY_STR(newConfiguration->symbol, symbol);
 
 	newConfiguration->point = configuration->Point;
-	newConfiguration->profit_mode = configuration->ProfitMode;
+	newConfiguration->profit_mode = (int)configuration->ProfitMode;
 	newConfiguration->quotes_delay = configuration->QuotesDelay;
 	newConfiguration->realtime = configuration->RealTime;
 
@@ -621,11 +621,11 @@ ConSymbol* P23::MetaTrader4::Manager::ClrWrapper::Convert(Symbol^ configuration)
 	newConfiguration->swap_openprice = configuration->SwapOpenPrice;
 	newConfiguration->swap_rollover3days = configuration->SwapRollover3Days;
 	newConfiguration->swap_short = configuration->SwapShort;
-	newConfiguration->swap_type = configuration->SwapType;
+	newConfiguration->swap_type = (int)configuration->SwapType;
 	newConfiguration->swap_variation_margin = configuration->SwapVariationMargin;
 	newConfiguration->tick_size = configuration->TickSize;
 	newConfiguration->tick_value = configuration->TickValue;
-	newConfiguration->trade = configuration->Trade;
+	newConfiguration->trade = (int)configuration->Trade;
 	newConfiguration->type = configuration->Type;
 	newConfiguration->value_date = configuration->ValueDate;
 
@@ -711,20 +711,20 @@ Group^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroup* configuration)
 	newConfiguration->HedgeProhibited = configuration->hedge_prohibited;
 	newConfiguration->InterestRate = configuration->interestrate;
 	newConfiguration->MarginCall = configuration->margin_call;
-	newConfiguration->MarginMode = configuration->margin_mode;
+	newConfiguration->MarginMode = (Enums::MarginCalculationMode)configuration->margin_mode;
 	newConfiguration->MarginStopout = configuration->margin_stopout;
-	newConfiguration->MarginType = configuration->margin_type;
+	newConfiguration->MarginType = (Enums::MarginControllingType)configuration->margin_type;
 	newConfiguration->MaxPositions = configuration->maxpositions;
 	newConfiguration->MaxSecurities = configuration->maxsecurities;
 	newConfiguration->Name = gcnew String(configuration->group);
-	newConfiguration->News = configuration->news;
+	newConfiguration->News = (Enums::NewsMode)configuration->news;
 
 	newConfiguration->NewsLanguages = gcnew System::Collections::Generic::List<unsigned int>();
 	for (int i = 0; i < (int)configuration->news_languages_total; i++)
 		newConfiguration->NewsLanguages->Add(configuration->news_languages[i]);
 
 	newConfiguration->Reports = configuration->reports;
-	newConfiguration->Rights = configuration->rights;
+	newConfiguration->Rights = (Enums::GroupRights)configuration->rights;
 
 	newConfiguration->SecGroups = gcnew System::Collections::Generic::List<GroupSecurity^>();
 	for (int i = 0; i < MAX_SEC_GROUPS; i++)
@@ -786,9 +786,9 @@ ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
 	newConfiguration->hedge_prohibited = configuration->HedgeProhibited;
 	newConfiguration->interestrate = configuration->InterestRate;
 	newConfiguration->margin_call = configuration->MarginCall;
-	newConfiguration->margin_mode = configuration->MarginMode;
+	newConfiguration->margin_mode = (int)configuration->MarginMode;
 	newConfiguration->margin_stopout = configuration->MarginStopout;
-	newConfiguration->margin_type = configuration->MarginType;
+	newConfiguration->margin_type = (int)configuration->MarginType;
 	newConfiguration->maxpositions = configuration->MaxPositions;
 	newConfiguration->maxsecurities = configuration->MaxSecurities;
 
@@ -796,14 +796,14 @@ ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
 	if (group != NULL)
 		COPY_STR(newConfiguration->group, group);
 
-	newConfiguration->news = configuration->News;
+	newConfiguration->news = (int)configuration->News;
 		
 	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
 		newConfiguration->news_languages[i] = configuration->NewsLanguages[i];
 
 	newConfiguration->news_languages_total = configuration->NewsLanguages->Count;
 	newConfiguration->reports = configuration->Reports;
-	newConfiguration->rights = configuration->Rights;
+	newConfiguration->rights = (int)configuration->Rights;
 		
 	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
 		newConfiguration->secgroups[i] = *Convert(configuration->SecGroups[i]);
@@ -853,16 +853,16 @@ GroupSecurity^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroupSec* confi
 {
 	GroupSecurity^ newConfiguration = gcnew GroupSecurity();
 
-	newConfiguration->AutoCloseOutMode = configuration->autocloseout_mode;
+	newConfiguration->AutoCloseOutMode = (Enums::AutoCloseOutMethod)configuration->autocloseout_mode;
 	newConfiguration->CommAgent = configuration->comm_agent;
-	newConfiguration->CommAgentLots = configuration->comm_agent_lots;
-	newConfiguration->CommAgentType = configuration->comm_agent_type;
+	newConfiguration->CommAgentLots = (Enums::CommissionLotsMode)configuration->comm_agent_lots;
+	newConfiguration->CommAgentType = (Enums::CommissionType)configuration->comm_agent_type;
 	newConfiguration->CommBase = configuration->comm_base;
-	newConfiguration->CommLots = configuration->comm_lots;
+	newConfiguration->CommLots = (Enums::CommissionLotsMode)configuration->comm_lots;
 	newConfiguration->CommTax = configuration->comm_tax;
-	newConfiguration->CommType = configuration->comm_type;
+	newConfiguration->CommType = (Enums::CommissionType)configuration->comm_type;
 	newConfiguration->Confirmation = configuration->confirmation;
-	newConfiguration->Execution = configuration->execution;
+	newConfiguration->Execution = (Enums::DealingMode)configuration->execution;
 	newConfiguration->FreeMarginMode = configuration->freemargin_mode;
 	newConfiguration->IeDeviation = configuration->ie_deviation;
 	newConfiguration->IeQuickMode = configuration->ie_quick_mode;
@@ -872,7 +872,7 @@ GroupSecurity^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroupSec* confi
 	newConfiguration->Show = configuration->show;
 	newConfiguration->SpreadDiff = configuration->spread_diff;
 	newConfiguration->Trade = configuration->trade;
-	newConfiguration->TradeRights = configuration->trade_rights;
+	newConfiguration->TradeRights = (Enums::ClientsTradeRights)configuration->trade_rights;
 
 	return newConfiguration;
 } 
@@ -881,16 +881,16 @@ ConGroupSec* P23::MetaTrader4::Manager::ClrWrapper::Convert(GroupSecurity^ confi
 {
 	ConGroupSec* newConfiguration = new ConGroupSec();
 
-	newConfiguration->autocloseout_mode = configuration->AutoCloseOutMode;
+	newConfiguration->autocloseout_mode = (int)configuration->AutoCloseOutMode;
 	newConfiguration->comm_agent = configuration->CommAgent;
-	newConfiguration->comm_agent_lots = configuration->CommAgentLots;
-	newConfiguration->comm_agent_type = configuration->CommAgentType;
+	newConfiguration->comm_agent_lots = (int)configuration->CommAgentLots;
+	newConfiguration->comm_agent_type = (int)configuration->CommAgentType;
 	newConfiguration->comm_base = configuration->CommBase;
-	newConfiguration->comm_lots = configuration->CommLots;
+	newConfiguration->comm_lots = (int)configuration->CommLots;
 	newConfiguration->comm_tax = configuration->CommTax;
-	newConfiguration->comm_type = configuration->CommType;
+	newConfiguration->comm_type = (int)configuration->CommType;
 	newConfiguration->confirmation = configuration->Confirmation;
-	newConfiguration->execution = configuration->Execution;
+	newConfiguration->execution = (int)configuration->Execution;
 	newConfiguration->freemargin_mode = configuration->FreeMarginMode;
 	newConfiguration->ie_deviation = configuration->IeDeviation;
 	newConfiguration->ie_quick_mode = configuration->IeQuickMode;
@@ -900,7 +900,7 @@ ConGroupSec* P23::MetaTrader4::Manager::ClrWrapper::Convert(GroupSecurity^ confi
 	newConfiguration->show = configuration->Show;
 	newConfiguration->spread_diff = configuration->SpreadDiff;
 	newConfiguration->trade = configuration->Trade;
-	newConfiguration->trade_rights = configuration->TradeRights;
+	newConfiguration->trade_rights = (int)configuration->TradeRights;
 	
 	return newConfiguration;
 }
@@ -941,7 +941,7 @@ Feeder^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConFeeder* configuration)
 	newConfiguration->File = gcnew String(configuration->file);
 	newConfiguration->Keywords = gcnew String(configuration->keywords);
 	newConfiguration->Login = gcnew String(configuration->login);
-	newConfiguration->Mode = configuration->mode;
+	newConfiguration->Mode = (Enums::DataFeedMode)configuration->mode;
 	newConfiguration->Name = gcnew String(configuration->name);
 	newConfiguration->NewsLangId = configuration->news_langid;
 	newConfiguration->Pass = gcnew String(configuration->pass);
@@ -972,7 +972,7 @@ ConFeeder* P23::MetaTrader4::Manager::ClrWrapper::Convert(Feeder^ configuration)
 	if (login != NULL)
 		COPY_STR(newConfiguration->login, login);
 
-	newConfiguration->mode = configuration->Mode;
+	newConfiguration->mode = (int)configuration->Mode;
 
 	char* name = Convert(configuration->Name);
 	if (name != NULL)
@@ -1010,7 +1010,7 @@ LiveUpdate^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConLiveUpdate* config
 
 	newConfiguration->MaxConnect = configuration->maxconnect;
 	newConfiguration->Path = gcnew String(configuration->path);
-	newConfiguration->Type = configuration->type;
+	newConfiguration->Type = (Enums::LiveUpdateType)configuration->type;
 	newConfiguration->Version = configuration->version;
 
 	return newConfiguration;
@@ -1039,11 +1039,9 @@ ConLiveUpdate* P23::MetaTrader4::Manager::ClrWrapper::Convert(LiveUpdate^ config
 		COPY_STR(newConfiguration->path, path);
 
 	newConfiguration->totalfiles = configuration->Files->Count;
-	newConfiguration->type = configuration->Type;
+	newConfiguration->type = (int)configuration->Type;
 	newConfiguration->version = configuration->Version;
-
 	
-
 	return newConfiguration;
 }
 
@@ -1054,7 +1052,7 @@ Synchronization^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConSync* configu
 	newConfiguration->Enable = configuration->enable;
 	newConfiguration->From = configuration->from;
 	newConfiguration->Login = gcnew String(configuration->login);
-	newConfiguration->Mode = configuration->mode;
+	newConfiguration->Mode = (Enums::SynchronizationMode)configuration->mode;
 	newConfiguration->Password = gcnew String(configuration->password);
 	newConfiguration->Securities = gcnew String(configuration->securities);
 	newConfiguration->Server = gcnew String(configuration->server);
@@ -1075,7 +1073,7 @@ ConSync* P23::MetaTrader4::Manager::ClrWrapper::Convert(Synchronization^ configu
 	if (login != NULL)
 		COPY_STR(newConfiguration->login, login);
 
-	newConfiguration->mode = configuration->Mode;
+	newConfiguration->mode = (int)configuration->Mode;
 
 	char* password = Convert(configuration->Password);
 	if (password != NULL)
@@ -2010,7 +2008,7 @@ P23::MetaTrader4::Manager::Contracts::Configuration::GatewayAccount^ P23::MetaTr
 
 	output->Address = gcnew String(input->address);
 	output->Enable = input->enable;
-	output->Flags = input->flags;
+	output->Flags = (Enums::EnGatewayAccountFlags)input->flags;
 	output->ID = input->id;
 	output->Login = input->login;
 	output->Name = gcnew String(input->name);
@@ -2047,7 +2045,7 @@ ConGatewayAccount* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrade
 		COPY_STR(output->password, password);
 
 	output->enable = input->Enable;
-	output->flags = input->Flags;
+	output->flags = (int)input->Flags;
 	output->id = input->ID;
 	output->login = input->Login;
 	output->type = input->Type;

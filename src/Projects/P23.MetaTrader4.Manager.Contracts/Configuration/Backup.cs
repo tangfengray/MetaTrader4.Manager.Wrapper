@@ -1,4 +1,5 @@
 ﻿using System;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -15,12 +16,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Full backup's period-BACKUP_1HOUR, BACKUP_4HOURS, BACKUP_1DAY
         /// </summary>
-        public int FullBackupPeriod { get; set; }
+        public FullBackupExecutionPeriod FullBackupPeriod { get; set; }
 
         /// <summary>
         /// Full backup's store time-BU_STORE_1MONTH, BU_STORE_3MONTHS, BU_STORE_6MONTHS,BU_STORE_1YEAR
         /// </summary>
-        public int FullBackupStore { get; set; }
+        public FullBackupStorePeriod FullBackupStore { get; set; }
 
         /// <summary>
         /// Full backup's last execution time
@@ -40,12 +41,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Period of archive backup-ARC_BACKUP_5MIN, ARC_BACKUP_15MIN, ARC_BACKUP_30MIN, ARC_BACKUP_1HOUR
         /// </summary>
-        public int ArchivePeriod { get; set; }
+        public ArchiveBackupExecutionPeriod ArchivePeriod { get; set; }
 
         /// <summary>
         /// Archive backup's store time-ARC_STORE_1WEEK, ARC_STORE_2WEEKS, ARC_STORE_1MONTH, ARC_STORE_3MONTH, ARC_STORE_6MONTH
         /// </summary>
-        public int ArchiveStore { get; set; }
+        public ArchiveBackupStorePeriod ArchiveStore { get; set; }
 
         /// <summary>
         /// Archive backup's last execution time
@@ -65,7 +66,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Export period-enumeration EXPORT_1MIN, EXPORT_5MIN, EXPORT_15MIN, EXPORT_30MIN,EXPORT_1HOUR
         /// </summary>
-        public int ExportPeriod { get; set; }
+        public ExportExecutionPeriod ExportPeriod { get; set; }
 
         /// <summary>
         /// Export's last execution time
@@ -75,7 +76,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Server role { WATCH_STAND_ALONE, WATCH_MASTER, WATCH_SLAVE }
         /// </summary>
-        public int WatchRole { get; set; }
+        public ServerRole WatchRole { get; set; }
 
         /// <summary>
         /// Slave server password
