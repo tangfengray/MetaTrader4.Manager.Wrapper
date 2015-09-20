@@ -15,7 +15,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Period (PERIOD_*)
         /// </summary>
-        public int Period { get; set; }
+        public ChartPeriod Period { get; set; }
 
         /// <summary>
         /// Start of chart block
@@ -35,6 +35,6 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Request mode
         /// </summary>
-        public int Mode { get; set; }
+        public ChartRequestMode Mode { get; set; }
     }
 }

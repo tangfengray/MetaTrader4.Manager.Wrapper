@@ -1,8 +1,8 @@
 namespace P23.MetaTrader4.Manager.Contracts.Configuration.Enums
 {
-    public enum MarginControllingType
+    public enum EnGatewayAccountFlags
     {
-        Percent,
-        Currency
+        None = 0,
+        Quotes = 1
     }
 }

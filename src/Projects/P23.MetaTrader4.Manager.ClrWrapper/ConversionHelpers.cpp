@@ -1250,7 +1250,7 @@ P23::MetaTrader4::Manager::Contracts::FeedDescription^  P23::MetaTrader4::Manage
 	newConfiguration->Copyright = gcnew String(configuration->copyright);
 	newConfiguration->Description = gcnew String(configuration->description);
 	newConfiguration->Email = gcnew String(configuration->email);
-	newConfiguration->Modes = configuration->modes;
+	newConfiguration->Modes = (P23::MetaTrader4::Manager::Contracts::FeederModes)configuration->modes;
 	newConfiguration->Module = gcnew String(configuration->module);
 	newConfiguration->Name = gcnew String(configuration->name);
 	newConfiguration->Server = gcnew String(configuration->server);
@@ -1445,10 +1445,10 @@ P23::MetaTrader4::Manager::Contracts::TradeRecord^  P23::MetaTrader4::Manager::C
 {
 	P23::MetaTrader4::Manager::Contracts::TradeRecord^ output = gcnew P23::MetaTrader4::Manager::Contracts::TradeRecord();
 
-	output->Activation = input->activation;
+	output->Activation = (P23::MetaTrader4::Manager::Contracts::ActivationType)input->activation;
 	output->ClosePrice = input->close_price;
 	output->CloseTime = input->close_time;
-	output->Cmd = input->cmd;
+	output->Cmd = (P23::MetaTrader4::Manager::Contracts::TradeCommand)input->cmd;
 	output->Comment = gcnew String( input->comment);
 	output->Commission = input->commission;
 	output->CommissionAgent = input->commission_agent;
@@ -1470,9 +1470,9 @@ P23::MetaTrader4::Manager::Contracts::TradeRecord^  P23::MetaTrader4::Manager::C
 	output->OpenTime = input->open_time;
 	output->Order = input->order;
 	output->Profit = input->profit;
-	output->Reason = input->reason;
+	output->Reason = (P23::MetaTrader4::Manager::Contracts::TradeReason)input->reason;
 	output->Sl = input->sl;
-	output->State = input->state;
+	output->State = (P23::MetaTrader4::Manager::Contracts::TradeState)input->state;
 	output->Storage = input->storage;
 	output->Symbol = gcnew String(input->symbol);
 	output->Taxes = input->taxes;
@@ -1487,10 +1487,10 @@ TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::M
 {
 	TradeRecord* output = new TradeRecord();
 	
-	output->activation = input->Activation;
+	output->activation = (int)input->Activation;
 	output->close_price = input->ClosePrice;
 	output->close_time = input->CloseTime;
-	output->cmd = input->Cmd;
+	output->cmd = (int)input->Cmd;
 
 	char* comment = Convert(input->Comment);
 	if (comment != NULL)
@@ -1517,7 +1517,7 @@ TradeRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::M
 	output->profit = input->Profit;
 	output->reason = (char)input->Reason;
 	output->sl = input->Sl;
-	output->state = input->State;
+	output->state = (int)input->State;
 	output->storage = input->Storage;
 
 	char* symbol = Convert(input->Symbol);
@@ -1542,7 +1542,7 @@ P23::MetaTrader4::Manager::Contracts::SymbolInfo^ P23::MetaTrader4::Manager::Clr
 	output->CommType = input->comm_type;
 	output->Count = input->count;
 	output->Digits = input->digits;
-	output->Direction = input->direction;
+	output->Direction = (P23::MetaTrader4::Manager::Contracts::SymbolPriceDirection)input->direction;
 	output->High = input->high;
 	output->LastTime = input->lasttime;
 	output->Low = input->low;
@@ -1671,7 +1671,7 @@ TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4:
 {
 	TradeTransInfo* output = new TradeTransInfo();
 		
-	output->cmd = input->Cmd;
+	output->cmd = (short)input->Cmd;
 
 	char* comment = Convert(input->Comment);
 	if (comment != NULL)
@@ -1690,7 +1690,7 @@ TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4:
 		COPY_STR(output->symbol, symbol);
 
 	output->tp = input->Tp;
-	output->type = input->Type;
+	output->type = (UCHAR)input->Type;
 	output->volume = input->Volume;
 
 	return output;
@@ -1699,7 +1699,7 @@ P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ P23::MetaTrader4::Manager:
 {
 	P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::TradeTransInfo();
 
-	output->Cmd = input->cmd;	
+	output->Cmd = (P23::MetaTrader4::Manager::Contracts::TradeCommand)input->cmd;
 	output->Comment = gcnew String(input->comment);
 	output->Crc = input->crc;
 	output->Expiration = input->expiration;
@@ -1710,7 +1710,7 @@ P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ P23::MetaTrader4::Manager:
 	output->Sl = input->sl;
 	output->Symbol = gcnew String(input->symbol);
 	output->Tp = input->tp;
-	output->Type = input->type;
+	output->Type = (P23::MetaTrader4::Manager::Contracts::TradeTransactionType)input->type;
 	output->Volume = input->volume;
 
 	return output;
@@ -1818,7 +1818,7 @@ P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::Cl
 	output->Prices[0] = input->prices[0];
 	output->Prices[1] = input->prices[1];
 	
-	output->Status = input->status;
+	output->Status = (P23::MetaTrader4::Manager::Contracts::TradeRequestStatus)input->status;
 	output->Time = input->time;
 	output->Trade = Convert(&input->trade);
 
@@ -1861,12 +1861,12 @@ P23::MetaTrader4::Manager::Contracts::MarginLevel^ P23::MetaTrader4::Manager::Cl
 	output->Group = gcnew String(input->group);
 	output->Level = input->margin_level;
 
-	output->LevelType = input->level_type;
+	output->LevelType = (P23::MetaTrader4::Manager::Contracts::MarginLevelType)input->level_type;
 	output->Leverage = input->leverage;
 	output->Login = input->login;
 	output->Margin = input->margin;
 	output->MarginFree = input->margin_free;
-	output->MarginType = input->margin_type;
+	output->MarginType = (P23::MetaTrader4::Manager::Contracts::Configuration::Enums::MarginControllingType)input->margin_type;
 	output->Updated = input->updated;
 	output->Volume = input->volume;
 
@@ -1942,8 +1942,8 @@ ChartInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Mana
 	ChartInfo* output = new ChartInfo();
 
 	output->end = input->End;
-	output->mode = input->Mode;
-	output->period = input->Period;
+	output->mode = (int)input->Mode;
+	output->period = (int)input->Period;
 	output->start = input->Start;
 
 	char* symbol = Convert(input->Symbol);
@@ -1978,7 +1978,7 @@ P23::MetaTrader4::Manager::Contracts::TickRecord^ P23::MetaTrader4::Manager::Clr
 	output->Bid = input->bid;
 	output->Ctm = input->ctm;
 	output->DataFeed = input->datafeed;
-	output->Flags = input->flags;
+	output->Flags = (P23::MetaTrader4::Manager::Contracts::TickRecordFlags)input->flags;
 
 	return output;
 }

@@ -12,7 +12,7 @@ namespace P23.MetaTrader4.Manager.Tests
         {
             using (var mt = TestHelpers.CreateWrapper())
             {
-                var charts = mt.ChartRequest(new ChartInfo {Start = 0, End = int.MaxValue, Mode = 0, Period = 60, Symbol = "EURUSD"}, 0);
+                var charts = mt.ChartRequest(new ChartInfo { Start = 0, End = int.MaxValue, Mode = 0, Period = ChartPeriod.H1, Symbol = "EURUSD" }, 0);
                 Assert.IsTrue(charts.Count > 0);
             }
         }
