@@ -1,4 +1,21 @@
 namespace P23.MetaTrader4.Manager.Contracts.Configuration.Enums
 {
-    public enum ClientsTradeRights { None = 0, CloseBy = 1, MuCloseBy = 2 };
+    /// <summary>
+    /// Client trade rights
+    /// </summary>
+    public enum ClientsTradeRights
+    {
+        /// <summary>
+        /// None
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Close by
+        /// </summary>
+        CloseBy = 1,
+        /// <summary>
+        /// Multiple close by
+        /// </summary>
+        MuCloseBy = 2
+    }
 }

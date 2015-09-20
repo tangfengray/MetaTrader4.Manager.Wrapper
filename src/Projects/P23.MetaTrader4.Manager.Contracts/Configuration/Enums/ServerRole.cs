@@ -1,4 +1,21 @@
 namespace P23.MetaTrader4.Manager.Contracts.Configuration.Enums
 {
-    public enum ServerRole{ WatchStandAlone, WatchMaster, WatchSlave };
+    /// <summary>
+    /// Server role
+    /// </summary>
+    public enum ServerRole
+    {
+        /// <summary>
+        /// Watch stand alone
+        /// </summary>
+        WatchStandAlone,
+        /// <summary>
+        /// Watch master
+        /// </summary>
+        WatchMaster,
+        /// <summary>
+        /// Watch slave
+        /// </summary>
+        WatchSlave
+    }
 }

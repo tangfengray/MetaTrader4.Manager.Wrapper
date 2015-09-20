@@ -1,10 +1,25 @@
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// Backup mode
+    /// </summary>
     public enum BackupMode
     {
-        All,             // all backup
-        Periodical,      // periodical backups
-        Startup,         // backups on startup
-        Delete           // backups on delete
+        /// <summary>
+        /// All backup
+        /// </summary>
+        All,
+        /// <summary>
+        /// Periodical backups
+        /// </summary>
+        Periodical,
+        /// <summary>
+        /// Backups on startup
+        /// </summary>
+        Startup,
+        /// <summary>
+        /// Backups on delete
+        /// </summary>
+        Delete
     };
 }
