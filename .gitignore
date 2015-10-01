@@ -11,6 +11,7 @@
 /src/Projects/P23.MetaTrader4.Manager.Tests/bin
 /src/Projects/P23.MetaTrader4.Manager.Tests/obj
 Release
+Debug
 /src/Projects/P23.MetaTrader4.Manager.ClrWrapper/P23.MetaTrader4.Manager.ClrWrapper.sdf
 /src/Libraries/mtmanapi/logs/*.log
 symbols.raw
@@ -23,3 +24,6 @@ ipch
 obj
 bin
 /src/Projects/P23.MetaTrader4.Manager.ClrWrapper/*.user
+credentials.config
+/src/Projects/.vs/P23.MetaTrader4.Manager/v14/*.suo
+/src/Projects/P23.MetaTrader4.Manager.sdf
