@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -41,7 +42,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Trade mode
         /// </summary>
-        public int Trade { get; set; }
+        public TradeMode Trade { get; set; }
 
         /// <summary>
         /// Background color
@@ -81,7 +82,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Profit calculation mode
         /// </summary>
-        public int ProfitMode { get; set; }
+        public ProfitCalculationMode ProfitMode { get; set; }
 
         /// <summary>
         /// Filter value
@@ -121,7 +122,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Execution mode
         /// </summary>
-        public int Exemode { get; set; }
+        public SymbolExecutionMode Exemode { get; set; }
 
         /// <summary>
         /// Enable swaps
@@ -131,7 +132,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Swap type
         /// </summary>
-        public int SwapType { get; set; }
+        public SwapType SwapType { get; set; }
 
         /// <summary>
         /// Swaps values for long postions
@@ -171,12 +172,12 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// GTC mode { ORDERS_DAILY, ORDERS_GTC, ORDERS_DAILY_NO_STOPS }
         /// </summary>
-        public int GtcPendings { get; set; }
+        public GtcMode GtcPendings { get; set; }
         
         /// <summary>
         /// Margin calculation mode
         /// </summary>
-        public int MarginMode { get; set; }
+        public SymbolMarginCalculationMode MarginMode { get; set; }
 
         /// <summary>
         /// Initial margin

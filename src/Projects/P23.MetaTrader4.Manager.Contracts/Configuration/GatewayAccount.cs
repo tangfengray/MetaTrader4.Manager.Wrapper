@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -50,6 +51,6 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Flag fields
         /// </summary>
-        public int Flags { get; set; }
+        public EnGatewayAccountFlags Flags { get; set; }
     }
 }

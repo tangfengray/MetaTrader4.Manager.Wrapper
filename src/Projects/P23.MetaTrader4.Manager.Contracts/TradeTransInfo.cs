@@ -10,12 +10,12 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Trade transaction type
         /// </summary>
-        public byte Type { get; set; }
+        public TradeTransactionType Type { get; set; }
 
         /// <summary>
         ///Trade command
         /// </summary>
-        public short Cmd { get; set; }
+        public TradeCommand Cmd { get; set; }
 
         /// <summary>
         /// Order

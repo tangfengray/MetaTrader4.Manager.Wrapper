@@ -30,6 +30,6 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// TICK_FLAG_* flags
         /// </summary>
-        public char Flags { get; set; }
+        public TickRecordFlags Flags { get; set; }
     }
 }

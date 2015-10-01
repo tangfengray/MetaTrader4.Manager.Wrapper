@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
 
 namespace P23.MetaTrader4.Manager.Contracts.Configuration
 {
@@ -40,7 +41,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// <summary>
         /// Type LIVE_UPDATE_*
         /// </summary>
-        public int Type { get; set; }
+        public LiveUpdateType Type { get; set; }
 
         /// <summary>
         /// Enable

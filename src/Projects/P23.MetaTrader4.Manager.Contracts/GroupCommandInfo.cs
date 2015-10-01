@@ -13,7 +13,7 @@
         /// <summary>
         /// Group coommand
         /// </summary>
-        public char Command { get; set; }
+        public GroupCommands Command { get; set; }
 
         /// <summary>
         /// New group

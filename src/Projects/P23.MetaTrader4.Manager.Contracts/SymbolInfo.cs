@@ -50,7 +50,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Direction
         /// </summary>
-        public int Direction { get; set; }
+        public SymbolPriceDirection Direction { get; set; }
 
         /// <summary>
         /// Update flag

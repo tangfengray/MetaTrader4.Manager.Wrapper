@@ -50,6 +50,8 @@ IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ P23::MetaTrader4::Manage
 		output->Add(Convert(&ticks[i]));
 	}
 
+	_manager->Manager->MemFree(ticks);
+
 	return output;
 }
 
@@ -71,6 +73,8 @@ IList<P23::MetaTrader4::Manager::Contracts::MailBox^>^ P23::MetaTrader4::Manager
 	for (int i = 0; i < total; i++) {
 		output->Add(Convert(&mails[i]));
 	}
+
+	_manager->Manager->MemFree(mails);
 
 	return output;
 }

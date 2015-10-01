@@ -31,7 +31,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Trade command
         /// </summary>
-        public int Cmd { get; set; }
+        public TradeCommand Cmd { get; set; }
 
         /// <summary>
         /// Volume
@@ -46,7 +46,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Reserved
         /// </summary>
-        public int State { get; set; }
+        public TradeState State { get; set; }
 
         /// <summary>
         /// Open price
@@ -81,7 +81,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Trade reason
         /// </summary>
-        public char Reason { get; set; }
+        public TradeReason Reason { get; set; }
 
         /// <summary>
         /// Convertation rates from profit currency to group deposit currency
@@ -137,7 +137,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// used by MT Manager
         /// </summary>
-        public int Activation { get; set; }
+        public ActivationType Activation { get; set; }
 
         /// <summary>
         /// Gateway order price deviation (pips) from order open price

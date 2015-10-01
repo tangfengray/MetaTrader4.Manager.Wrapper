@@ -1,4 +1,6 @@
-﻿namespace P23.MetaTrader4.Manager.Contracts
+﻿using P23.MetaTrader4.Manager.Contracts.Configuration.Enums;
+
+namespace P23.MetaTrader4.Manager.Contracts
 {
     /// <summary>
     /// Object that represents margin level
@@ -58,11 +60,11 @@
         /// <summary>
         /// Margin controlling type (percent/currency)
         /// </summary>
-        public int MarginType { get; set; }
+        public MarginControllingType MarginType { get; set; }
 
         /// <summary>
         /// Level type(ok/margincall/stopout)
         /// </summary>
-        public int LevelType { get; set; }
+        public MarginLevelType LevelType { get; set; }
     }
 }

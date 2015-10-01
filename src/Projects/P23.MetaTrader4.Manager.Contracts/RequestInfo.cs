@@ -16,7 +16,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Request status
         /// </summary>
-        public char Status { get; set; }
+        public TradeRequestStatus Status { get; set; }
 
         /// <summary>
         /// Request time

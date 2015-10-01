@@ -48,7 +48,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Feeder modes (enum FeederModes)
         /// </summary>
-        public int Modes { get; set; }
+        public FeederModes Modes { get; set; }
 
         /// <summary>
         /// Feeder description
