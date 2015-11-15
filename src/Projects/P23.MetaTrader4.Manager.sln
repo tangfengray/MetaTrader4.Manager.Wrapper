@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.MetaTrader4.Manager.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.MetaTrader4.Manager.Tests", "P23.MetaTrader4.Manager.Tests\P23.MetaTrader4.Manager.Tests.csproj", "{16BBDE1A-6A2A-431A-B1D5-E3109CFD14C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{153062C8-8FE8-4A08-8860-DC207B59D075}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\versionUpdater.ps1 = Scripts\versionUpdater.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
