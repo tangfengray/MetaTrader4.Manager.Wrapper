@@ -30,6 +30,9 @@
     <ClInclude Include="UnmanagedHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VersionNo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp">
