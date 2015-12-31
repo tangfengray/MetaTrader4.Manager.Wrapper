@@ -1,2 +1,2 @@
 language: csharp
-solution: P23.MetaTrader4.Manager.sln
+solution: src/Projects/P23.MetaTrader4.Manager.sln
