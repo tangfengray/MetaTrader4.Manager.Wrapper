@@ -30,6 +30,9 @@
     <ClInclude Include="UnmanagedHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VersionNo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp">
@@ -156,5 +159,8 @@
     <Image Include="app.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="signkey.snk" />
   </ItemGroup>
 </Project>

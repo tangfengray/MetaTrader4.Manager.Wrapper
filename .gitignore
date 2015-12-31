@@ -24,14 +24,13 @@ ipch
 obj
 bin
 /src/Projects/P23.MetaTrader4.Manager.ClrWrapper/*.user
-<<<<<<< HEAD
 credentials.config
 /src/Projects/.vs/P23.MetaTrader4.Manager/v14/*.suo
 /src/Projects/P23.MetaTrader4.Manager.sdf
-=======
 /src/Projects/.vs/P23.MetaTrader4.Manager/v14/.suo
 /src/Projects/P23.MetaTrader4.Manager.opensdf
 /src/Projects/Debug
 /src/Projects/P23.MetaTrader4.Manager.sdf
 /src/Projects/P23.MetaTrader4.Manager.Tests/credentials.config
->>>>>>> develop
+/src/Projects/P23.MetaTrader4.Manager.Contracts/signkey.pfx
+/src/projects/P23.MetaTrader4.Manager.ClrWrapper/signkey.snk

@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>MetaTrader4.Manager.Wrapper</id>
-	<title>MetaTrader4.Manager.Wrapper</title>
-    <version>0.1.3.1</version>
+    <title>MetaTrader4.Manager.Wrapper</title>
+    <version>0.3.5797.24326</version>
     <authors>Uriil</authors>
     <projectUrl>https://github.com/Uriil/MetaTrader4.Manager.Wrapper</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Managed wrapper around mtmanapi.dll</description>
     <summary>Managed wrapper around mtmanapi.dll</summary>
-    <tags>MetaTrader4</tags>
+    <tags>MetaTrader4 MetaTrader</tags>
   </metadata>
   <files>
     <file src="P23.MetaTrader4.Manager.ClrWrapper.dll" target="lib" />
