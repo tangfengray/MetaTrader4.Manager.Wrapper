@@ -6,8 +6,8 @@ PARAM
 
 Write-Host 'Copying missing files...'
 Copy-Item ..\Libraries\mtmanapi\*.dll
-Copy-Item ..\Projects\Release\*.dll
-Copy-Item ..\Projects\Release\*.xml
+Copy-Item ..\src\Release\*.dll
+Copy-Item ..\src\Release\*.xml
 
 $version = (Get-Item P23.MetaTrader4.Manager.ClrWrapper.dll).VersionInfo.FileVersion
 
