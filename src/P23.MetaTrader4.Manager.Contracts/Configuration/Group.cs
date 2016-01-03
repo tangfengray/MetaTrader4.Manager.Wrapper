@@ -25,9 +25,9 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int Timeout { get; set; }
 
         /// <summary>
-        /// Enable advanced security
+        /// One-time password mode
         /// </summary>
-        public int AdvSecurity { get; set; }
+        public OTPMode OtpMode { get; set; }
 
         /// <summary>
         /// Company name

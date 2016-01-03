@@ -11,13 +11,13 @@
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Tickvalue for bid
+        /// Swap size for long positions
         /// </summary>
         public double SwapLong { get; set; }
 
         /// <summary>
         /// /// <summary>
-        /// Tickvalue for ask
+        /// Swap size for short positions
         /// </summary>
         /// </summary>
         public double SwapShort { get; set; }

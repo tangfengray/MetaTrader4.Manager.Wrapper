@@ -218,5 +218,30 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         /// Generate statements at weekends
         /// </summary>
         public int StatementWeekend { get; set; }
+
+        /// <summary>
+        /// Last activation Datetime
+        /// </summary>
+        public UInt32 LastActivate { get; set; }
+
+        /// <summary>
+        /// Last stop Datetime
+        /// </summary>
+        public UInt32 StopLast { get; set; }
+
+        /// <summary>
+        /// Last stop delay
+        /// </summary>
+        public int StopDelay { get; set; }
+
+        /// <summary>
+        /// Last stop reason
+        /// </summary>
+        public int StopReason { get; set; }
+
+        /// <summary>
+        /// Account allocation URL
+        /// </summary>
+        public string AccountUrl { get; set; }
     }
 }

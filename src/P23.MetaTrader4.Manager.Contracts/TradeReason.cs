@@ -8,22 +8,34 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// <summary>
         /// Client
         /// </summary>
-        Client,
+        Client = 0,
         /// <summary>
         /// Expert
         /// </summary>
-        Expert,
+        Expert = 1,
         /// <summary>
         /// Dealer
         /// </summary>
-        Dealer,
+        Dealer = 2,
         /// <summary>
         /// Signal
         /// </summary>
-        Signal,
+        Signal = 3,
         /// <summary>
         /// Gateway
         /// </summary>
-        Gateway
+        Gateway = 4,
+        /// <summary>
+        /// Mobile terminal
+        /// </summary>
+        Mobile = 5,
+        /// <summary>
+        /// Web terminal
+        /// </summary>
+        Web = 6,
+        /// <summary>
+        /// API
+        /// </summary>
+        API = 7
     }
 }

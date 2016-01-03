@@ -38,12 +38,12 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int Readed { get; set; }
 
         /// <summary>
-        /// Pointer to mail body
+        /// Pointer to mail Body
         /// </summary>
         public string Body { get; set; }
 
         /// <summary>
-        /// Mail body length
+        /// Mail Body length
         /// </summary>
         public int BodyLen { get; set; }
 

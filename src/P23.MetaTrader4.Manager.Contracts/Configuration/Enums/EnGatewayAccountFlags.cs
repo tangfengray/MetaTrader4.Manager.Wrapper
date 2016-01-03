@@ -1,7 +1,7 @@
 namespace P23.MetaTrader4.Manager.Contracts.Configuration.Enums
 {
     /// <summary>
-    /// Gateway account flags
+    /// Gateway account Flags
     /// </summary>
     public enum EnGatewayAccountFlags
     {

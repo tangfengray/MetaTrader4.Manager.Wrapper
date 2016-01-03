@@ -31,6 +31,14 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration.Enums
         /// <summary>
         /// Own signals
         /// </summary>
-        SignalsOwn = 32
-    };
+        SignalsOwn = 32,
+        /// <summary>
+        /// Risk warning
+        /// </summary>
+        RiskWarning = 64,
+        /// <summary>
+        /// Forced OTP usage
+        /// </summary>
+        AllowFlagForcedOtpUsage = 128,
+    }
 }

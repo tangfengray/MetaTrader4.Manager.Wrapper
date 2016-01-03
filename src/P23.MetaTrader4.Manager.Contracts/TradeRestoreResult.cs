@@ -12,9 +12,8 @@
 
         /// <summary>
         /// Restore result:
-        /// RET_OK_NONE     -order restored
-        /// RET_INVALID_DATA-existent order restored
-        /// RET_ERROR       -restoring disabled
+        /// RET_OK_NONE     - order restored
+        /// RET_ERROR       - error restoring order
         /// </summary>
         public byte Res { get; set; }
     }

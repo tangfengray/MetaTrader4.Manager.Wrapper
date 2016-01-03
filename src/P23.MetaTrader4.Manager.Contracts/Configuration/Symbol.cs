@@ -55,7 +55,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int Count { get; set; }
 
         /// <summary>
-        /// Symbols index in market watch
+        /// Symbols index in Market watch
         /// </summary>
         public int CountOriginal { get; set; }
 
@@ -190,7 +190,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public double MarginMaintenance { get; set; }
 
         /// <summary>
-        /// Hadget margin
+        /// Hadged margin
         /// </summary>
         public double MarginHedged { get; set; }
 

@@ -73,6 +73,8 @@
     <Compile Include="ChartInfo.cs" />
     <Compile Include="ChartPeriod.cs" />
     <Compile Include="ChartRequestMode.cs" />
+    <Compile Include="Configuration\Enums\OTPMode.cs" />
+    <Compile Include="EnNewsFlags.cs" />
     <Compile Include="FeederModes.cs" />
     <Compile Include="Configuration\Access.cs" />
     <Compile Include="Configuration\Backup.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="MarginLevelType.cs" />
     <Compile Include="MetaTraderException.cs" />
     <Compile Include="NewsTopic.cs" />
+    <Compile Include="NewsTopicNew.cs" />
     <Compile Include="OnlineRecord.cs" />
     <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

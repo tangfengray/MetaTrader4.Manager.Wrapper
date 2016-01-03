@@ -23,7 +23,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         public UInt32 To { get; set; }
 
         /// <summary>
-        /// TICK_FLAG_* flags
+        /// TICK_FLAG_* Flags
         /// </summary>
         public char Flags { get; set; }
     }

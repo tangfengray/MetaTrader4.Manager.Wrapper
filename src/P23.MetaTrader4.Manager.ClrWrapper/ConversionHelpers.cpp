@@ -19,10 +19,12 @@ P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ P23::MetaTrader4::
 	tManager->Logs = configuration->logs;
 	tManager->Mailbox = gcnew System::String(configuration->mailbox);
 	tManager->ManagerRights = configuration->manager;
+	tManager->Market = configuration->market;
 	tManager->MarketWatch = configuration->market_watch;
 	tManager->Money = configuration->money;
 	tManager->Name = gcnew System::String(configuration->name);
 	tManager->News = configuration->news;
+	tManager->Notifications = configuration->notifications;
 	tManager->Online = configuration->online;
 	tManager->Plugins = configuration->plugins;
 	tManager->Reports = configuration->reports;
@@ -64,6 +66,7 @@ ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Man
 		COPY_STR(tManager->mailbox, mailbox);
 	
 	tManager->manager = configuration->ManagerRights;
+	tManager->market = configuration->Market;
 	tManager->market_watch = configuration->MarketWatch;
 	tManager->money = configuration->Money;
 
@@ -72,6 +75,7 @@ ConManager* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Man
 		COPY_STR(tManager->name, name);
 	
 	tManager->news = configuration->News;
+	tManager->notifications = configuration->Notifications;
 	tManager->online = configuration->Online;
 	tManager->plugins = configuration->Plugins;
 	tManager->reports = configuration->Reports;
@@ -112,6 +116,7 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 {
 	Common^ newConfiguration = gcnew Common();
 
+	newConfiguration->AccountUrl = gcnew String(configuration->account_url);
 	newConfiguration->Adapters = gcnew String(configuration->adapters);
 	newConfiguration->Address = configuration->address;
 	newConfiguration->AntiFlood = configuration->antiflood;
@@ -125,6 +130,7 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 	newConfiguration->FloodControl = configuration->floodcontrol;
 	newConfiguration->KeepEmails = configuration->keepemails;
 	newConfiguration->KeepTicks = configuration->keepticks;
+	newConfiguration->LastActivate = configuration->last_activate;
 	newConfiguration->LastLogin = configuration->lastlogin;
 	newConfiguration->LastOrder = configuration->lastorder;
 	newConfiguration->LiveUpdateMode = (Enums::LiveUpdateMode) configuration->liveupdate_mode;
@@ -150,6 +156,9 @@ Common^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConCommon* configuration)
 	newConfiguration->ServerVersion = configuration->server_version;
 	newConfiguration->StatementMode = (Enums::StatementMode) configuration->statement_mode;
 	newConfiguration->StatementWeekend = configuration->statement_weekend;
+	newConfiguration->StopDelay = configuration->stop_delay;
+	newConfiguration->StopLast = configuration->stop_last;
+	newConfiguration->StopReason = configuration->stop_reason;
 	newConfiguration->TimeOfDemo = configuration->timeofdemo;
 	newConfiguration->Timeout = configuration->timeout;
 	newConfiguration->TimeSync = gcnew String(configuration->timesync);
@@ -170,6 +179,10 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 	if (adapters != NULL)
 		COPY_STR(newConfiguration->adapters, adapters);
 
+	char* accountUrl = Convert(configuration->AccountUrl);
+	if (accountUrl != NULL)
+		COPY_STR(newConfiguration->account_url, accountUrl);
+
 	newConfiguration->address = configuration->Address;
 	newConfiguration->antiflood = configuration->AntiFlood;
 
@@ -185,6 +198,7 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 	newConfiguration->floodcontrol = configuration->FloodControl;
 	newConfiguration->keepemails = configuration->KeepEmails;
 	newConfiguration->keepticks = configuration->KeepTicks;
+	newConfiguration->last_activate = configuration->LastActivate;
 	newConfiguration->lastlogin = configuration->LastLogin;
 	newConfiguration->lastorder = configuration->LastOrder;
 	newConfiguration->liveupdate_mode = (int)configuration->LiveUpdateMode;
@@ -227,6 +241,9 @@ ConCommon* P23::MetaTrader4::Manager::ClrWrapper::Convert(Common^ configuration)
 	newConfiguration->server_version = configuration->ServerVersion;
 	newConfiguration->statement_mode = (int)configuration->StatementMode;
 	newConfiguration->statement_weekend = configuration->StatementWeekend;
+	newConfiguration->stop_delay = configuration->StopDelay;
+	newConfiguration->stop_last = configuration->StopLast;
+	newConfiguration->stop_reason = configuration->StopReason;
 	newConfiguration->timeofdemo = configuration->TimeOfDemo;
 	newConfiguration->timeout = configuration->Timeout;
 
@@ -693,7 +710,7 @@ Group^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ConGroup* configuration)
 {
 	Group^ newConfiguration = gcnew Group();
 
-	newConfiguration->AdvSecurity = configuration->adv_security;
+	newConfiguration->OtpMode = (Enums::OTPMode)configuration->otp_mode;
 	newConfiguration->ArchiveMaxBalance = configuration->archive_max_balance;
 	newConfiguration->ArchivePendingPeriod = configuration->archive_pending_period;
 	newConfiguration->ArchivePeriod = configuration->archive_period;
@@ -760,7 +777,7 @@ ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
 
 	ConGroup* newConfiguration = new ConGroup();
 
-	newConfiguration->adv_security = configuration->AdvSecurity;
+	newConfiguration->otp_mode = (int)configuration->OtpMode;
 	newConfiguration->archive_max_balance = configuration->ArchiveMaxBalance;
 	newConfiguration->archive_pending_period = configuration->ArchivePendingPeriod;
 	newConfiguration->archive_period = configuration->ArchivePeriod;
@@ -1311,16 +1328,19 @@ P23::MetaTrader4::Manager::Contracts::UserRecord^  P23::MetaTrader4::Manager::Cl
 	output->Email = gcnew String(input->email);
 	output->Enable = input->enable;
 	output->EnableChangePassword = input->enable_change_password;
+	output->EnableOTP = input->enable_otp;
 	output->EnableReadOnly = input->enable_read_only;
 	output->Group = gcnew String(input->group);
 	output->Id = gcnew String(input->id);
 	output->InterestRate = input->interestrate;
 	output->LastDate = input->lastdate;
 	output->LastIp = input->last_ip;
+	output->LeadSource = gcnew String(input->lead_source);
 	output->Leverage = input->leverage;
 	output->Login = input->login;
 	output->Mqid = input->mqid;
 	output->Name = gcnew String(input->name);
+	output->OTPSecret = gcnew String(input->otp_secret);
 	//output->Password = gcnew String(input->password);
 	//output->PasswordInvestor = gcnew String(input->password_investor);
 	output->PasswordPhone = gcnew String(input->password_phone);
@@ -1329,7 +1349,6 @@ P23::MetaTrader4::Manager::Contracts::UserRecord^  P23::MetaTrader4::Manager::Cl
 	output->PrevEquity = input->prevequity;
 	output->PrevMonthBalance = input->prevmonthbalance;
 	output->PrevMonthEquity = input->prevmonthequity;
-	output->PublicKey = gcnew String(input->publickey);
 	output->Regdate = input->regdate;
 	output->SendReports = input->send_reports;
 	output->State = gcnew String(input->state);
@@ -1373,6 +1392,7 @@ UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 
 	output->enable = input->Enable;
 	output->enable_change_password = input->EnableChangePassword;
+	output->enable_otp = input->EnableOTP;
 	output->enable_read_only = input->EnableReadOnly;
 
 	char* group = Convert(input->Group);
@@ -1386,6 +1406,11 @@ UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 	output->interestrate = input->InterestRate;
 	output->lastdate = input->LastDate;
 	output->last_ip = input->LastIp;
+
+	char* leadSource = Convert(input->LeadSource);
+	if (leadSource != NULL)
+		COPY_STR(output->lead_source, leadSource);
+
 	output->leverage = input->Leverage;
 	output->login = input->Login;
 	output->mqid = input->Mqid;
@@ -1406,6 +1431,10 @@ UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 	if (password_phone != NULL)
 		COPY_STR(output->password_phone, password_phone);
 
+	char* otpSecret = Convert(input->OTPSecret);
+	if (otpSecret != NULL)
+		COPY_STR(output->otp_secret, otpSecret);
+
 	char* phone = Convert(input->Phone);
 	if (phone != NULL)
 		COPY_STR(output->phone, phone);
@@ -1414,10 +1443,6 @@ UserRecord*  P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 	output->prevequity = input->PrevEquity;
 	output->prevmonthbalance = input->PrevMonthBalance;
 	output->prevmonthequity = input->PrevMonthEquity;
-
-	char* publickey = Convert(input->PublicKey);
-	if (publickey != NULL)
-		COPY_STR(output->publickey, publickey);
 
 	output->regdate = input->Regdate;
 	output->send_reports = input->SendReports;

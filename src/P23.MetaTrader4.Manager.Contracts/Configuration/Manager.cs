@@ -98,6 +98,16 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public int TechSupport { get; set; }
 
         /// <summary>
+        /// Right to access server applications Market
+        /// </summary>
+        public int Market { get; set; }
+
+        /// <summary>
+        /// Right to push Notifications
+        /// </summary>
+        public int Notifications { get; set; }
+
+        /// <summary>
         /// Enable IP control
         /// </summary>
         public int IpFilter { get; set; }

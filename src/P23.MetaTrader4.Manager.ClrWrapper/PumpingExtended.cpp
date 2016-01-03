@@ -86,6 +86,9 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 		case PUMP_UPDATE_NEWS:
 			//Needs to be implemented
 			break;
+		case PUMP_UPDATE_NEWS_NEW:
+			//Needs to be implemented
+			break;
 		case PUMP_UPDATE_MAIL:
 			//Needs to be implemented
 			break;

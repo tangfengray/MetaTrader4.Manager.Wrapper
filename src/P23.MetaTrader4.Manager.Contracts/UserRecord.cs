@@ -38,6 +38,11 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int EnableReadOnly { get; set; }
 
         /// <summary>
+        /// Allow to use one-time password
+        /// </summary>
+        public int EnableOTP { get; set; }
+
+        /// <summary>
         /// Read-only mode password
         /// </summary>
         public string PasswordInvestor { get; set; }
@@ -76,6 +81,11 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// Address
         /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// lead source
+        /// </summary>
+        public string LeadSource { get; set; }
 
         /// <summary>
         /// Phone
@@ -181,6 +191,11 @@ namespace P23.MetaTrader4.Manager.Contracts
         /// Enable send reports by email
         /// </summary>
         public int SendReports { get; set; }
+
+        /// <summary>
+        /// One-time password secret
+        /// </summary>
+        public string OTPSecret { get; set; }
 
         /// <summary>
         /// MQ client identificator

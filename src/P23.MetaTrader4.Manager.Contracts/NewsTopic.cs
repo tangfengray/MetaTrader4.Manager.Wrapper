@@ -28,7 +28,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         public string Topic { get; set; }
 
         /// <summary>
-        /// News category
+        /// News Category
         /// </summary>
         public string Category { get; set; }
 

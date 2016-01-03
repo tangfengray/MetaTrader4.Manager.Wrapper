@@ -74,6 +74,7 @@
     <Compile Include="Helpers\CredentialsProvider.cs" />
     <Compile Include="ExtendedPumpingTests.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="NotificationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportsTests.cs" />
     <Compile Include="SymbolCommandsTests.cs" />

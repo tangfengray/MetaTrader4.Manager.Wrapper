@@ -67,6 +67,8 @@ namespace P23{
 				//Helpers
 				static char* Convert(System::String^ inputString);
 				static int* Convert(IList<int>^ input);
+				static const wchar_t* P23::MetaTrader4::Manager::ClrWrapper::ConvertToLPCWSTR(System::String^ inputString);
+				static wchar_t* P23::MetaTrader4::Manager::ClrWrapper::ConvertToLPWSTR(System::String^ inputString);
 
 				//Helper method to convert managed objects to unmanaged un vise versa
 				static ConManager* Convert(P23::MetaTrader4::Manager::Contracts::Configuration::Manager^ manager);
@@ -1416,6 +1418,22 @@ namespace P23{
 				/// </summary>
 				/// <param name="logins">logins</param>
 				IList<P23::MetaTrader4::Manager::Contracts::BalanceDiff^>^  AdmBalanceCheck(IList<int>^ logins);
+
+				//--- notifications
+
+				/// <summary>
+				/// Send push notification
+				/// </summary>
+				/// <param name="metaquotesIds">metaquotes ids</param>
+				/// <param name="message">notification message</param>
+				int NotificationsSend(String^ metaquotesIds, String^ message);
+
+				/// <summary>
+				/// Send push notification
+				/// </summary>
+				/// <param name="logins">logins</param>
+				/// <param name="message">notification message</param>
+				int NotificationsSend(List<int>^ logins, String^ message);
 			};		
 		}
 	}

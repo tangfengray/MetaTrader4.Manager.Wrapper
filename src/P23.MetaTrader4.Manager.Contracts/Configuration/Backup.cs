@@ -89,7 +89,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public string WatchOpposite { get; set; }
 
         /// <summary>
-        /// Watch dog ip
+        /// Opposite server IP
         /// </summary>
         public int WatchIp { get; set; }
 

@@ -28,7 +28,7 @@ namespace P23.MetaTrader4.Manager.Contracts
         public int DataFeed { get; set; }
 
         /// <summary>
-        /// TICK_FLAG_* flags
+        /// TICK_FLAG_* Flags
         /// </summary>
         public TickRecordFlags Flags { get; set; }
     }

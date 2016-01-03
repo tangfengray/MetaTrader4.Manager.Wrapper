@@ -11,7 +11,7 @@
 //|                        API Version                               |
 //+------------------------------------------------------------------+
 #define ManAPIProgramVersion  400
-#define ManAPIProgramBuild    830
+#define ManAPIProgramBuild    950
 #define ManAPIVersion         MAKELONG(ManAPIProgramBuild,ManAPIProgramVersion)
 //+------------------------------------------------------------------+
 //| MSVS6 Compatibility                                              |
@@ -107,8 +107,12 @@ struct ConCommon
    int               monthly_state_mode;    // monthly statement generation day (MONTHLY_STATEMENT_END_MONTH,MONTHLY_STATEMENT_START_MONTH)
    int               keepticks;             // ticks keep period
    int               statement_weekend;     // generate statements at weekends
-   //---
-   int               reserved[52];
+   __time32_t        last_activate;         // last activation datetime
+   __time32_t        stop_last;             // last stop datetime
+   int               stop_delay;            // last stop delay
+   int               stop_reason;           // last stop reason
+   char              account_url[128];      // account allocation URL
+   int               reserved[16];
   };
 //--- deno-accounts type
 enum { DEMO_DISABLED, DEMO_PROLONG, DEMO_FIXED };
@@ -120,6 +124,8 @@ enum { LIVE_UPDATE_NO=0, LIVE_UPDATE_RELEASE=1, LIVE_UPDATE_NO_SERVER=2, LIVE_UP
 enum { STATEMENT_END_DAY, STATEMENT_START_DAY };
 //--- monthly statement mode
 enum { MONTHLY_STATEMENT_END_MONTH, MONTHLY_STATEMENT_START_MONTH };
+//--- server stop reason
+enum { STOP_REASON_NONE, STOP_REASON_RESTART, STOP_REASON_SHUTDOWN, STOP_REASON_LIVEUPDATE };
 //+------------------------------------------------------------------+
 //| Access configuration                                             |
 //+------------------------------------------------------------------+
@@ -182,7 +188,7 @@ struct ConBackup
    int               watch_role;             // server role { WATCH_STAND_ALONE, WATCH_MASTER, WATCH_SLAVE }
    char              watch_password[16];     // slave server password
    char              watch_opposite[24];     // opposite server IP address and port
-   int               watch_ip;               // watch dog ip
+   int               watch_ip;               // opposite server IP
    //--- 
    char              archive_shift;          // shift of archive backup time (in minutes)
    //---
@@ -204,6 +210,10 @@ enum { ARC_BACKUP_DISABLED,ARC_BACKUP_5MIN,ARC_BACKUP_15MIN,ARC_BACKUP_30MIN,ARC
 enum { ARC_STORE_1DAY,ARC_STORE_3DAYS,ARC_STORE_1WEEK,ARC_STORE_2WEEKS,ARC_STORE_1MONTH,ARC_STORE_3MONTH,ARC_STORE_6MONTH };
 //--- export execution period: 1 min, 5 min, 15 min, 30 min, 1 hour
 enum { EXPORT_1MIN,EXPORT_5MIN,EXPORT_15MIN,EXPORT_30MIN,EXPORT_1HOUR };
+//--- watchdog state
+enum { WS_DISCONNECTED, WS_SYNCHRONIZING, WS_SYNCHRONIZED };
+//--- watchdog failover mode
+enum { FAILOVER_OFF, FAILOVER_MOST, FAILOVER_FULL };
 //+------------------------------------------------------------------+
 //| Datafeed configuration                                           |
 //+------------------------------------------------------------------+
@@ -263,7 +273,7 @@ struct ConGroupSec
 struct ConGroupMargin
   {
    char              symbol[12];            // security
-   double            swap_long,swap_short;  // tickvalue for bid & ask
+   double            swap_long,swap_short;  // swap size for long and short positions
    double            margin_divider;        // margin divider
    int               reserved[7];
   };
@@ -286,7 +296,7 @@ struct ConGroup
    char              group[16];                   // group name
    int               enable;                      // enable group
    int               timeout;                     // trade confirmation timeout (seconds)
-   int               adv_security;                // enable advanced security
+   int               otp_mode;                    // one-time password mode
    //--- statements
    char              company[128];                // company name
    char              signature[128];              // statements signature
@@ -349,12 +359,20 @@ enum { NEWS_NO, NEWS_TOPICS, NEWS_FULL  };
 //--- group rights
 enum 
   { 
-   ALLOW_FLAG_EMAIL      =1,
-   ALLOW_FLAG_TRAILING   =2,
-   ALLOW_FLAG_ADVISOR    =4,
-   ALLOW_FLAG_EXPIRATION =8,
-   ALLOW_FLAG_SIGNALS_ALL=16,
-   ALLOW_FLAG_SIGNALS_OWN=32
+   ALLOW_FLAG_EMAIL           =1,
+   ALLOW_FLAG_TRAILING        =2,
+   ALLOW_FLAG_ADVISOR         =4,
+   ALLOW_FLAG_EXPIRATION      =8,
+   ALLOW_FLAG_SIGNALS_ALL     =16,
+   ALLOW_FLAG_SIGNALS_OWN     =32,
+   ALLOW_FLAG_RISK_WARNING    =64,
+   ALLOW_FLAG_FORCED_OTP_USAGE=128,
+  };
+//--- group one-time password mode
+enum
+  {
+   OTP_MODE_DISABLED       =0,
+   OTP_MODE_TOTP_SHA256    =1,
   };
 //+------------------------------------------------------------------+
 //| Hollidays configuration                                          |
@@ -448,7 +466,9 @@ struct ConManager
    int               plugins;                     // right to configure plugins
    int               server_reports;              // right to receive server reports
    int               techsupport;                 // right to access to technical support page
-   int               unused[11];
+   int               market;                      // right to access server applications market
+   int               notifications;               // right to push notifications
+   int               unused[9];
    //--- IP filtration
    int               ipfilter;                    // enable IP control
    unsigned long     ip_from,ip_to;               // range of allowed IPs
@@ -538,7 +558,7 @@ struct ConSymbol
    int               margin_mode;                 // margin calculation mode
    double            margin_initial;              // initial margin
    double            margin_maintenance;          // margin maintenance
-   double            margin_hedged;               // hadget margin
+   double            margin_hedged;               // hedged margin
    double            margin_divider;              // margin divider
    //--- calclulated variables (internal data)
    double            point;                       // point size-(1/(10^digits)
@@ -913,7 +933,8 @@ struct UserRecord
    int               enable;                     // enable
    int               enable_change_password;     // allow to change password
    int               enable_read_only;           // allow to open/positions (TRUE-may not trade)
-   int               enable_reserved[3];         // for future use
+   int               enable_otp;                 // allow to use one-time password
+   int               enable_reserved[2];         // for future use
    //---
    char              password_investor[16];      // read-only mode password
    char              password_phone[32];         // phone password
@@ -922,7 +943,8 @@ struct UserRecord
    char              city[32];                   // city
    char              state[32];                  // state
    char              zipcode[16];                // zipcode
-   char              address[128];               // address
+   char              address[96];                // address
+   char              lead_source[32];            // lead source
    char              phone[32];                  // phone
    char              email[48];                  // email
    char              comment[64];                // comment
@@ -946,7 +968,8 @@ struct UserRecord
    double            prevequity;                 // previous day equity
    double            reserved2[2];               // for future use
    //---
-   char              publickey[PUBLIC_KEY_SIZE]; // public key
+   char              otp_secret[32];             // one-time password secret
+   char              secure_reserved[240];       // secure data reserved
    int               send_reports;               // enable send reports by email
    unsigned int      mqid;                       // MQ client identificator
    COLORREF          user_color;                 // color got to client (used by MT Manager)
@@ -1027,22 +1050,33 @@ enum { OP_BUY=0,OP_SELL,OP_BUY_LIMIT,OP_SELL_LIMIT,OP_BUY_STOP,OP_SELL_STOP,OP_B
 //--- trade record state
 enum { TS_OPEN_NORMAL, TS_OPEN_REMAND, TS_OPEN_RESTORED, TS_CLOSED_NORMAL, TS_CLOSED_PART, TS_CLOSED_BY, TS_DELETED };
 //--- trade record reasons
-enum { TR_REASON_CLIENT, TR_REASON_EXPERT, TR_REASON_DEALER,TR_REASON_SIGNAL, TR_REASON_GATEWAY };
+enum
+  {
+   TR_REASON_CLIENT =0,  // client terminal
+   TR_REASON_EXPERT =1,  // expert
+   TR_REASON_DEALER =2,  // dealer
+   TR_REASON_SIGNAL =3,  // signal
+   TR_REASON_GATEWAY=4,  // gateway
+   TR_REASON_MOBILE =5,  // mobile terminal
+   TR_REASON_WEB    =6,  // Web terminal
+   TR_REASON_API    =7,  // API
+  };
 //--- activation types
 //--- *_ROLLBACK=current price roll back from activation price level
-enum {
-      //--- no activation
-      ACTIVATION_NONE=0,
-      //--- stoploss, takeprofit, pendings
-      ACTIVATION_SL,ACTIVATION_TP,ACTIVATION_PENDING,
-      //--- stopout
-      ACTIVATION_STOPOUT,
-      //--- rollbacks
-      ACTIVATION_SL_ROLLBACK     =-ACTIVATION_SL,
-      ACTIVATION_TP_ROLLBACK     =-ACTIVATION_TP,
-      ACTIVATION_PENDING_ROLLBACK=-ACTIVATION_PENDING,
-      ACTIVATION_STOPOUT_ROLLBACK=-ACTIVATION_STOPOUT
-     };
+enum
+  {
+   //--- no activation
+   ACTIVATION_NONE=0,
+   //--- stoploss, takeprofit, pendings
+   ACTIVATION_SL,ACTIVATION_TP,ACTIVATION_PENDING,
+   //--- stopout
+   ACTIVATION_STOPOUT,
+   //--- rollbacks
+   ACTIVATION_SL_ROLLBACK     =-ACTIVATION_SL,
+   ACTIVATION_TP_ROLLBACK     =-ACTIVATION_TP,
+   ACTIVATION_PENDING_ROLLBACK=-ACTIVATION_PENDING,
+   ACTIVATION_STOPOUT_ROLLBACK=-ACTIVATION_STOPOUT
+  };
 //+------------------------------------------------------------------+
 //| TradeRecord restoring from backup result                         |
 //+------------------------------------------------------------------+
@@ -1050,9 +1084,8 @@ enum {
 struct TradeRestoreResult
   {
    int               order;            // order
-   UCHAR             res;              // RET_OK_NONE     -order restored
-                                       // RET_INVALID_DATA-existent order restored
-                                       // RET_ERROR       -restoring disabled
+   UCHAR             res;              // RET_OK    - order restored
+                                       // RET_ERROR - error restoring order
   };
 #pragma pack(pop)
 //+------------------------------------------------------------------+
@@ -1342,6 +1375,37 @@ struct NewsTopic
    int               reserved[1];
   };
 //+------------------------------------------------------------------+
+//| Extended news structure                                          |
+//+------------------------------------------------------------------+
+#pragma pack(push,1)
+struct NewsTopicNew
+  {
+   //--- constants
+   enum constants
+     {
+      MAX_NEWS_BODY_LEN=15*1024*1024         // max. body len
+     };
+   //--- news topic flags
+   enum EnNewsFlags
+     {
+      FLAG_PRIORITY    =1,                   // priority flag
+      FLAG_CALENDAR    =2,                   // calendar item flag
+      FLAG_MIME        =4,                   // MIME news content
+      FLAG_ALLOW_DEMO  =8                    // allow body for demo accounts
+     };
+   ULONG             key;                    // news key
+   UINT              language;               // news language (WinAPI LANGID)
+   wchar_t           subject[256];           // news subject
+   wchar_t           category[256];          // news category
+   UINT              flags;                  // EnNewsFlags
+   wchar_t* __ptr32  body;                   // body
+   UINT              body_len;               // body length
+   UINT              languages_list[32];     // list of languages available for news
+   INT64             datetime;               // news time
+   UINT              reserved[30];           // reserved
+  };
+#pragma pack(pop)
+//+------------------------------------------------------------------+
 //| Server journal record                                            |
 //+------------------------------------------------------------------+
 struct ServerLog
@@ -1407,7 +1471,8 @@ enum
    PUMP_UPDATE_ACTIVATION,    // new order for activation (sl/sp/stopout)
    PUMP_UPDATE_MARGINCALL,    // new margin calls
    PUMP_STOP_PUMPING,         // pumping stopped
-   PUMP_PING                  // ping
+   PUMP_PING,                 // ping
+   PUMP_UPDATE_NEWS_NEW,      // update news in new format (NewsTopicNew structure)
   };
 //+------------------------------------------------------------------+
 //| Dealing notification codes                                       |
@@ -1669,6 +1734,9 @@ public:
    virtual int          __stdcall CfgShiftGatewayRule(const int pos,const int shift)=0;
 //--- administrator databases commands
    virtual BalanceDiff* __stdcall AdmBalanceCheck(int *logins,int *total)=0;
+//--- notifications
+   virtual int          __stdcall NotificationsSend(LPWSTR metaquotes_ids,LPCWSTR message)=0;
+   virtual int          __stdcall NotificationsSend(const int* logins,const UINT logins_total,LPCWSTR message)=0;
   };
 //+------------------------------------------------------------------+
 //| Functions                                                        |
