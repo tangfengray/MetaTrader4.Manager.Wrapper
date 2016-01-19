@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79770E69-B697-4B93-855B-A48D41D7FFD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>P23.MetaTrader4.Manager.Contracts</RootNamespace>
+    <AssemblyName>P23.MetaTrader4.Manager.Contracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\x86\Release\P23.MetaTrader4.Manager.Contracts.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>signkey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivationType.cs" />
+    <Compile Include="BackupInfo.cs" />
+    <Compile Include="BackupMode.cs" />
+    <Compile Include="BalanceDiff.cs" />
+    <Compile Include="ChartInfo.cs" />
+    <Compile Include="ChartPeriod.cs" />
+    <Compile Include="ChartRequestMode.cs" />
+    <Compile Include="Configuration\Enums\OTPMode.cs" />
+    <Compile Include="EnNewsFlags.cs" />
+    <Compile Include="FeederModes.cs" />
+    <Compile Include="Configuration\Access.cs" />
+    <Compile Include="Configuration\Backup.cs" />
+    <Compile Include="Configuration\Enums\AccessActionType.cs" />
+    <Compile Include="Configuration\Enums\ArchiveBackupExecutionPeriod.cs" />
+    <Compile Include="Configuration\Enums\ArchiveBackupStorePeriod.cs" />
+    <Compile Include="Configuration\Enums\AutoCloseOutMethod.cs" />
+    <Compile Include="Configuration\Enums\ClientsTradeRights.cs" />
+    <Compile Include="Configuration\Enums\CommissionLotsMode.cs" />
+    <Compile Include="Configuration\Enums\CommissionType.cs" />
+    <Compile Include="Configuration\Enums\DataFeedMode.cs" />
+    <Compile Include="Configuration\Enums\DealingMode.cs" />
+    <Compile Include="Configuration\Enums\DemoAccountsType.cs" />
+    <Compile Include="Configuration\Enums\EnGatewayAccountFlags.cs" />
+    <Compile Include="Configuration\Enums\ExportExecutionPeriod.cs" />
+    <Compile Include="Configuration\Enums\FullBackupExecutionPeriod.cs" />
+    <Compile Include="Configuration\Enums\FullBackupStorePeriod.cs" />
+    <Compile Include="Configuration\Enums\GroupRights.cs" />
+    <Compile Include="Configuration\Enums\GtcMode.cs" />
+    <Compile Include="Configuration\Enums\LiveUpdateMode.cs" />
+    <Compile Include="Configuration\Enums\LiveUpdateType.cs" />
+    <Compile Include="Configuration\Enums\MarginCalculationMode.cs" />
+    <Compile Include="Configuration\Enums\MarginControllingType.cs" />
+    <Compile Include="Configuration\Enums\MonthlyStatementMode.cs" />
+    <Compile Include="Configuration\Enums\NewsMode.cs" />
+    <Compile Include="Configuration\Enums\ProfitCalculationMode.cs" />
+    <Compile Include="Configuration\Enums\RolloverMode.cs" />
+    <Compile Include="Configuration\Enums\ServerRole.cs" />
+    <Compile Include="Configuration\Enums\StatementMode.cs" />
+    <Compile Include="Configuration\Enums\SwapType.cs" />
+    <Compile Include="Configuration\Enums\SymbolExecutionMode.cs" />
+    <Compile Include="Configuration\Enums\SymbolMarginCalculationMode.cs" />
+    <Compile Include="Configuration\Enums\SynchronizationMode.cs" />
+    <Compile Include="Configuration\Enums\TradeMode.cs" />
+    <Compile Include="Configuration\FilesConfigurations.cs" />
+    <Compile Include="Configuration\GatewayAccount.cs" />
+    <Compile Include="Configuration\Common.cs" />
+    <Compile Include="Configuration\GatewayMarkup.cs" />
+    <Compile Include="Configuration\GatewayRule.cs" />
+    <Compile Include="Configuration\DataServer.cs" />
+    <Compile Include="Configuration\Feeder.cs" />
+    <Compile Include="Configuration\Group.cs" />
+    <Compile Include="Configuration\GroupMargin.cs" />
+    <Compile Include="Configuration\GroupSecurity.cs" />
+    <Compile Include="Configuration\Holiday.cs" />
+    <Compile Include="Configuration\LiveUpdate.cs" />
+    <Compile Include="Configuration\Manager.cs" />
+    <Compile Include="Configuration\ManagerSecurity.cs" />
+    <Compile Include="Configuration\Plugin.cs" />
+    <Compile Include="Configuration\PluginConfigurationParameter.cs" />
+    <Compile Include="Configuration\PluginInformation.cs" />
+    <Compile Include="Configuration\PluginWithParameters.cs" />
+    <Compile Include="Configuration\Session.cs" />
+    <Compile Include="Configuration\Sessions.cs" />
+    <Compile Include="Configuration\Symbol.cs" />
+    <Compile Include="Configuration\SymbolGroup.cs" />
+    <Compile Include="Configuration\Synchronization.cs" />
+    <Compile Include="Configuration\Time.cs" />
+    <Compile Include="DailyGroupRequest.cs" />
+    <Compile Include="DailyReport.cs" />
+    <Compile Include="ExposureValue.cs" />
+    <Compile Include="FeedDescription.cs" />
+    <Compile Include="GroupCommandInfo.cs" />
+    <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="GroupCommands.cs" />
+    <Compile Include="MailBox.cs" />
+    <Compile Include="MarginLevel.cs" />
+    <Compile Include="MarginLevelType.cs" />
+    <Compile Include="MetaTraderException.cs" />
+    <Compile Include="NewsTopic.cs" />
+    <Compile Include="NewsTopicNew.cs" />
+    <Compile Include="OnlineRecord.cs" />
+    <Compile Include="PerformanceInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateInfo.cs" />
+    <Compile Include="ReportGroupRequest.cs" />
+    <Compile Include="RequestInfo.cs" />
+    <Compile Include="ServerFeed.cs" />
+    <Compile Include="ServerLog.cs" />
+    <Compile Include="SymbolInfo.cs" />
+    <Compile Include="SymbolPriceDirection.cs" />
+    <Compile Include="SymbolProperties.cs" />
+    <Compile Include="SymbolSummary.cs" />
+    <Compile Include="TickInfo.cs" />
+    <Compile Include="TickRecord.cs" />
+    <Compile Include="TickRecordFlags.cs" />
+    <Compile Include="TickRequest.cs" />
+    <Compile Include="TradeCommand.cs" />
+    <Compile Include="TradeReason.cs" />
+    <Compile Include="TradeRecord.cs" />
+    <Compile Include="TradeRequestStatus.cs" />
+    <Compile Include="TradeRestoreResult.cs" />
+    <Compile Include="TradeState.cs" />
+    <Compile Include="TradeTransactionType.cs" />
+    <Compile Include="TradeTransInfo.cs" />
+    <Compile Include="UserRecord.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="signkey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
+    <PostBuildEvent>"%25WINDIR%25\SysNative\WindowsPowerShell\v1.0\powershell.exe" -File  "$(SolutionDir)\Scripts\versionUpdater.ps1" -NewVersion "@(VersionNumber)" -SolutionDirectory $(SolutionDir)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
