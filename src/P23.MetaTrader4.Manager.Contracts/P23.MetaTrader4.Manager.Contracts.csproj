@@ -149,6 +149,7 @@
     <Compile Include="OnlineRecord.cs" />
     <Compile Include="PerformanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PumpingNotificationCodes.cs" />
     <Compile Include="RateInfo.cs" />
     <Compile Include="ReportGroupRequest.cs" />
     <Compile Include="RequestInfo.cs" />
