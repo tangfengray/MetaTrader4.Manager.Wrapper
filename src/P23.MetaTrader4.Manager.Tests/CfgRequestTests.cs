@@ -15,5 +15,15 @@ namespace P23.MetaTrader4.Manager.Tests
                 Assert.IsTrue(configs.Count > 0);
             }
         }
+
+        [TestMethod]
+        public void CfgRequestSymbolGroup_Invoke_SymbolGroupsReturned()
+        {
+            using (var mt = TestHelpers.CreateWrapper())
+            {
+                var configs = mt.CfgRequestSymbolGroup();
+                Assert.IsNotNull(configs);
+            }
+        }
     }
 }
