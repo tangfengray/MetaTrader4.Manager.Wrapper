@@ -41,17 +41,22 @@ Backup^  P23::MetaTrader4::Manager::ClrWrapper::CfgRequestBackup()
 	return Convert(&configuration);
 }
 
-SymbolGroup^  P23::MetaTrader4::Manager::ClrWrapper::CfgRequestSymbolGroup()
+IList<SymbolGroup^>^  P23::MetaTrader4::Manager::ClrWrapper::CfgRequestSymbolGroup()
 {
-	ConSymbolGroup configuration;
-	int result = _manager->Manager->CfgRequestSymbolGroup(&configuration);
+	ConSymbolGroup configurations[MAX_SEC_GROUP];
+	int result = _manager->Manager->CfgRequestSymbolGroup(configurations);
 	if (result != RET_OK)
 	{
 		MetaTrader4::Manager::Contracts::MetaTraderException^ exception = gcnew MetaTrader4::Manager::Contracts::MetaTraderException();
 		exception->ErrorCode = result;
 		throw exception;
 	}
-	return Convert(&configuration);
+
+	IList<SymbolGroup^>^ output = gcnew List<SymbolGroup^>();
+	for (int i = 0; i < MAX_SEC_GROUP; i++) 	
+		output->Add(Convert(&configurations[i]));
+	
+	return output;
 }
 
 IList<Access^>^      P23::MetaTrader4::Manager::ClrWrapper::CfgRequestAccess()

@@ -55,9 +55,22 @@ IList<P23::MetaTrader4::Manager::Contracts::TickInfo^>^ P23::MetaTrader4::Manage
 	return output;
 }
 
-int P23::MetaTrader4::Manager::ClrWrapper::SymbolsGroupsGet(IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ groups)
+IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ P23::MetaTrader4::Manager::ClrWrapper::SymbolsGroupsGet()
 {
-	throw gcnew NotImplementedException();
+	ConSymbolGroup configurations[MAX_SEC_GROUP];
+	int result = _manager->Manager->SymbolsGroupsGet(configurations);
+	if (result != RET_OK)
+	{
+		MetaTrader4::Manager::Contracts::MetaTraderException^ exception = gcnew MetaTrader4::Manager::Contracts::MetaTraderException();
+		exception->ErrorCode = result;
+		throw exception;
+	}
+
+	IList<SymbolGroup^>^ output = gcnew List<SymbolGroup^>();
+	for (int i = 0; i < MAX_SEC_GROUP; i++)
+		output->Add(Convert(&configurations[i]));
+
+	return output;
 }
 
 long P23::MetaTrader4::Manager::ClrWrapper::ServerTime()

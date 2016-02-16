@@ -389,7 +389,7 @@ namespace P23{
 				/// <summary>
 				/// Request symbol group configuration section
 				/// </summary>	
-				SymbolGroup^  CfgRequestSymbolGroup();
+				IList<SymbolGroup^>^ CfgRequestSymbolGroup();
 
 				/// <summary>
 				/// Request accesses configuration
@@ -1129,7 +1129,7 @@ namespace P23{
 				/// <summary>
 				/// Get settings of securities groups in pumping mode
 				/// </summary>
-				int SymbolsGroupsGet(IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ groups);
+				IList<P23::MetaTrader4::Manager::Contracts::Configuration::SymbolGroup^>^ SymbolsGroupsGet();
 
 				/// <summary>
 				/// Get server time
