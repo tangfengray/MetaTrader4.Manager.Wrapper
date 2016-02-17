@@ -76,6 +76,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="NotificationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PumpingTests.cs" />
     <Compile Include="ReportsTests.cs" />
     <Compile Include="SymbolCommandsTests.cs" />
     <Compile Include="UsersTests.cs" />

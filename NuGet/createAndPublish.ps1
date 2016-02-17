@@ -27,7 +27,7 @@ $targets.Save("$pwd\$targetsFile")
 Write-Host 'Publishing package...'
 .\nuget.exe pack $nuspecFile
 .\nuget.exe setapikey $ApiKey
-#.\nuget.exe push "MetaTrader4.Manager.Wrapper.$version.nupkg"
+.\nuget.exe push "MetaTrader4.Manager.Wrapper.$version.nupkg"
 
 Write-Host 'Removing files...'
 Remove-Item *.dll

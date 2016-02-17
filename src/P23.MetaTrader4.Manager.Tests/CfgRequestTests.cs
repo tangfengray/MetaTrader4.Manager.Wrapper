@@ -22,7 +22,8 @@ namespace P23.MetaTrader4.Manager.Tests
             using (var mt = TestHelpers.CreateWrapper())
             {
                 var configs = mt.CfgRequestSymbolGroup();
-                Assert.IsNotNull(configs);
+                Assert.IsTrue(configs.Count > 0);
+                Assert.IsFalse(string.IsNullOrEmpty(configs[0].Name));
             }
         }
     }

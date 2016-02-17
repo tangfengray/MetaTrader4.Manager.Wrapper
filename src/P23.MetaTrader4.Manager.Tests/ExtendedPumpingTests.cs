@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using P23.MetaTrader4.Manager.Contracts.Configuration;
 using P23.MetaTrader4.Manager.Tests.Helpers;
 
 namespace P23.MetaTrader4.Manager.Tests
