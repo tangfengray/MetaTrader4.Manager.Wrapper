@@ -4,6 +4,7 @@
 #pragma comment(lib, "ws2_32.lib")
 
 #include "MT4ManagerAPI.h"
+#include "P23.MetaTrader4.Manager.CManager.h"
 
 #pragma unmanaged
 #include "UnmanagedHelpers.h"
@@ -14,40 +15,23 @@ using namespace System::Runtime::InteropServices;
 using namespace P23::MetaTrader4::Manager::Contracts::Configuration;
 using namespace System::Collections::Generic;
 
-namespace P23{
-	namespace MetaTrader4{
-		namespace Manager{
-			private class CManager
-			{
-			public:
-				CManagerFactory    Factory;
-				CManagerInterface *Manager;
-				CManager(LPCSTR lib_path = NULL) : Factory(lib_path), Manager(NULL)
-				{
-					Factory.WinsockStartup();
-					if (Factory.IsValid() == FALSE || (Manager = Factory.Create(ManAPIVersion)) == NULL)
-					{
-						System::Diagnostics::Debug::WriteLine("Manager Created");						
-					}
-				}
-				~CManager()
-				{
-					if (Manager != NULL) { Manager->Release(); Manager = NULL; }
-					Factory.WinsockCleanup();
-					Factory.~CManagerFactory();
-				}
-				bool               IsValid()    { return(Manager != NULL); }				
-			};
+namespace P23 {
+	namespace MetaTrader4 {
+		namespace Manager {			
+
+			ref class ClrWrapper;
 
 			public delegate void PumpingCallbackDelegate(int i);
 
 			public delegate void ExtendedCallBackDelegate(int code, int type, void *data, void *param);
 
-			public delegate void TradeRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
+			public delegate void PumpingEventHandler(ClrWrapper^ sender, EventArgs^ eventArgs);
+
+			public delegate void TradeRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
 			
-			public delegate void OnlineRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
+			public delegate void OnlineRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
 			
-			public delegate void UserRecordUpdated(System::Object^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord);
+			public delegate void UserRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord);
 
 			/// <summary>
 			/// Wrapper around mtmanapi.dll to provede managed access to MT4 manager API
@@ -236,17 +220,17 @@ namespace P23{
 				/// <summary>
 				/// Event rised when pumping started. Works only in pumping mode
 				/// </summary>
-				event EventHandler^				PumpingStarted;
+				event PumpingEventHandler^				PumpingStarted;
 
 				/// <summary>
 				/// Event rised when pumping stopped. Works only in pumping mode
 				/// </summary>
-				event EventHandler^				PumpingStopped;
+				event PumpingEventHandler^				PumpingStopped;
 
 				/// <summary>
 				/// Event rised when new quote received. Works only in extended pumping mode
 				/// </summary>
-				event EventHandler^				BidAskUpdated;
+				event PumpingEventHandler^				BidAskUpdated;
 
 				/// <summary>
 				/// Event rised when online users updated. Works only in extended pumping mode

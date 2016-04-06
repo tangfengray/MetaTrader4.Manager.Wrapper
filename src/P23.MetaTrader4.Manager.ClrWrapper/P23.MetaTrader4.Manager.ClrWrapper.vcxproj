@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="MT4ManagerAPI.h" />
     <ClInclude Include="P23.MetaTrader4.Manager.ClrWrapper.h" />
+    <ClInclude Include="P23.MetaTrader4.Manager.CManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="UnmanagedHelpers.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="Notifications.cpp" />
     <ClCompile Include="Orders.cpp" />
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp" />
+    <ClCompile Include="P23.MetaTrader4.Manager.CManager.cpp" />
     <ClCompile Include="PerformanceInfo.cpp" />
     <ClCompile Include="ProfitRecalculation.cpp" />
     <ClCompile Include="Pumping.cpp" />

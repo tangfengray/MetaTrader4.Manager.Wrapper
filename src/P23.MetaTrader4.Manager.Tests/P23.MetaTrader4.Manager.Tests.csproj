@@ -82,6 +82,14 @@
     <Compile Include="UsersTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="credentials.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\P23.MetaTrader4.Manager.ClrWrapper\P23.MetaTrader4.Manager.ClrWrapper.vcxproj">
       <Project>{4fb30e8d-10bb-46ba-9afe-df840256ed03}</Project>
       <Name>P23.MetaTrader4.Manager.ClrWrapper</Name>
@@ -90,14 +98,6 @@
       <Project>{79770e69-b697-4b93-855b-a48d41d7ffd1}</Project>
       <Name>P23.MetaTrader4.Manager.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="credentials.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Readme.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

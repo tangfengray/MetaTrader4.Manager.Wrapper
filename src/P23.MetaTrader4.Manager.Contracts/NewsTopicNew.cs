@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace P23.MetaTrader4.Manager.Contracts
 {
+    /// <summary>
+    /// New news topic class
+    /// </summary>
     public class NewsTopicNew
     {
         /// <summary>

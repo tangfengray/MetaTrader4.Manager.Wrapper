@@ -75,7 +75,7 @@ namespace P23.MetaTrader4.Manager.Contracts.Configuration
         public UInt32 Expiration { get; set; }
 
         /// <summary>
-        /// Quote & trade sessions
+        /// Quote and trade sessions
         /// </summary>
         public IList<Sessions> Sessions { get; set; }
 

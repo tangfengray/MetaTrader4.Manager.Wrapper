@@ -33,6 +33,9 @@
     <ClInclude Include="VersionNo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="P23.MetaTrader4.Manager.CManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="P23.MetaTrader4.Manager.ClrWrapper.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Notifications.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="P23.MetaTrader4.Manager.CManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
