@@ -1680,6 +1680,26 @@ NewsTopic* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Mana
 	return output;
 }
 
+P23::MetaTrader4::Manager::Contracts::NewsTopicNew^ P23::MetaTrader4::Manager::ClrWrapper::Convert(NewsTopicNew* input)
+{
+	P23::MetaTrader4::Manager::Contracts::NewsTopicNew^ output = gcnew P23::MetaTrader4::Manager::Contracts::NewsTopicNew();
+
+	output->Body = gcnew String(UnmanagedHelpers::GetNewNewsBody(input));
+	output->Category = gcnew String(input->category);
+	output->DateTime = input->datetime;
+	output->Flags = (P23::MetaTrader4::Manager::Contracts::EnNewsFlags)input->flags;
+	output->Key = input->key;
+	output->Language = input->language;
+	
+	output->LanguagesList = gcnew List<unsigned int>();
+	for (int i = 0; i < 32; i++)
+		output->LanguagesList->Add(input->languages_list[i]);
+
+	output->Subject = gcnew String(input->subject);
+	
+	return output;
+}
+
 P23::MetaTrader4::Manager::Contracts::ServerLog^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerLog* input)
 {
 	P23::MetaTrader4::Manager::Contracts::ServerLog^ output = gcnew P23::MetaTrader4::Manager::Contracts::ServerLog();

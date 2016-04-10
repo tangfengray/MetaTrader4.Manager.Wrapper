@@ -29,9 +29,21 @@ namespace P23 {
 
 			public delegate void TradeRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::TradeRecord^ tradeRecord);
 			
-			public delegate void OnlineRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord);
+			public delegate void OnlineRecordUpdated(ClrWrapper^ sender, int onlineLogin);
 			
 			public delegate void UserRecordUpdated(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::UserRecord^ userRecord);
+
+			public delegate void SymbolConfigurationUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^ symbolConfiguration);
+			
+			public delegate void GroupConfigurationUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::Configuration::Group^ groupConfiguration);
+			
+			public delegate void RequestInfoUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::RequestInfo^ requestInfo);
+			
+			public delegate void NewsTopicUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::NewsTopic^ newsTopic);
+			
+			public delegate void NewNewsTopicUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::NewsTopicNew^ newsTopic);
+			
+			public delegate void MailBoxUpdatedEventHandler(ClrWrapper^ sender, P23::MetaTrader4::Manager::Contracts::MailBox^ mailBox);
 
 			/// <summary>
 			/// Wrapper around mtmanapi.dll to provede managed access to MT4 manager API
@@ -147,6 +159,8 @@ namespace P23 {
 				static P23::MetaTrader4::Manager::Contracts::NewsTopic^ P23::MetaTrader4::Manager::ClrWrapper::Convert(NewsTopic* input);
 				static NewsTopic* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::NewsTopic^ input);
 
+				static P23::MetaTrader4::Manager::Contracts::NewsTopicNew^ P23::MetaTrader4::Manager::ClrWrapper::Convert(NewsTopicNew* input);
+
 				static P23::MetaTrader4::Manager::Contracts::ServerLog^ P23::MetaTrader4::Manager::ClrWrapper::Convert(ServerLog* input);
 
 				static TradeTransInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ input);
@@ -241,6 +255,36 @@ namespace P23 {
 				/// Event rised when user record changes. Works only in extended pumping mode
 				/// </summary>
 				event UserRecordUpdated^		UserUpdated;
+
+				/// <summary>
+				/// Event rised when symbol configuration changes. Works only in extended pumping mode
+				/// </summary>
+				event SymbolConfigurationUpdatedEventHandler^		SymbolUpdated;
+
+				/// <summary>
+				/// Event rised when group configuration changes. Works only in extended pumping mode
+				/// </summary>
+				event GroupConfigurationUpdatedEventHandler^		GroupUpdated;
+
+				/// <summary>
+				/// Event rised when request information updated. Works only in extended pumping mode
+				/// </summary>
+				event RequestInfoUpdatedEventHandler^		RequestInfoUpdated;
+
+				/// <summary>
+				/// Event rised when news topic recieved. Works only in extended pumping mode
+				/// </summary>
+				event NewsTopicUpdatedEventHandler^		NewsTopicUpdated;
+
+				/// <summary>
+				/// Event rised when new news topic recieved. Works only in extended pumping mode
+				/// </summary>
+				event NewNewsTopicUpdatedEventHandler^		NewNewsTopicUpdated;
+
+				/// <summary>
+				/// Event rised when mail box updated. Works only in extended pumping mode
+				/// </summary>
+				event MailBoxUpdatedEventHandler^		MailBoxUpdated;
 
 				//constructors
 				/// <summary>

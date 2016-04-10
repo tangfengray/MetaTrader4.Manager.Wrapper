@@ -27,10 +27,20 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 			BidAskUpdated(this, nullptr);
 			break;
 		case PUMP_UPDATE_SYMBOLS:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				ConSymbol *conSymbol = (ConSymbol*)data;
+				P23::MetaTrader4::Manager::Contracts::Configuration::Symbol^ symbolConfiguration = P23::MetaTrader4::Manager::ClrWrapper::Convert(conSymbol);
+				SymbolUpdated(this, symbolConfiguration);
+			}
 			break;
 		case PUMP_UPDATE_GROUPS:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				ConGroup *conGroup = (ConGroup*)data;
+				P23::MetaTrader4::Manager::Contracts::Configuration::Group^ groupConfiguration = P23::MetaTrader4::Manager::ClrWrapper::Convert(conGroup);
+				GroupUpdated(this, groupConfiguration);
+			}
 			break;
 		case PUMP_UPDATE_USERS:
 			if (data != NULL)
@@ -43,9 +53,8 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 		case PUMP_UPDATE_ONLINE:
 			if (data != NULL)
 			{
-				OnlineRecord *online = (OnlineRecord*)data;
-				P23::MetaTrader4::Manager::Contracts::OnlineRecord^ onlineRecord = P23::MetaTrader4::Manager::ClrWrapper::Convert(online);
-				OnlineUpdated(this, onlineRecord);
+				int onlineLogin = (int)data;
+				OnlineUpdated(this, onlineLogin);
 			}
 			break;
 		case PUMP_UPDATE_TRADES:
@@ -71,26 +80,37 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 				}
 			}
 			break;
-		case PUMP_UPDATE_ACTIVATION:
-			//Needs to be implemented
-			break;
-		case PUMP_UPDATE_MARGINCALL:
-			//Needs to be implemented
-			break;
 		case PUMP_UPDATE_REQUESTS:
-			//Needs to be implemented
-			break;
-		case PUMP_UPDATE_PLUGINS:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				RequestInfo *requestInfo = (RequestInfo*)data;
+				P23::MetaTrader4::Manager::Contracts::RequestInfo^ ri = P23::MetaTrader4::Manager::ClrWrapper::Convert(requestInfo);
+				RequestInfoUpdated(this, ri);
+			}
 			break;
 		case PUMP_UPDATE_NEWS:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				NewsTopic *newsTopic = (NewsTopic *)data;
+				P23::MetaTrader4::Manager::Contracts::NewsTopic^ nt = P23::MetaTrader4::Manager::ClrWrapper::Convert(newsTopic);
+				NewsTopicUpdated(this, nt);
+			}
 			break;
 		case PUMP_UPDATE_NEWS_NEW:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				NewsTopicNew *newsTopic = (NewsTopicNew*)data;
+				P23::MetaTrader4::Manager::Contracts::NewsTopicNew^ nt = P23::MetaTrader4::Manager::ClrWrapper::Convert(newsTopic);
+				NewNewsTopicUpdated(this, nt);
+			}
 			break;
 		case PUMP_UPDATE_MAIL:
-			//Needs to be implemented
+			if (data != NULL)
+			{
+				MailBox *mailBox = (MailBox*)data;
+				P23::MetaTrader4::Manager::Contracts::MailBox^ mb = P23::MetaTrader4::Manager::ClrWrapper::Convert(mailBox);
+				MailBoxUpdated(this, mb);
+			}
 			break;
 		default: 
 			break;

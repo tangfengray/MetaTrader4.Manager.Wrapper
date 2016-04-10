@@ -29,6 +29,11 @@ char* P23::MetaTrader4::Manager::UnmanagedHelpers::GetNewsBody(NewsTopic* news)
 	return news->body;
 }
 
+wchar_t* P23::MetaTrader4::Manager::UnmanagedHelpers::GetNewNewsBody(NewsTopicNew* news)
+{
+	return news->body;
+}
+
 char* P23::MetaTrader4::Manager::UnmanagedHelpers::GetMailBody(MailBox* mailBox)
 {
 	return mailBox->body;
