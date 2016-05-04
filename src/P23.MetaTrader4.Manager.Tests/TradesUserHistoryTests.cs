@@ -15,7 +15,7 @@ namespace P23.MetaTrader4.Manager.Tests
                 //Act
                 var @from = new DateTimeOffset(2016, 1, 1, 0, 0, 0, 0, TimeSpan.Zero);
                 var to = @from.AddYears(1);
-                var trades = mt.TradesUserHistory(1000, 0, to);
+                var trades = mt.TradesUserHistory(1000, (uint)@from.ToUnixTimeSeconds(), (uint)to.ToUnixTimeSeconds());
                 
                 //Assert
                 Assert.IsTrue(trades.Count > 0);
