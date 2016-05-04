@@ -52,6 +52,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -70,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CfgRequestTests.cs" />
+    <Compile Include="CfgUpdateTests.cs" />
     <Compile Include="ChartsTests.cs" />
     <Compile Include="Helpers\CredentialsProvider.cs" />
     <Compile Include="ExtendedPumpingTests.cs" />

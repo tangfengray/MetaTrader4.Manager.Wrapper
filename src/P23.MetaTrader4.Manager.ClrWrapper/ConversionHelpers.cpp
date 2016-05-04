@@ -698,7 +698,7 @@ ConSession* P23::MetaTrader4::Manager::ClrWrapper::Convert(Session^ configuratio
 {
 	ConSession* newConfiguration = new ConSession();
 
-	newConfiguration->close_hour = configuration->CloseMin;
+	newConfiguration->close_hour = configuration->CloseHour;
 	newConfiguration->close_min = configuration->CloseMin;
 	newConfiguration->open_hour = configuration->OpenHour;
 	newConfiguration->open_min = configuration->OpenMin;
