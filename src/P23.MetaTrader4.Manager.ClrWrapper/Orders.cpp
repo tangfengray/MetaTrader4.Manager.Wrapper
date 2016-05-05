@@ -4,7 +4,13 @@
 
 int P23::MetaTrader4::Manager::ClrWrapper::TradeTransaction(P23::MetaTrader4::Manager::Contracts::TradeTransInfo^ info)
 {
-	return _manager->Manager->TradeTransaction(Convert(info));
+	TradeTransInfo* transaction = Convert(info);
+	int result = _manager->Manager->TradeTransaction(transaction);
+	
+	if (result == 0)
+		info->Order = transaction->order;
+
+	return result;
 }
 
 IList<P23::MetaTrader4::Manager::Contracts::TradeRecord^>^ P23::MetaTrader4::Manager::ClrWrapper::TradesRequest()

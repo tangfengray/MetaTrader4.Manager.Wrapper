@@ -78,6 +78,7 @@
     <Compile Include="ExtendedPumpingTests.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="NotificationTest.cs" />
+    <Compile Include="OrderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PumpingTests.cs" />
     <Compile Include="ReportsTests.cs" />
