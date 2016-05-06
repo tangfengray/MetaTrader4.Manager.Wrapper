@@ -1859,9 +1859,9 @@ P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::Cl
 	output->Id = input->id;
 	output->Manager = input->manager;
 	
-	output->Prices = gcnew List<double>(2);
-	output->Prices[0] = input->prices[0];
-	output->Prices[1] = input->prices[1];
+	output->Prices = gcnew List<double>();
+	output->Prices->Add(input->prices[0]);
+	output->Prices->Add(input->prices[1]);
 	
 	output->Status = (P23::MetaTrader4::Manager::Contracts::TradeRequestStatus)input->status;
 	output->Time = input->time;
@@ -1886,6 +1886,9 @@ RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 	output->gw_volume = input->GwVolume;
 	output->id = input->Id;
 	output->manager = input->Manager;
+
+	if (input->Prices->Count != 2)
+		throw gcnew ArgumentException("Price must have exactly two values", "Prices");
 
 	output->prices[0] = input->Prices[0];
 	output->prices[1] = input->Prices[1];
