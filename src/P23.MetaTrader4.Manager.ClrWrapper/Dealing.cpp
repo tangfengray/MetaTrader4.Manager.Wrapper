@@ -7,7 +7,7 @@ int P23::MetaTrader4::Manager::ClrWrapper::DealerSwitch(PumpingCallbackDelegate^
 	if (_callBackHandler.IsAllocated)
 		throw gcnew MetaTrader4::Manager::Contracts::MetaTraderException("Callback handler alread allocated");
 
-	_callBackHandler = GCHandle::Alloc(_callBackDelegate);
+	_callBackHandler = GCHandle::Alloc(callBackDelegate);
 	return _manager->Manager->DealerSwitch((MTAPI_NOTIFY_FUNC)Marshal::GetFunctionPointerForDelegate(callBackDelegate).ToPointer(), 0, NULL);
 }
 
