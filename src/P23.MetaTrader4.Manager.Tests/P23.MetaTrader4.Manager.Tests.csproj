@@ -74,6 +74,7 @@
     <Compile Include="CfgRequestTests.cs" />
     <Compile Include="CfgUpdateTests.cs" />
     <Compile Include="ChartsTests.cs" />
+    <Compile Include="Examples\RealTimeTicksProvider.cs" />
     <Compile Include="Helpers\CredentialsProvider.cs" />
     <Compile Include="ExtendedPumpingTests.cs" />
     <Compile Include="Helpers\Extensions.cs" />
