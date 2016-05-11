@@ -1849,6 +1849,7 @@ P23::MetaTrader4::Manager::Contracts::RequestInfo^ P23::MetaTrader4::Manager::Cl
 {
 	P23::MetaTrader4::Manager::Contracts::RequestInfo^ output = gcnew P23::MetaTrader4::Manager::Contracts::RequestInfo();
 
+	output->Login = input->login;
 	output->Balance = input->balance;
 	output->Credit = input->credit;
 	output->Group = gcnew String(input->group);
@@ -1874,6 +1875,7 @@ RequestInfo* P23::MetaTrader4::Manager::ClrWrapper::Convert(P23::MetaTrader4::Ma
 {
 	RequestInfo* output = new RequestInfo();
 
+	output->login = input->Login;
 	output->balance = input->Balance;
 	output->credit = input->Credit;
 
