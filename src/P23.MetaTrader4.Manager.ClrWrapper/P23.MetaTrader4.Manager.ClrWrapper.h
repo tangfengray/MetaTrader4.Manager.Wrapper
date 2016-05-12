@@ -214,22 +214,22 @@ namespace P23 {
 				/// <summary>
 				/// Event rised when added new trade. Works only in extended pumping mode
 				/// </summary>
-				event TradeRecordUpdated^		TradeAdded;
+				event TradeRecordUpdated^				TradeAdded;
 
 				/// <summary>
 				/// Event rised when trade changed. Works only in extended pumping mode
 				/// </summary>
-				event TradeRecordUpdated^		TradeUpdated;
+				event TradeRecordUpdated^				TradeUpdated;
 
 				/// <summary>
 				/// Event rised when trade closed. Works only in extended pumping mode
 				/// </summary>
-				event TradeRecordUpdated^		TradeClosed;
+				event TradeRecordUpdated^				TradeClosed;
 
 				/// <summary>
 				/// Event rised when pending order deleted. Works only in extended pumping mode
 				/// </summary>
-				event TradeRecordUpdated^		TradeDeleted;
+				event TradeRecordUpdated^				TradeDeleted;
 
 				/// <summary>
 				/// Event rised when pumping started. Works only in pumping mode
@@ -247,14 +247,19 @@ namespace P23 {
 				event PumpingEventHandler^				BidAskUpdated;
 
 				/// <summary>
+				/// Event rised when new order for activation received. Works only in extended pumping mode
+				/// </summary>
+				event PumpingEventHandler^				ActivationUpdated;
+
+				/// <summary>
 				/// Event rised when online users updated. Works only in extended pumping mode
 				/// </summary>
-				event OnlineRecordUpdated^		OnlineUpdated;
+				event OnlineRecordUpdated^				OnlineUpdated;
 
 				/// <summary>
 				/// Event rised when user record changes. Works only in extended pumping mode
 				/// </summary>
-				event UserRecordUpdated^		UserUpdated;
+				event UserRecordUpdated^				UserUpdated;
 
 				/// <summary>
 				/// Event rised when symbol configuration changes. Works only in extended pumping mode

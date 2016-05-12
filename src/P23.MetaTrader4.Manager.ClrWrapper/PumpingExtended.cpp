@@ -112,6 +112,9 @@ void P23::MetaTrader4::Manager::ClrWrapper::ExtendedPumpingNotify(int code, int 
 				MailBoxUpdated(this, mb);
 			}
 			break;
+		case PUMP_UPDATE_ACTIVATION:
+			ActivationUpdated(this, nullptr);
+			break;
 		default: 
 			break;
 	}
