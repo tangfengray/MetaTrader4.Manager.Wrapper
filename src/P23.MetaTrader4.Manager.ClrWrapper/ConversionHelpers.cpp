@@ -822,10 +822,10 @@ ConGroup* P23::MetaTrader4::Manager::ClrWrapper::Convert(Group^ configuration)
 	newConfiguration->reports = configuration->Reports;
 	newConfiguration->rights = (int)configuration->Rights;
 		
-	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
+	for (int i = 0; i < configuration->SecGroups->Count; i++)
 		newConfiguration->secgroups[i] = *Convert(configuration->SecGroups[i]);
 		
-	for (int i = 0; i < configuration->NewsLanguages->Count; i++)
+	for (int i = 0; i < configuration->SecMargins->Count; i++)
 		newConfiguration->secmargins[i] = *Convert(configuration->SecMargins[i]);
 
 	newConfiguration->secmargins_total = configuration->SecMarginsTotal;
